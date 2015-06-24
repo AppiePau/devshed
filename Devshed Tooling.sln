@@ -1,0 +1,205 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Web", "Devshed.Web\Devshed.Web.csproj", "{F9430E84-7285-4F78-AD46-EC70C5D62BB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Web.Tests", "Devshed.Web.Tests\Devshed.Web.Tests.csproj", "{DFE0B205-CFC5-466A-B459-970FBFB00246}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Shared", "Devshed.Shared\Devshed.Shared.csproj", "{00B25A05-00D8-4419-9127-87512805CB3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Mvc", "Devshed.Mvc\Devshed.Mvc.csproj", "{0D79B312-54B7-45DB-8B4B-77CAA5951F25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Csv.Tests", "Devshed.CSV.Tests\Devshed.Csv.Tests.csproj", "{EE6CA37D-B61B-40DC-A3DD-802EE108C503}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Csv", "Devshed.Csv\Devshed.Csv.csproj", "{7CC76CCC-FD7F-4671-8461-0D517652D6B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.IO", "Devshed.IO\Devshed.IO.csproj", "{F61ECC12-EDBA-4456-AF94-AE3864873ABD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Shared.Tests", "Devshed.Shared.Tests\Devshed.Shared.Tests.csproj", "{A12249DB-53E4-4B35-8512-BD79AA7EFE49}"
+EndProject
+Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "Devshed.Shared.NuGet", "Devshed.Shared.NuGet\Devshed.Shared.NuGet.nuproj", "{D704BCF0-E8A4-4217-A37D-21E3838255D3}"
+EndProject
+Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "Devshed.Csv.NuGet", "Devshed.Csv.NuGet\Devshed.Csv.NuGet.nuproj", "{B9288C57-DF6F-4574-A604-D2D515210D7A}"
+EndProject
+Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "Devshed.IO.NuGet", "Devshed.IO.NuGet\Devshed.IO.NuGet.nuproj", "{1BDFBD6C-C0F3-4B01-9D4A-E46A1530F0E1}"
+EndProject
+Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "Devshed.Mvc.NuGet", "Devshed.Mvc.NuGet\Devshed.Mvc.NuGet.nuproj", "{01B536CB-4BF2-472D-AF4B-E5559CC1720C}"
+EndProject
+Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "Devshed.Web.NuGet", "Devshed.Web.NuGet\Devshed.Web.NuGet.nuproj", "{30F75722-4166-40E5-9CD0-2A08C812EF73}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F9430E84-7285-4F78-AD46-EC70C5D62BB1} = {F9430E84-7285-4F78-AD46-EC70C5D62BB1}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{15F8B3A5-C9FB-46C5-9792-60E884B3AB8E}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Devshed.Csv 1.2.docx = Documentation\Devshed.Csv 1.2.docx
+		Documentation\Devshed.Csv 1.2.pdf = Documentation\Devshed.Csv 1.2.pdf
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Imaging", "Devshed.Imaging\Devshed.Imaging.csproj", "{0821CEF1-28E3-4C4F-BAA9-654099CBB278}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assemblies", "Assemblies", "{E8D90D47-01B2-467E-9E14-6FAC9D9B98F6}"
+	ProjectSection(SolutionItems) = preProject
+		Assemblies\EXIFextractor.dll = Assemblies\EXIFextractor.dll
+		Assemblies\EXIFextractor.pdb = Assemblies\EXIFextractor.pdb
+	EndProjectSection
+EndProject
+Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "Devshed.Imaging.NuGet", "Devshed.Imaging.NuGet\Devshed.Imaging.NuGet.nuproj", "{AB7B4998-424B-4FCA-9316-845CEC0E03EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Imaging.Tests", "Devshed.Imaging.Tests\Devshed.Imaging.Tests.csproj", "{E8E7F239-1499-4796-B233-284A61DF8889}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{A9EA96F7-C6A8-4D56-94AF-62791B6926D6}"
+	ProjectSection(SolutionItems) = preProject
+		Devshed.Csv.nupkg = Devshed.Csv.nupkg
+		Devshed.Imaging.nupkg = Devshed.Imaging.nupkg
+		Devshed.IO.nupkg = Devshed.IO.nupkg
+		Devshed.Mvc.nupkg = Devshed.Mvc.nupkg
+		Devshed.Shared.nupkg = Devshed.Shared.nupkg
+		Devshed.Web.nupkg = Devshed.Web.nupkg
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 17
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs30
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Devshed.Web.Tests\\Devshed.Web.Tests.csproj
+		SccProjectName1 = Devshed.Web.Tests
+		SccLocalPath1 = Devshed.Web.Tests
+		SccProjectUniqueName2 = Devshed.Web\\Devshed.Web.csproj
+		SccProjectName2 = Devshed.Web
+		SccLocalPath2 = Devshed.Web
+		SccProjectUniqueName3 = Devshed.Mvc\\Devshed.Mvc.csproj
+		SccProjectName3 = Devshed.Mvc
+		SccLocalPath3 = Devshed.Mvc
+		SccProjectUniqueName4 = Devshed.CSV.Tests\\Devshed.Csv.Tests.csproj
+		SccProjectName4 = Devshed.CSV.Tests
+		SccLocalPath4 = Devshed.CSV.Tests
+		SccProjectUniqueName5 = Devshed.Csv\\Devshed.Csv.csproj
+		SccProjectName5 = Devshed.Csv
+		SccLocalPath5 = Devshed.Csv
+		SccProjectUniqueName6 = Devshed.Shared\\Devshed.Shared.csproj
+		SccProjectName6 = Devshed.Shared
+		SccLocalPath6 = Devshed.Shared
+		SccProjectUniqueName7 = Devshed.IO\\Devshed.IO.csproj
+		SccProjectName7 = Devshed.IO
+		SccLocalPath7 = Devshed.IO
+		SccProjectUniqueName8 = Devshed.Shared.Tests\\Devshed.Shared.Tests.csproj
+		SccProjectName8 = Devshed.Shared.Tests
+		SccLocalPath8 = Devshed.Shared.Tests
+		SccProjectUniqueName9 = Devshed.Shared.NuGet\\Devshed.Shared.NuGet.nuproj
+		SccProjectTopLevelParentUniqueName9 = Devshed\u0020Tooling.sln
+		SccProjectName9 = Devshed.Shared.NuGet
+		SccLocalPath9 = Devshed.Shared.NuGet
+		SccProjectUniqueName10 = Devshed.Csv.NuGet\\Devshed.Csv.NuGet.nuproj
+		SccProjectTopLevelParentUniqueName10 = Devshed\u0020Tooling.sln
+		SccProjectName10 = Devshed.Csv.NuGet
+		SccLocalPath10 = Devshed.Csv.NuGet
+		SccProjectUniqueName11 = Devshed.IO.NuGet\\Devshed.IO.NuGet.nuproj
+		SccProjectTopLevelParentUniqueName11 = Devshed\u0020Tooling.sln
+		SccProjectName11 = Devshed.IO.NuGet
+		SccLocalPath11 = Devshed.IO.NuGet
+		SccProjectUniqueName12 = Devshed.Mvc.NuGet\\Devshed.Mvc.NuGet.nuproj
+		SccProjectTopLevelParentUniqueName12 = Devshed\u0020Tooling.sln
+		SccProjectName12 = Devshed.Mvc.NuGet
+		SccLocalPath12 = Devshed.Mvc.NuGet
+		SccProjectUniqueName13 = Devshed.Web.NuGet\\Devshed.Web.NuGet.nuproj
+		SccProjectTopLevelParentUniqueName13 = Devshed\u0020Tooling.sln
+		SccProjectName13 = Devshed.Web.NuGet
+		SccLocalPath13 = Devshed.Web.NuGet
+		SccProjectUniqueName14 = Devshed.Imaging\\Devshed.Imaging.csproj
+		SccProjectName14 = Devshed.Imaging
+		SccLocalPath14 = Devshed.Imaging
+		SccProjectUniqueName15 = Devshed.Imaging.NuGet\\Devshed.Imaging.NuGet.nuproj
+		SccProjectTopLevelParentUniqueName15 = Devshed\u0020Tooling.sln
+		SccProjectName15 = Devshed.Imaging.NuGet
+		SccLocalPath15 = Devshed.Imaging.NuGet
+		SccProjectUniqueName16 = Devshed.Imaging.Tests\\Devshed.Imaging.Tests.csproj
+		SccProjectName16 = Devshed.Imaging.Tests
+		SccLocalPath16 = Devshed.Imaging.Tests
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9430E84-7285-4F78-AD46-EC70C5D62BB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9430E84-7285-4F78-AD46-EC70C5D62BB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9430E84-7285-4F78-AD46-EC70C5D62BB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9430E84-7285-4F78-AD46-EC70C5D62BB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFE0B205-CFC5-466A-B459-970FBFB00246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFE0B205-CFC5-466A-B459-970FBFB00246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFE0B205-CFC5-466A-B459-970FBFB00246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFE0B205-CFC5-466A-B459-970FBFB00246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00B25A05-00D8-4419-9127-87512805CB3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00B25A05-00D8-4419-9127-87512805CB3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00B25A05-00D8-4419-9127-87512805CB3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00B25A05-00D8-4419-9127-87512805CB3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D79B312-54B7-45DB-8B4B-77CAA5951F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D79B312-54B7-45DB-8B4B-77CAA5951F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D79B312-54B7-45DB-8B4B-77CAA5951F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D79B312-54B7-45DB-8B4B-77CAA5951F25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE6CA37D-B61B-40DC-A3DD-802EE108C503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE6CA37D-B61B-40DC-A3DD-802EE108C503}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE6CA37D-B61B-40DC-A3DD-802EE108C503}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE6CA37D-B61B-40DC-A3DD-802EE108C503}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CC76CCC-FD7F-4671-8461-0D517652D6B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CC76CCC-FD7F-4671-8461-0D517652D6B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CC76CCC-FD7F-4671-8461-0D517652D6B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CC76CCC-FD7F-4671-8461-0D517652D6B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F61ECC12-EDBA-4456-AF94-AE3864873ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F61ECC12-EDBA-4456-AF94-AE3864873ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F61ECC12-EDBA-4456-AF94-AE3864873ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F61ECC12-EDBA-4456-AF94-AE3864873ABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A12249DB-53E4-4B35-8512-BD79AA7EFE49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A12249DB-53E4-4B35-8512-BD79AA7EFE49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A12249DB-53E4-4B35-8512-BD79AA7EFE49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A12249DB-53E4-4B35-8512-BD79AA7EFE49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D704BCF0-E8A4-4217-A37D-21E3838255D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D704BCF0-E8A4-4217-A37D-21E3838255D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D704BCF0-E8A4-4217-A37D-21E3838255D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D704BCF0-E8A4-4217-A37D-21E3838255D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9288C57-DF6F-4574-A604-D2D515210D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9288C57-DF6F-4574-A604-D2D515210D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9288C57-DF6F-4574-A604-D2D515210D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9288C57-DF6F-4574-A604-D2D515210D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BDFBD6C-C0F3-4B01-9D4A-E46A1530F0E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BDFBD6C-C0F3-4B01-9D4A-E46A1530F0E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BDFBD6C-C0F3-4B01-9D4A-E46A1530F0E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BDFBD6C-C0F3-4B01-9D4A-E46A1530F0E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01B536CB-4BF2-472D-AF4B-E5559CC1720C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01B536CB-4BF2-472D-AF4B-E5559CC1720C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01B536CB-4BF2-472D-AF4B-E5559CC1720C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01B536CB-4BF2-472D-AF4B-E5559CC1720C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30F75722-4166-40E5-9CD0-2A08C812EF73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30F75722-4166-40E5-9CD0-2A08C812EF73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30F75722-4166-40E5-9CD0-2A08C812EF73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30F75722-4166-40E5-9CD0-2A08C812EF73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0821CEF1-28E3-4C4F-BAA9-654099CBB278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0821CEF1-28E3-4C4F-BAA9-654099CBB278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0821CEF1-28E3-4C4F-BAA9-654099CBB278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0821CEF1-28E3-4C4F-BAA9-654099CBB278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB7B4998-424B-4FCA-9316-845CEC0E03EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB7B4998-424B-4FCA-9316-845CEC0E03EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB7B4998-424B-4FCA-9316-845CEC0E03EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB7B4998-424B-4FCA-9316-845CEC0E03EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8E7F239-1499-4796-B233-284A61DF8889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E7F239-1499-4796-B233-284A61DF8889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E7F239-1499-4796-B233-284A61DF8889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E7F239-1499-4796-B233-284A61DF8889}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D704BCF0-E8A4-4217-A37D-21E3838255D3} = {A9EA96F7-C6A8-4D56-94AF-62791B6926D6}
+		{B9288C57-DF6F-4574-A604-D2D515210D7A} = {A9EA96F7-C6A8-4D56-94AF-62791B6926D6}
+		{1BDFBD6C-C0F3-4B01-9D4A-E46A1530F0E1} = {A9EA96F7-C6A8-4D56-94AF-62791B6926D6}
+		{01B536CB-4BF2-472D-AF4B-E5559CC1720C} = {A9EA96F7-C6A8-4D56-94AF-62791B6926D6}
+		{30F75722-4166-40E5-9CD0-2A08C812EF73} = {A9EA96F7-C6A8-4D56-94AF-62791B6926D6}
+		{AB7B4998-424B-4FCA-9316-845CEC0E03EF} = {A9EA96F7-C6A8-4D56-94AF-62791B6926D6}
+	EndGlobalSection
+EndGlobal
