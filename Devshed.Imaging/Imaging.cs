@@ -9,6 +9,17 @@
 
     public static class Imaging
     {
+        public static byte[] GetImage(this Stream  input, int width, int height, SizeMode mode)
+        {
+                using (var destination = new MemoryStream())
+                {
+                    SaveImageTo(input, destination, width, height, mode);
+
+                    destination.Position = 0;
+                    return destination.GetBytes();
+                }
+        }
+        
         public static byte[] GetImage(this byte[] input, int width, int height, SizeMode mode)
         {
             using (var source = new MemoryStream(input))
@@ -20,24 +31,6 @@
                     destination.Position = 0;
                     return destination.GetBytes();
                 }
-            }
-        }
-
-        public static void RotateAndSaveImage(string source, RotateFlipType flip)
-        {
-            RotateAndSaveImage(source, source, flip);
-        }
-
-        public static void RotateAndSaveImage(string source, string destination, RotateFlipType flip)
-        {
-            //create an object that we can use to examine an image file
-            using (Image img = Image.FromFile(source))
-            {
-                var jgpEncoder = GetJpegEncoder(ImageFormat.Jpeg);
-                var parameters = GetHighQualityParameters();
-       
-                img.RotateFlip(flip);
-                img.Save(destination, jgpEncoder, parameters);
             }
         }
 
@@ -98,6 +91,24 @@
                     exif.setTag(0x112, "1"); // Optional: reset orientation tag
                 }
 
+            }
+        }
+
+        public static void RotateAndSaveImage(string source, RotateFlipType flip)
+        {
+            RotateAndSaveImage(source, source, flip);
+        }
+
+        public static void RotateAndSaveImage(string source, string destination, RotateFlipType flip)
+        {
+            //create an object that we can use to examine an image file
+            using (Image img = Image.FromFile(source))
+            {
+                var jgpEncoder = GetJpegEncoder(ImageFormat.Jpeg);
+                var parameters = GetHighQualityParameters();
+
+                img.RotateFlip(flip);
+                img.Save(destination, jgpEncoder, parameters);
             }
         }
 
