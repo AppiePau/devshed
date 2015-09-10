@@ -6,7 +6,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <NuBuildVersionSource>Library</NuBuildVersionSource>
     <NuBuildVersionFileName>False</NuBuildVersionFileName>
-    <NuBuildAddBinariesToSubfolder>False</NuBuildAddBinariesToSubfolder>
+    <NuBuildAddBinariesToSubfolder>True</NuBuildAddBinariesToSubfolder>
     <NuBuildIncludePdbs>True</NuBuildIncludePdbs>
     <SccProjectName>SAK</SccProjectName>
     <SccProvider>SAK</SccProvider>

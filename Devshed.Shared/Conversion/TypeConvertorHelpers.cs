@@ -8,14 +8,14 @@
 
     internal static class TypeConvertorHelpers
     {
-        [DebuggerStepThrough]
+        //// [DebuggerStepThrough]
         internal static TypeConverter GetConverterForType(Type type)
         {
             if (type.IsArray)
             {
                 Type arrayElementType = type.GetElementType();
 
-                if (arrayElementType.IsValueType)
+                if (arrayElementType.IsValueType || arrayElementType == typeof(string))
                 {
                     // For ValueType arrays (like int[], Guid[] en int?[]) we will use our own converter
                     // because the .NET ArrayConverter cannot conver comma seperated values.

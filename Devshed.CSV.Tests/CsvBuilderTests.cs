@@ -8,6 +8,9 @@
     public class CsvBuilderTests
     {
         #region Constants
+
+        private static readonly string UTF8Bom = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
+
         private static TestRow[] oneRow = new[] { new TestRow { Id = 1, Name = "OK_NAME", IsActive = true } };
 
         private static TestRow[] twoRows = new[] {
@@ -22,14 +25,25 @@
         {
             var result = CsvWriter.CreateStream<TestRow>(NameDefinition(), oneRow).GetString();
             Assert.AreEqual("\"OK_NAME_HEADER\"\r\n\"OK_NAME\"\r\n", result);
-        } 
-        
+        }
+
+        [TestMethod]
+        public void Build_WithWithUTF8Bom_WritesUTF8Bom()
+        {
+            var definition = NameDefinition();
+            definition.WriteBitOrderMarker = true;
+     
+            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow).GetString();
+            Assert.AreEqual(UTF8Bom + "\"OK_NAME_HEADER\"\r\n\"OK_NAME\"\r\n", result);
+        }
+
         [TestMethod]
         public void Build_BigEndianUnicode_AddsBigEndianUnicodeBom()
         {
             var definition = NameDefinition();
             definition.WriteBitOrderMarker = true;
-            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow, Encoding.BigEndianUnicode).GetString();
+            definition.Encoding = Encoding.BigEndianUnicode;
+            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow).GetString();
             Assert.AreEqual(Encoding.BigEndianUnicode.GetString(Encoding.BigEndianUnicode.GetPreamble()) + "\"OK_NAME_HEADER\"\r\n\"OK_NAME\"\r\n", result);
         }
 
@@ -38,7 +52,8 @@
         {
             var definition = NameDefinition();
             definition.WriteBitOrderMarker = true;
-            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow, Encoding.UTF32).GetString();
+            definition.Encoding = Encoding.UTF32;
+            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow).GetString();
             Assert.AreEqual(Encoding.UTF32.GetString(Encoding.UTF32.GetPreamble()) + "\"OK_NAME_HEADER\"\r\n\"OK_NAME\"\r\n", result);
         }
 
@@ -47,7 +62,8 @@
         {
             var definition = NameDefinition();
             definition.WriteBitOrderMarker = true;
-            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow, Encoding.UTF8).GetString();
+            definition.Encoding = Encoding.UTF8;
+            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow).GetString();
             Assert.AreEqual(Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble()) + "\"OK_NAME_HEADER\"\r\n\"OK_NAME\"\r\n", result);
         }
 
@@ -144,7 +160,8 @@
                 })
                 {
                     FirstRowContainsHeaders = true,
-                    WriteBitOrderMarker = false
+                    WriteBitOrderMarker = false,
+                    Encoding = Encoding.UTF8
                 };
         }
 

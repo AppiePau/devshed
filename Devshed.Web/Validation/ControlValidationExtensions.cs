@@ -8,30 +8,36 @@ namespace Devshed.Web
 
     public static class ControlValidationExtensions
     {
+        public static string BasicPasswordExpression =
+                @"(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{4,20})$";
+
+        public static string UrlValidationExpression =
+                @"^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$";
+
+        public static string EmailValidationExpression =
+                @"^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z](?:[a-zA-Z-]*[a-zA-Z])?$";
+
         public static RegularExpressionValidator BasicPassword(this ControlValidatorInjector controlValidator)
         {
             var validator = controlValidator.AddValidator<RegularExpressionValidator>(Resources.Validation.PasswordDoesNotMatchRequirements);
-            validator.ValidationExpression = @"(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{6,10})$";
+            validator.ValidationExpression = BasicPasswordExpression;
             return validator;
         }
 
         public static RegularExpressionValidator AsUrl(this ControlValidatorInjector controlValidator)
         {
             var validator = controlValidator.AddValidator<RegularExpressionValidator>(Resources.Validation.UrlIsNotValid);
-            validator.ValidationExpression = @"^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$";
+            validator.ValidationExpression = UrlValidationExpression;
             return validator;
         }
 
         public static RegularExpressionValidator AsEmail(this ControlValidatorInjector controlValidator)
         {
             var validator = controlValidator.AddValidator<RegularExpressionValidator>(Resources.Validation.EmailIsNotValid);
-
-            validator.ValidationExpression =
-                @"^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z](?:[a-zA-Z-]*[a-zA-Z])?$";
-
+            validator.ValidationExpression = EmailValidationExpression;
             return validator;
         }
-        
+
         public static TControl SetCustomInputMask<TControl>(this TControl control, string inputMask) where TControl : WebControl
         {
             control.Attributes["data-mask"] = inputMask;

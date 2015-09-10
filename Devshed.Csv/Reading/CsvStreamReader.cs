@@ -16,15 +16,6 @@
         private int lineCount;
 
         /// <summary>
-        /// Reads a stream in default enconding.
-        /// </summary>
-        /// <param name="stream"> The stream to read. </param>
-        public CsvStreamReader(Stream stream)
-            : this(stream, CsvWriter.DefaultEncoding)
-        {
-        }
-
-        /// <summary>
         /// Reads a stream in the specified enconding.
         /// </summary>
         /// <param name="stream"> The stream to read. </param>

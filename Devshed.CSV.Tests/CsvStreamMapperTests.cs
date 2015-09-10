@@ -18,7 +18,7 @@
         [TestMethod]
         public void Read_CsvWithoutHeader_CreatesUser()
         {
-            var definition = this.GetDefinition();
+            var definition = this.GetUnicodeDefinition();
 
             var users = Read(definition, Bom + CsvData);
 
@@ -31,7 +31,7 @@
         [TestMethod]
         public void Read_CsvWithHeader_CreatesUser()
         {
-            var definition = this.GetDefinition();
+            var definition = this.GetUnicodeDefinition();
             definition.FirstRowContainsHeaders = true;
 
             var users = Read(definition, Bom + CsvHeader + CsvData);
@@ -42,14 +42,15 @@
             Assert.AreEqual(true, user.IsActive, "IsActive has been read.");
         }
 
-        private CsvDefinition<UserView> GetDefinition()
+        private CsvDefinition<UserView> GetUnicodeDefinition()
         {
             return new CsvDefinition<UserView>(
                 new NumberCsvColumn<UserView>(e => e.Id),
                 new TextCsvColumn<UserView>(e => e.Name),
                 new BooleanCsvColumn<UserView>(e => e.IsActive))
                 {
-                    WriteBitOrderMarker = false
+                    WriteBitOrderMarker = false,
+                    Encoding = Encoding.Unicode
                 };
         }
 

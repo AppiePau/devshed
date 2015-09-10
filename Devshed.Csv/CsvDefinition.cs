@@ -1,7 +1,18 @@
 ﻿namespace Devshed.Csv
 {
+    using Devshed.Shared;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
+
+    public static class CsvConfiguration
+    {
+        /// <summary>
+        /// Specifies the app domain default encoding for all created definitions. The default is UTF-8.
+        /// </summary>
+        public static Encoding DefaultEncoding = Encoding.Default;
+    }
 
     /// <summary> Defines the CSV document layout. </summary>
     /// <typeparam name="TSource">The type of the source.</typeparam>
@@ -9,17 +20,46 @@
     {
         private readonly ICollection<ICsvColumn<TSource>> columns;
 
+        private Encoding encoding;
+
+        public CsvDefinition(Encoding encoding, params ICsvColumn<TSource>[] columns)
+        {
+            Requires.IsNotNull(columns, "columns");
+            Requires.IsNotNull(encoding, "encoding");
+
+            this.columns = columns.ToList();
+            this.ElementDelimiter = ";";
+            this.RemoveNewLineCharacters = true;
+            this.HasFieldsEnclosedInQuotes = true;
+            this.WriteBitOrderMarker = true;
+            this.Encoding = encoding;
+        }
+
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvDefinition{TSource}"/> class.
         /// </summary>
         /// <param name="columns">The elements.</param>
         public CsvDefinition(params ICsvColumn<TSource>[] columns)
+            : this(CsvConfiguration.DefaultEncoding, columns)
         {
-            this.columns = columns.ToList();
-            this.ElementDelimiter = ";";
-            this.RemoveNewLineCharacters = true;
-            this.HasFieldsEnclosedInQuotes = true;
-            this.WriteBitOrderMarker = false;
+        }
+
+        /// <summary>
+        /// Gets or sets the encoding of the file.
+        /// </summary>
+        public Encoding Encoding
+        {
+            get
+            {
+                return this.encoding;
+            }
+            set
+            {
+                Requires.IsNotNull(value, "encoding");
+
+                this.encoding = value;
+            }
         }
 
         /// <summary>

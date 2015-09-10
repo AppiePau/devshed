@@ -7,25 +7,16 @@ namespace Devshed.Csv.Writing
 
     public sealed class CsvStreamWriter
     {
-        private readonly StreamWriter writer;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CsvStreamWriter"/> class.
-        /// </summary>
-        /// <param name="stream">The stream.</param>
-        public CsvStreamWriter(Stream stream)
-            : this(stream, CsvWriter.DefaultEncoding)
-        {
-        }
+        private readonly Stream stream;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvStreamWriter"/> class.
         /// </summary>
         /// <param name="stream"> The stream to write to. </param>
         /// <param name="encoding"> The encoding to use. Unicode by default. </param>
-        public CsvStreamWriter(Stream stream, System.Text.Encoding encoding)
+        public CsvStreamWriter(Stream stream)
         {
-            this.writer = new StreamWriter(stream, encoding);
+            this.stream = stream;
         }
 
         /// <summary>
@@ -36,31 +27,35 @@ namespace Devshed.Csv.Writing
         /// <param name="definition">The definition.</param>
         public void Write<T>(T[] rows, CsvDefinition<T> definition)
         {
-            WriteBom<T>(definition);
+            var writer = new StreamWriter(this.stream, definition.Encoding);
+            
+            WriteBitOrderMarker<T>(definition);
             
             if (definition.FirstRowContainsHeaders)
             {
-                this.AddHeader<T>(definition);
+                this.AddHeader<T>(writer, definition);
             }
 
             foreach (var row in rows)
             {
-                this.AddLine<T>(definition, row);
+                this.AddLine<T>(writer, definition, row);
             }
 
-            this.writer.Flush();
+            writer.Flush();
+
+            this.stream.Flush();
         }
 
-        private void AddLine<T>(CsvDefinition<T> definition, T item)
+        private void AddLine<T>(StreamWriter writer, CsvDefinition<T> definition, T item)
         {  
             var values = definition.Columns.SelectMany(e => e.Render(definition, item));
-            this.writer.WriteLine(string.Join(definition.ElementDelimiter, values.ToArray()));
+            writer.WriteLine(string.Join(definition.ElementDelimiter, values.ToArray()));
         }
 
-        private void AddHeader<T>(CsvDefinition<T> definition)
+        private void AddHeader<T>(StreamWriter writer, CsvDefinition<T> definition)
         {             
             var headers = definition.Columns.SelectMany(column => GetHeaderNames<T>(definition, column));
-            this.writer.WriteLine(string.Join(definition.ElementDelimiter, headers.ToArray()));
+            writer.WriteLine(string.Join(definition.ElementDelimiter, headers.ToArray()));
         }
 
         private static IEnumerable<string> GetHeaderNames<T>(CsvDefinition<T> definition, ICsvColumn<T> column)
@@ -73,12 +68,12 @@ namespace Devshed.Csv.Writing
             return CsvString.FormatStringCell(header, true);
         }
 
-        private void WriteBom<T>(CsvDefinition<T> definition)
+        private void WriteBitOrderMarker<T>(CsvDefinition<T> definition)
         {
-            if (this.writer.BaseStream.Position == 0 && definition.WriteBitOrderMarker)
+            if (this.stream.Position == 0 && definition.WriteBitOrderMarker)
             {
-                var bom = this.writer.Encoding.GetPreamble();
-                this.writer.BaseStream.Write(bom, 0, bom.Length);
+                var bom = definition.Encoding.GetPreamble();
+                this.stream.Write(bom, 0, bom.Length);
             }
         }
     }

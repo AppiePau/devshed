@@ -153,7 +153,7 @@
 
         private static CsvStreamReader GetReader(string data)
         {
-            return new CsvStreamReader(new MemoryStream(CsvWriter.DefaultEncoding.GetBytes(data)));
+            return new CsvStreamReader(new MemoryStream(CsvConfiguration.DefaultEncoding.GetBytes(data)), CsvConfiguration.DefaultEncoding);
         }
     }
 }
