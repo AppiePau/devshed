@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Web", "Devshed.Web\Devshed.Web.csproj", "{F9430E84-7285-4F78-AD46-EC70C5D62BB1}"
 EndProject
@@ -60,67 +60,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{A9
 		Devshed.Web.nupkg = Devshed.Web.nupkg
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Imaging.TestConsole", "Devshed.Imaging.TestConsole\Devshed.Imaging.TestConsole.csproj", "{3AF66ACE-4438-45A3-BF74-80916763B716}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 17
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs30
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Devshed.Web.Tests\\Devshed.Web.Tests.csproj
-		SccProjectName1 = Devshed.Web.Tests
-		SccLocalPath1 = Devshed.Web.Tests
-		SccProjectUniqueName2 = Devshed.Web\\Devshed.Web.csproj
-		SccProjectName2 = Devshed.Web
-		SccLocalPath2 = Devshed.Web
-		SccProjectUniqueName3 = Devshed.Mvc\\Devshed.Mvc.csproj
-		SccProjectName3 = Devshed.Mvc
-		SccLocalPath3 = Devshed.Mvc
-		SccProjectUniqueName4 = Devshed.CSV.Tests\\Devshed.Csv.Tests.csproj
-		SccProjectName4 = Devshed.CSV.Tests
-		SccLocalPath4 = Devshed.CSV.Tests
-		SccProjectUniqueName5 = Devshed.Csv\\Devshed.Csv.csproj
-		SccProjectName5 = Devshed.Csv
-		SccLocalPath5 = Devshed.Csv
-		SccProjectUniqueName6 = Devshed.Shared\\Devshed.Shared.csproj
-		SccProjectName6 = Devshed.Shared
-		SccLocalPath6 = Devshed.Shared
-		SccProjectUniqueName7 = Devshed.IO\\Devshed.IO.csproj
-		SccProjectName7 = Devshed.IO
-		SccLocalPath7 = Devshed.IO
-		SccProjectUniqueName8 = Devshed.Shared.Tests\\Devshed.Shared.Tests.csproj
-		SccProjectName8 = Devshed.Shared.Tests
-		SccLocalPath8 = Devshed.Shared.Tests
-		SccProjectUniqueName9 = Devshed.Shared.NuGet\\Devshed.Shared.NuGet.nuproj
-		SccProjectTopLevelParentUniqueName9 = Devshed\u0020Tooling.sln
-		SccProjectName9 = Devshed.Shared.NuGet
-		SccLocalPath9 = Devshed.Shared.NuGet
-		SccProjectUniqueName10 = Devshed.Csv.NuGet\\Devshed.Csv.NuGet.nuproj
-		SccProjectTopLevelParentUniqueName10 = Devshed\u0020Tooling.sln
-		SccProjectName10 = Devshed.Csv.NuGet
-		SccLocalPath10 = Devshed.Csv.NuGet
-		SccProjectUniqueName11 = Devshed.IO.NuGet\\Devshed.IO.NuGet.nuproj
-		SccProjectTopLevelParentUniqueName11 = Devshed\u0020Tooling.sln
-		SccProjectName11 = Devshed.IO.NuGet
-		SccLocalPath11 = Devshed.IO.NuGet
-		SccProjectUniqueName12 = Devshed.Mvc.NuGet\\Devshed.Mvc.NuGet.nuproj
-		SccProjectTopLevelParentUniqueName12 = Devshed\u0020Tooling.sln
-		SccProjectName12 = Devshed.Mvc.NuGet
-		SccLocalPath12 = Devshed.Mvc.NuGet
-		SccProjectUniqueName13 = Devshed.Web.NuGet\\Devshed.Web.NuGet.nuproj
-		SccProjectTopLevelParentUniqueName13 = Devshed\u0020Tooling.sln
-		SccProjectName13 = Devshed.Web.NuGet
-		SccLocalPath13 = Devshed.Web.NuGet
-		SccProjectUniqueName14 = Devshed.Imaging\\Devshed.Imaging.csproj
-		SccProjectName14 = Devshed.Imaging
-		SccLocalPath14 = Devshed.Imaging
-		SccProjectUniqueName15 = Devshed.Imaging.NuGet\\Devshed.Imaging.NuGet.nuproj
-		SccProjectTopLevelParentUniqueName15 = Devshed\u0020Tooling.sln
-		SccProjectName15 = Devshed.Imaging.NuGet
-		SccLocalPath15 = Devshed.Imaging.NuGet
-		SccProjectUniqueName16 = Devshed.Imaging.Tests\\Devshed.Imaging.Tests.csproj
-		SccProjectName16 = Devshed.Imaging.Tests
-		SccLocalPath16 = Devshed.Imaging.Tests
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -190,6 +132,10 @@ Global
 		{E8E7F239-1499-4796-B233-284A61DF8889}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8E7F239-1499-4796-B233-284A61DF8889}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8E7F239-1499-4796-B233-284A61DF8889}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AF66ACE-4438-45A3-BF74-80916763B716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AF66ACE-4438-45A3-BF74-80916763B716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AF66ACE-4438-45A3-BF74-80916763B716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AF66ACE-4438-45A3-BF74-80916763B716}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
