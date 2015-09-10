@@ -4,24 +4,52 @@
     using System.Linq;
     using System.Collections.Generic;
     using System.Linq.Expressions;
+    using Devshed.Csv.Writing;
+    using Devshed.Shared;
 
     public class ArrayCsvColumn<TSource, TArray> : CsvColumn<TSource, IEnumerable<TArray>>
     {
+        private string elementDelimiter;
+
         public ArrayCsvColumn(Expression<Func<TSource, IEnumerable<TArray>>> selector)
             : base(selector)
         {
+            this.ElementDelimiter = ",";
             this.Format = value => value.ToString();
+        }
+
+        /// <summary> Specifies the delimiter between the array element, a comma by default.
+        /// Do not change unless needed, a comma is always needed for reading. </summary>
+        public string ElementDelimiter
+        {
+            get
+            {
+                return this.elementDelimiter;
+            }
+            set
+            {
+                Requires.IsNotNull("ElementDelimiter", value);
+                this.elementDelimiter = value;
+            }
         }
 
         public Func<TArray, string> Format { get; set; }
 
         protected override string OnRender(CsvDefinition<TSource> defintion, IEnumerable<TArray> value)
         {
-            var values = value.Select(e => this.Format(e).Replace(',', '_')).ToArray();
+            //var values = value.Select(e => this.Format(e).Replace(',', '_')).ToArray();
+            //var values = value.Select(v => CsvString.FormatStringCell(this.Format(v), defintion.RemoveNewLineCharacters)).ToArray();
 
-            var element = string.Join(",", values);
+            var values = value.Select(e => CleanAndFormatValue(defintion, e)).ToArray();
 
-            return element;
+            var element = string.Join(this.ElementDelimiter, values);
+
+            return CsvString.FormatStringCell(element, defintion.RemoveNewLineCharacters);
+        }
+
+        private string CleanAndFormatValue(CsvDefinition<TSource> defintion, TArray e)
+        {
+            return this.Format(e).Replace(this.ElementDelimiter, "_");
         }
     }
 }

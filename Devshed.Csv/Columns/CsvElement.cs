@@ -93,29 +93,6 @@
         /// </summary>
         /// <param name="element">The element.</param>
         /// <returns></returns>
-        //public virtual string[] Render(TSource element)
-        //{
-        //    var value = this.Selector.Compile().Invoke(element);
-
-        //    return new[] { this.OnRender(value) };
-        //}
-
-        //protected virtual string OnRender(TResult value)
-        //{
-        //    if (value == null)
-        //    {
-        //        return string.Empty;
-        //    }
-
-        //    return value.ToString();
-        //}
-
-
-        /// <summary>
-        /// Renders the specified element contents.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <returns></returns>
         public virtual string[] Render(CsvDefinition<TSource> definition, TSource element)
         {    
             var value = this.Selector.Compile().Invoke(element);

@@ -29,7 +29,7 @@
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
             Justification = "A design with 'object ConvertFromString(Type type, string value)' is " +
             "very suitable in this API.")]
-        [DebuggerStepThrough]
+        //// [DebuggerStepThrough]
         public static T AsValue<T>(string value)
         {
             return AsValue<T>(value, Thread.CurrentThread.CurrentCulture);
@@ -47,7 +47,7 @@
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
             Justification = "A design with 'object ConvertFromString(Type type, string value)' is " +
             "very suitable in this API.")]
-        [DebuggerStepThrough]
+        //// [DebuggerStepThrough]
         public static T AsValue<T>(string value, CultureInfo culture)
         {
             return (T)AsValue(typeof(T), value, culture);
@@ -64,7 +64,7 @@
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
             Justification = "A design with 'object ConvertFromString(Type type, string value)' is " +
             "very suitable in this API.")]
-        [DebuggerStepThrough]
+        //// [DebuggerStepThrough]
         public static object AsValue(Type type, string value)
         {
             return AsValue(type, value, Thread.CurrentThread.CurrentCulture);
@@ -83,7 +83,7 @@
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter",
             Justification = "A design with 'object ConvertFromString(Type type, string value)' is " +
             "very suitable in this API.")]
-        [DebuggerStepThrough]
+        //// [DebuggerStepThrough]
         public static object AsValue(Type type, string value, CultureInfo culture)
         {
              return ToConvertor.AsValue(type, value, culture);
@@ -97,25 +97,25 @@
         /// <typeparam name="T">The type of the value.</typeparam>
         /// <param name="value">The value to convert.</param>
         /// <returns>The string representation of the value.</returns>
-        [DebuggerStepThrough]
+        //// [DebuggerStepThrough]
         public static string AsString<T>(T value)
         {
             return AsString(value, Thread.CurrentThread.CurrentCulture);
         }
 
-        [DebuggerStepThrough]
+        //// [DebuggerStepThrough]
         public static string AsString<T>(T value, CultureInfo culture)
         {
             return AsString(typeof(T), value, culture);
         }
 
-        [DebuggerStepThrough]
+        //// [DebuggerStepThrough]
         public static string AsString(Type type, object value)
         {
             return AsString(type, value, Thread.CurrentThread.CurrentCulture);
         }
 
-        [DebuggerStepThrough]
+        //// [DebuggerStepThrough]
         public static string AsString(Type type, object value, CultureInfo culture)
         {
             TypeConverter converter = TypeConvertorHelpers.GetConverterForType(type);

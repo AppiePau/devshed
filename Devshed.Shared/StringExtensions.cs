@@ -1,10 +1,19 @@
 ﻿namespace Devshed.Shared
 {
     using System;
+    using System.Linq;
     using System.Text;
 
     public static class StringExtensions
     {
+        /// <summary> Returns the string as a char converted to byte array. </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static byte[] GetBytes(this string value)
+        {
+            return value.ToCharArray().Select(chr => (byte)chr).ToArray();
+        }
+        
         /// <summary> Returns the string as an UTF8 byte array. </summary>
         /// <param name="value"></param>
         /// <returns></returns>

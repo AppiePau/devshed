@@ -6,21 +6,6 @@ namespace Devshed.Csv.Reading
 
     public static class CsvStreamLineReaderExtensions
     {
-
-        /// <summary>
-        /// Reads the rows from a byte array. Detects encoding automaticly, but falls back to UTF8.
-        /// </summary>
-        /// <param name="csv">The CSV line reader.</param>
-        /// <param name="bytes">The bytes.</param>
-        /// <returns>
-        /// Returns the rows as an array.
-        /// </returns>
-        public static CsvLine[] FromBytes(this CsvStreamLineReader csv, byte[] bytes)
-        {
-            return FromStream(csv, new MemoryStream(bytes), CsvWriter.DefaultEncoding, true);
-        }
-
-
         /// <summary>
         /// Reads the rows from a byte array.
         /// </summary>
@@ -65,20 +50,6 @@ namespace Devshed.Csv.Reading
         public static CsvLine[] FromBytes(this CsvStreamLineReader csv, byte[] bytes, Encoding encoding, bool detectEncoding, string elementSeparator)
         {
             return FromStream(csv, new MemoryStream(bytes), encoding, true, elementSeparator);
-        }
-
-        /// <summary>
-        /// Reads the rows from a stream. Detects encoding automaticly, but falls back to UTF8.
-        /// </summary>
-        /// <param name="csv">The CSV.</param>
-        /// <param name="stream">The stream.</param>
-        /// <returns>
-        /// Returns the rows as an array.
-        /// </returns>
-
-        public static CsvLine[] FromStream(this CsvStreamLineReader csv, Stream stream)
-        {
-            return FromStream(csv, stream, CsvWriter.DefaultEncoding, true);
         }
 
         /// <summary>

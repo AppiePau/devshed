@@ -63,7 +63,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Columns\ArrayCsvColumnTests.cs" />
+    <Compile Include="Columns\NumberArrayCsvColumnTests.cs" />
+    <Compile Include="Columns\StringArrayCsvColumnTests.cs" />
     <Compile Include="CsvStreamMapperTests.cs" />
     <Compile Include="Columns\ObjectCsvColumnTests.cs" />
     <Compile Include="CsvStreamReaderValidationTests.cs" />

@@ -17,7 +17,7 @@
         /// </returns>
         public static TRow[] FromBytes<TRow>(this CsvStreamMapper<TRow> mapper, byte[] bytes) where TRow : new()
         {
-            return FromBytes(mapper, bytes, CsvWriter.DefaultEncoding, true);
+            return FromBytes(mapper, bytes, CsvConfiguration.DefaultEncoding, true);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@
         /// </returns>
         public static TRow[] FromBytes<TRow>(this CsvStreamMapper<TRow> mapper, byte[] bytes, Encoding encoding) where TRow : new()
         {
-            return FromBytes(mapper, bytes, encoding);
+            return FromBytes(mapper, bytes, encoding, false);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@
         /// </returns>
         public static TRow[] FromStream<TRow>(this CsvStreamMapper<TRow> mapper, Stream stream) where TRow : new()
         {
-            return FromStream<TRow>(mapper, stream, CsvWriter.DefaultEncoding, true);
+            return FromStream<TRow>(mapper, stream, CsvConfiguration.DefaultEncoding, true);
         }
 
         /// <summary>
