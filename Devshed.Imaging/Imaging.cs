@@ -9,60 +9,74 @@
 
     public static class Imaging
     {
-        public static byte[] GetImage(this Stream  input, int width, int height, SizeMode mode)
-        {
-                using (var destination = new MemoryStream())
-                {
-                    SaveImageTo(input, destination, width, height, mode);
-
-                    destination.Position = 0;
-                    return destination.GetBytes();
-                }
-        }
-        
         public static byte[] GetImage(this byte[] input, int width, int height, SizeMode mode)
         {
             using (var source = new MemoryStream(input))
             {
-                using (var destination = new MemoryStream())
-                {
-                    SaveImageTo(source, destination, width, height, mode);
-
-                    destination.Position = 0;
-                    return destination.GetBytes();
-                }
+                return GetImage(source, width, height, mode);
             }
         }
 
-        public static void SaveImageTo(Stream inputStream, Stream outputStream, int width, int height, SizeMode mode)
+        public static byte[] GetImage(this Image input, int width, int height, SizeMode mode)
+        {
+            using (var output = new MemoryStream())
+            {
+                SaveImageTo(input, output, width, height, mode, Color.White);
+
+                return output.ToArray();
+            }
+        }
+
+        public static byte[] GetImage(this Stream source, int width, int height, SizeMode mode, bool resetPosition = true)
+        {
+            using (var destination = new MemoryStream())
+            {
+                if (resetPosition)
+                {
+                    source.Position = 0;
+                }
+
+                SaveImageTo(source, destination, width, height, mode);
+
+                destination.Position = 0;
+                return destination.GetBytes();
+            }
+        }
+
+        public static void SaveImageTo(this Stream inputStream, Stream outputStream, int width, int height, SizeMode mode)
         {
             SaveImageTo(inputStream, outputStream, width, height, mode, Color.White);
         }
 
-        public static void SaveImageTo(Stream inputStream, Stream outputStream, int width, int height, SizeMode mode, Color background)
+        public static void SaveImageTo(this Stream inputStream, Stream outputStream, int width, int height, SizeMode mode, Color background)
         {
             using (var image = Bitmap.FromStream(inputStream))
             {
-                var calculator = new ImageDimensionCalculator(image.Size);
-                var imageDimensions = calculator.GetDimensions(width, height, mode);
+                SaveImageTo(image, outputStream, width, height, mode, background);
+            }
+        }
 
-                //// create a new Bitmap the size of the new image
-                using (Bitmap bitmap = new Bitmap(imageDimensions.Canvas.Width, imageDimensions.Canvas.Height))
+        public static void SaveImageTo(this Image image, Stream outputStream, int width, int height, SizeMode mode, Color background)
+        {
+            var calculator = new ImageDimensionCalculator(image.Size);
+            var imageDimensions = calculator.GetDimensions(width, height, mode);
+
+            //// create a new Bitmap the size of the new image
+            using (Bitmap outputImage = new Bitmap(imageDimensions.Canvas.Width, imageDimensions.Canvas.Height))
+            {
+                //// create a new graphic from the Bitmap
+                using (Graphics graphic = Graphics.FromImage(outputImage))
                 {
-                    //// create a new graphic from the Bitmap
-                    using (Graphics graphic = Graphics.FromImage(bitmap))
-                    {
-                        graphic.Clear(background);
-                        graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                        //// draw the newly resized image
-                        graphic.DrawImage(image,
-                            GetCentered(imageDimensions.Canvas.Width, imageDimensions.Render.Width), 
-                            GetCentered(imageDimensions.Canvas.Height, imageDimensions.Render.Height),
-                            imageDimensions.Render.Width, 
-                            imageDimensions.Render.Height);
-                        RotateByExif(bitmap);
-                        SaveAsHighQualityJpeg(bitmap, outputStream);
-                    }
+                    graphic.Clear(background);
+                    graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    //// draw the newly resized image
+                    graphic.DrawImage(image,
+                        GetCentered(imageDimensions.Canvas.Width, imageDimensions.Render.Width),
+                        GetCentered(imageDimensions.Canvas.Height, imageDimensions.Render.Height),
+                        imageDimensions.Render.Width,
+                        imageDimensions.Render.Height);
+                    RotateByExif(outputImage);
+                    SaveAsHighQualityJpeg(outputImage, outputStream);
                 }
             }
         }
@@ -121,7 +135,7 @@
 
         private static EncoderParameters GetHighQualityParameters()
         {
-            var qualityEncoder = Encoder.Quality;        
+            var qualityEncoder = Encoder.Quality;
             var parameters = new EncoderParameters(1);
             var encodingParameter = new EncoderParameter(qualityEncoder, 100L);
             parameters.Param[0] = encodingParameter;

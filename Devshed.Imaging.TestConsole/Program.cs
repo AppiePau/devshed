@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Devshed.Shared;
 using Devshed.Imaging;
-
+using System.Drawing;
 
 namespace Devshed.Imaging.TestConsole
 {
@@ -18,7 +18,10 @@ namespace Devshed.Imaging.TestConsole
             {
                 using (var output = new MemoryStream())
                 {
-                    Imaging.SaveImageTo(file, output, 200, 200, SizeMode.FitRatio);
+                    using (var image = (Bitmap)Image.FromStream(file))
+                    {
+                        Imaging.SaveImageTo(file, output, 200, 200, SizeMode.FitRatio);
+                    }
                 }
             }
 
