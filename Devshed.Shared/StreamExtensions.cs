@@ -5,24 +5,15 @@
 
     public static class StreamExtensions
     {
-        /// <summary>
-        /// Returns the content of the stream as a byte array.
-        /// </summary>
-        /// <param name="stream">The stream.</param>
-        /// <returns></returns>
-        public static byte[] GetBytes(this Stream stream)
-        {
-            return GetBytes(stream, false);
-        }
 
         /// <summary>
         /// Returns the content of the stream as a byte array and removes the BOM (UTF Bit Order Marker).
         /// </summary>
         /// <param name="stream">The stream.</param>
         /// <returns></returns>
-        public static byte[] GetBytesWithoutBom(this Stream stream)
+        public static byte[] GetBytesWithoutBom(this Stream stream, bool resetPosition = true)
         {
-            return GetBytes(stream, true);
+            return GetBytes(stream, removeBom: true, resetPosition: resetPosition);
         }
 
         /// <summary>
@@ -30,9 +21,15 @@
         /// </summary>
         /// <param name="stream">The stream.</param>
         /// <param name="removeBom">if set to <c>true</c> remove BOM header.</param>
+        /// <param name="resetPosition">if set to <c>true</c> reset the stream.Position to 0.</param>
         /// <returns></returns>
-        private static byte[] GetBytes(this Stream stream, bool removeBom)
+        public static byte[] GetBytes(this Stream stream, bool removeBom = false, bool resetPosition = true)
         {
+            if (resetPosition)
+            {
+                stream.Position = 0;
+            }
+
             if (removeBom)
             {
                 stream.Position = BomRemover.GetCursorPosition(stream);
