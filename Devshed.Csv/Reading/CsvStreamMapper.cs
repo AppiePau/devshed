@@ -78,7 +78,8 @@
 
         private static void SetPropertyValue(TRow row, ICsvColumn<TRow> column, string element)
         {
-            var targetType = typeof(TRow);       
+            var targetType = typeof(TRow);
+
             var prop = targetType.GetProperty(column.PropertyName);
             prop.SetValue(row, Conversion.AsValue(prop.PropertyType, element), null);
         }
@@ -87,7 +88,7 @@
         {
             try
             {
-                return line[header];
+                return line[header.ToUpper()];
             }
             catch (KeyNotFoundException e)
             {
