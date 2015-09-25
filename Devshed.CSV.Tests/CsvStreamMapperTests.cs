@@ -42,6 +42,22 @@
             Assert.AreEqual(true, user.IsActive, "IsActive has been read.");
         }
 
+
+        [TestMethod]
+        public void Read_LowerCaseHeaderNames_CreatesUser()
+        {
+            var definition = this.GetUnicodeDefinition();
+            definition.FirstRowContainsHeaders = true;
+
+            var users = Read(definition, Bom + "\"id\";\"name\";\"isactive\"\r\n" + CsvData);
+
+            var user = users.Single();
+            Assert.AreEqual(1, user.Id, "User Id has been read.");
+            Assert.AreEqual("John Doe", user.Name, "Name has been read.");
+            Assert.AreEqual(true, user.IsActive, "IsActive has been read.");
+        }
+
+
         private CsvDefinition<UserView> GetUnicodeDefinition()
         {
             return new CsvDefinition<UserView>(

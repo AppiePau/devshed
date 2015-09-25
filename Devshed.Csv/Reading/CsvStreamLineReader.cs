@@ -107,7 +107,7 @@ namespace Devshed.Csv.Reading
             var dic = new CsvLine(line.LineNumber);
             for (int index = 0; index < this.headers.Length; index++)
             {
-                dic.Add(this.GetHeaderName(index), GetElementValue(line, index));
+                dic.Add(this.GetHeaderName(index).ToUpper(), GetElementValue(line, index));
             }
 
             return dic;
