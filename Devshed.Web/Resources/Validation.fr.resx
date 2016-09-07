@@ -118,57 +118,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ComparedControlValuesDontMatch" xml:space="preserve">
-    <value>Compared value does not match value.</value>
+    <value>La valeur par rapport ne correspond pas à la valeur.</value>
   </data>
   <data name="ComparedValueDontMatchField" xml:space="preserve">
-    <value>Compared value does not match field.</value>
+    <value>La valeur par rapport ne correspond pas à champ.</value>
   </data>
   <data name="DateControlMustBeEarlierOrEqual" xml:space="preserve">
-    <value>Date must be erlier than field '{0}'.</value>
+    <value>La date doit être antérieure à champ '{0}'.</value>
   </data>
   <data name="DateMustBeEarlierOrEqual" xml:space="preserve">
-    <value>Date must be earlier or equal to '{0}'.</value>
+    <value>La date doit être antérieure ou égale à '{0}'.</value>
   </data>
   <data name="DateMustBeEarlierThan" xml:space="preserve">
-    <value>Date must be earlier than '{0}'.</value>
+    <value>La date doit être antérieure à '{0}'.</value>
   </data>
   <data name="DateMustBeLaterOrEqual" xml:space="preserve">
-    <value>Date must be later or equal to {0}.</value>
+    <value>La date doit être postérieure ou égale à {0}.</value>
   </data>
   <data name="DateMustBeLaterThan" xml:space="preserve">
-    <value>Date must be later than '{0}'.</value>
+    <value>La date doit être postérieure à '{0}'.</value>
   </data>
   <data name="EmailIsNotValid" xml:space="preserve">
-    <value>Email formatting is not valid.</value>
+    <value>Email formatage est pas valide.</value>
   </data>
   <data name="MaximumStringLengthExceeded" xml:space="preserve">
-    <value>Maximum length of field is exceeded.</value>
+    <value>Longueur maximale du champ est dépassée.</value>
   </data>
   <data name="NumberMustBeHigherOrEqualTo" xml:space="preserve">
-    <value>Value must greater or equal to {0}.</value>
+    <value>La valeur doit supérieure ou égale à {0}.</value>
   </data>
   <data name="NumberMustBeHigherThan" xml:space="preserve">
-    <value>Value must greater than {0}.</value>
+    <value>La valeur doit plus de {0}.</value>
   </data>
   <data name="NumberMustBeLessOrEqualTo" xml:space="preserve">
-    <value>Value must be less or equal to {0}.</value>
+    <value>La valeur doit être inférieure ou égale à {0}.</value>
   </data>
   <data name="NumberMustBeLessThan" xml:space="preserve">
-    <value>Value must be less than {0}.</value>
+    <value>La valeur doit être inférieure à {0}.</value>
   </data>
   <data name="PasswordDoesNotMatchRequirements" xml:space="preserve">
-    <value>Password does not meet requirements.</value>
+    <value>Le mot de passe ne répond pas aux exigences.</value>
   </data>
   <data name="RequiredField" xml:space="preserve">
-    <value>The field '{0}' is required.</value>
+    <value>Le champ '{0}' est nécessaire.</value>
   </data>
   <data name="TimeFormatInvalid" xml:space="preserve">
-    <value>Time formatting is not valid.</value>
+    <value>Le format de l'heure est pas valide.</value>
   </data>
   <data name="UrlIsNotValid" xml:space="preserve">
-    <value>The url formatting is invalid.</value>
+    <value>Le format d'URL est invalide.</value>
   </data>
   <data name="ValueMustBeOfType" xml:space="preserve">
-    <value>Value must be type of '{0}'.</value>
+    <value>La valeur doit être un type de '{0}'.</value>
   </data>
 </root>

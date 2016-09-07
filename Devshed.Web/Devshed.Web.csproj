@@ -53,6 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RequestDeserializer.cs" />
+    <Compile Include="Resources\Validation.fr.Designer.cs">
+      <DependentUpon>Validation.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\Validation.nl.Designer.cs">
       <DependentUpon>Validation.nl.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -93,6 +98,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Validation.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Validation.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Validation.nl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Validation.nl.Designer.cs</LastGenOutput>
