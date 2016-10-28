@@ -5,6 +5,7 @@
     using Devshed.Shared;
     using System.Linq;
     using System.Text;
+    using Reading;
 
     [TestClass]
     public class CsvStreamMapperTests
@@ -12,6 +13,9 @@
         private static readonly string Bom = Encoding.Unicode.GetString(Encoding.Unicode.GetPreamble());
 
         private const string CsvHeader = "\"Id\";\"Name\";\"IsActive\"\r\n";
+
+        private const string CsvHeaderDuplicates = "\"Id\";\"Name\";\"Name\"\r\n";
+
 
         private const string CsvData = "1;\"John Doe\";TRUE";
 
@@ -55,6 +59,18 @@
             Assert.AreEqual(1, user.Id, "User Id has been read.");
             Assert.AreEqual("John Doe", user.Name, "Name has been read.");
             Assert.AreEqual(true, user.IsActive, "IsActive has been read.");
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(DuplicateHeaderException))]
+        public void Read_WithDuplicateHeaderNames_ThrowsException()
+        {
+            var definition = this.GetUnicodeDefinition();
+            definition.FirstRowContainsHeaders = true;
+
+            var users = Read(definition, Bom + CsvHeaderDuplicates + CsvData);
+
         }
 
 

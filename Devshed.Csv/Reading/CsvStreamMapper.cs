@@ -93,7 +93,7 @@
             catch (KeyNotFoundException e)
             {
                 throw new KeyNotFoundException(
-                    "Key '" + header + "' was not found in the collection on line " + line.LineNumber + ".", e);
+                    "The corresponding value of header name '" + header + "' was not found in the collection on line " + line.LineNumber + ".", e);
             }
         }
     }

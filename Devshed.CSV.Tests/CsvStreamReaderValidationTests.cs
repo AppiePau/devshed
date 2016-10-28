@@ -151,6 +151,21 @@
             }
         }
 
+
+        [TestMethod]
+        [ExpectedException(typeof(DuplicateHeaderException))]
+        public void GetRows_WithDuplicateHeaderNames_ThrowsException()
+        {
+            var data = "HEADER1;HEADER1\r\nCELL1;CELL2";
+
+            using (var reader = GetReader(data))
+            {
+                var parser = new CsvStreamLineReader(ElementProcessing.Loose, HEADER1, HEADER1);
+                var lines = parser.GetRows(reader).ToList();
+                
+            }
+        }
+
         private static CsvStreamReader GetReader(string data)
         {
             return new CsvStreamReader(new MemoryStream(CsvConfiguration.DefaultEncoding.GetBytes(data)), CsvConfiguration.DefaultEncoding);

@@ -107,7 +107,14 @@ namespace Devshed.Csv.Reading
             var dic = new CsvLine(line.LineNumber);
             for (int index = 0; index < this.headers.Length; index++)
             {
-                dic.Add(this.GetHeaderName(index).ToUpper(), GetElementValue(line, index));
+                var header = this.GetHeaderName(index).ToUpper();
+
+                if (dic.ContainsKey(header))
+                {
+                    throw new DuplicateHeaderException(header, line.LineNumber);
+                }
+
+                dic.Add(header, GetElementValue(line, index));
             }
 
             return dic;
@@ -127,10 +134,24 @@ namespace Devshed.Csv.Reading
         {
             if (index > this.headers.Length - 1)
             {
-                throw new InvalidOperationException("Index is out of header array bounds.");
+                throw new InvalidOperationException("Getting header name failed. The index is out of header bounds.");
             }
 
             return this.headers[index];
         }
+    }
+
+    public sealed class DuplicateHeaderException : Exception
+    {
+        public DuplicateHeaderException(string header, int lineNumber)
+            : base($"A duplicate header name was found '{header}' on line {lineNumber}.")
+        {
+            this.LineNumber = lineNumber;
+            this.Header = header;
+        }
+
+        public string Header { get; private set; }
+
+        public int LineNumber { get; private set; }
     }
 }
