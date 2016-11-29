@@ -8,8 +8,10 @@ namespace Devshed.Web
 
     public static class ControlValidationExtensions
     {
-        public static string BasicPasswordExpression =
-                @"(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{4,20})$";
+        public static string BasicPasswordExpression(int length)
+        {
+            return "^.*(?=.{" + length + ",})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*?()-_+=\"'\\|?/.,<>]).*$";
+        }
 
         public static string UrlValidationExpression =
                 @"^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$";
@@ -19,8 +21,13 @@ namespace Devshed.Web
 
         public static RegularExpressionValidator BasicPassword(this ControlValidatorInjector controlValidator)
         {
+            return BasicPassword(controlValidator, null);
+        }
+
+        public static RegularExpressionValidator BasicPassword(this ControlValidatorInjector controlValidator, int? length)
+        {
             var validator = controlValidator.AddValidator<RegularExpressionValidator>(Resources.Validation.PasswordDoesNotMatchRequirements);
-            validator.ValidationExpression = BasicPasswordExpression;
+            validator.ValidationExpression = BasicPasswordExpression(length ?? 6);
             return validator;
         }
 
