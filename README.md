@@ -29,11 +29,16 @@ The PageUrlBuilder can be a very powerful tool when you have kept your Webforms 
 
 *Uage:*
 
+```cs
 //// Register the root namespace once in the Application_Start event (Global.asax).
 PageUrlBuilder.RegisterRootNamespace("Company.Application.MySite");
+```
 In your page, create an URL: 
+```cs
 //// Create a UrlBuilder instance with the PageUrlBuilder helper class and add some parameters:
 PageUrlBuilder.Builder.For<Details>(new { UserId = 1 }); 
+```
+
 Contact
 
 NuGet - Twitter - Blog
