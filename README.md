@@ -7,6 +7,22 @@ Devshed Tooling (currently for web) contains helper classes that simplify common
 
 Powerfull yet simplistic CSV processing library without any compromise to your code. See the draft documentation for the current 1.2 release!
 
+Create a definition of the import/export model:
+```cs
+var definition = new CsvDefinition<UserExportModel>(
+     new TextCsvColumn<UserExportModel>(user => user.UserId),
+     new TextCsvColumn<UserExportModel>(user => user.Email) { HeaderName = Resources.Users.Email },
+     new TextCsvColumn<UserExportModel>(user => user.Fullname) { HeaderName = Resources.Users.Fullname });
+```
+Get users from the database as an array of UserExportModel and render it into a stream:
+```cs
+  var users = this.GetUsersFromDatabase();
+
+  var stream = CsvWriter.CreateStream(parameters.Definition, users);
+
+  return new FileContainer(this.fileTypes.GetMimeType(".CSV"), stream);
+```
+
 *Devshed.Mvc*
 
 Currently a few helper methods, but soon to be expanded.
@@ -18,6 +34,14 @@ Stream extensions, a FileContainer and file-type support to pack file downloads 
 *Devshed.Web(Forms)*
 
 Handy helpers for strong typed request variables, object-to-url serialization and deserializataion, generate urls based on webforms page classes.
+
+Example:
+```cs
+  this.BirthDate.Validation().AsDateTime();
+  this.BirthDate.Validation().RequiredField(Resources.Fields.BirthDate);
+  this.BirthDate.Validation().IsLaterThan(new DateTime(1900, 1, 1));
+  this.BirthDate.Validation().IsEarlierThan(DateTime.Now.AddYears(-16).Date);
+```
 
 *Devshed.Shared*
 
