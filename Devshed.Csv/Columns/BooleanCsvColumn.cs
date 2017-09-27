@@ -5,6 +5,11 @@
 
     public sealed class BooleanCsvColumn<TSource> : CsvColumn<TSource, bool>
     {
+        public BooleanCsvColumn(string propertyName)
+            : base(propertyName)
+        {
+        }
+
         public BooleanCsvColumn(Expression<Func<TSource, bool>> selector)
             : base(selector)
         {

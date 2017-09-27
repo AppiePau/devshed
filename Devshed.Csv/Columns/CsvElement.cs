@@ -32,6 +32,21 @@
             }
         }
 
+        public CsvColumn(string propertyName)
+            : this(propertyName, propertyName)
+        {
+        }
+
+        public CsvColumn(string propertyName, params string[] headers)
+        {
+            ParameterExpression argParam = Expression.Parameter(typeof(TSource), "s");
+            var selectedField = Expression.PropertyOrField(argParam, propertyName);
+            this.Selector = Expression.Lambda<Func<TSource, TResult>>(selectedField, argParam);
+
+            this.PropertyName = propertyName;
+            this.headers = headers;
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvColumn{TSource, TResult}"/> class.
         /// </summary>
@@ -97,6 +112,10 @@
         {    
             var value = this.Selector.Compile().Invoke(element);
 
+
+            //var value = typeof(TSource).GetProperty(PropertyName).GetValue(element, null);
+
+            
             return new[] { this.OnRender(definition, value) };
         }
 

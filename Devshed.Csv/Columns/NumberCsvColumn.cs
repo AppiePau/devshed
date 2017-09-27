@@ -5,6 +5,11 @@
 
     public sealed class NumberCsvColumn<TSource> : CsvColumn<TSource, int?>
     {
+        public NumberCsvColumn(string propertyName)
+            : base(propertyName)
+        {
+        }
+
         public NumberCsvColumn(Expression<Func<TSource, int?>> selector)
             : base(selector)
         {

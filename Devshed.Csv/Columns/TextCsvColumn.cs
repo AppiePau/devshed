@@ -6,6 +6,11 @@
 
     public sealed class TextCsvColumn<TSource> : CsvColumn<TSource, string>
     {
+        public TextCsvColumn(string propertyName)
+            : base(propertyName)
+        {
+        }
+
         public TextCsvColumn(Expression<Func<TSource, string>> selector)
             : base(selector)
         {
