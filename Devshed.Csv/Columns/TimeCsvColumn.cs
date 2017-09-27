@@ -5,6 +5,11 @@ namespace Devshed.Csv
 
     public sealed class TimeCsvColumn<TSource> : CsvColumn<TSource, TimeSpan?>
     {
+        public TimeCsvColumn(string propertyName)
+            : base(propertyName)
+        {
+        }
+
         public TimeCsvColumn(Expression<Func<TSource, TimeSpan?>> selector)
             : base(selector)
         {

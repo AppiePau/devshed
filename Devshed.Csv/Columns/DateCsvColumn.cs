@@ -5,6 +5,11 @@
 
     public sealed class DateCsvColumn<TSource> : CsvColumn<TSource, DateTime?>
     {
+        public DateCsvColumn(string propertyName)
+            : base(propertyName)
+        {
+        }
+
         public DateCsvColumn(Expression<Func<TSource, DateTime?>> selector)
             : base(selector)
         {

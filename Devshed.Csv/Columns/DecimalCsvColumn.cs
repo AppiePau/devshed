@@ -9,6 +9,11 @@
     {
         private readonly CultureInfo culture;
 
+        public DecimalCsvColumn(string propertyName)
+            : base(propertyName)
+        {
+        }
+
         public DecimalCsvColumn(Expression<Func<TSource, decimal?>> selector, CultureInfo culture)
             : base(selector)
         {
