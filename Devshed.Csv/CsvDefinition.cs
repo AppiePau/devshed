@@ -106,5 +106,10 @@
         /// Writes a the Byte Order Marker specifying the encoding.
         /// </summary>
         public ElementProcessing ElementProcessing { get; set; }
+
+        /// <summary>
+        /// Instructs the materializer to ignore readonly properties without throwing an exception.
+        /// </summary>
+        public bool IgnoreReadonlyProperties { get;  set; }
     }
 }

@@ -5,6 +5,11 @@
 
     public class ObjectCsvColumn<TSource> : CsvColumn<TSource, object>
     {
+        public ObjectCsvColumn(string propertyName)
+            : base(propertyName)
+        {
+        }
+
         public ObjectCsvColumn(Expression<Func<TSource, object>> selector)
             : base(selector)
         {

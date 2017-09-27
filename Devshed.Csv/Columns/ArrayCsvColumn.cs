@@ -11,6 +11,11 @@
     {
         private string elementDelimiter;
 
+        public ArrayCsvColumn(string propertyName)
+            : base(propertyName)
+        {
+        }
+
         public ArrayCsvColumn(Expression<Func<TSource, IEnumerable<TArray>>> selector)
             : base(selector)
         {
@@ -37,9 +42,6 @@
 
         protected override string OnRender(CsvDefinition<TSource> defintion, IEnumerable<TArray> value)
         {
-            //var values = value.Select(e => this.Format(e).Replace(',', '_')).ToArray();
-            //var values = value.Select(v => CsvString.FormatStringCell(this.Format(v), defintion.RemoveNewLineCharacters)).ToArray();
-
             var values = value.Select(e => CleanAndFormatValue(defintion, e)).ToArray();
 
             var element = string.Join(this.ElementDelimiter, values);

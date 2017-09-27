@@ -64,6 +64,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Columns\NumberArrayCsvColumnTests.cs" />
+    <Compile Include="Columns\TextCsvColumnTests.cs" />
     <Compile Include="Columns\StringArrayCsvColumnTests.cs" />
     <Compile Include="CsvStreamMapperTests.cs" />
     <Compile Include="Columns\ObjectCsvColumnTests.cs" />
