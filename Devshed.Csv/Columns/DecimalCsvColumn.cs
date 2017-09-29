@@ -28,6 +28,15 @@
                 : string.Empty;
         }
 
+        public override ColumnDataType DataType
+        {
+            get
+            {
+                return ColumnDataType.Decimal;
+            }
+        }
+
+
         public Func<decimal?, CultureInfo, string> Format { get; set; }
 
         protected override string OnRender(CsvDefinition<TSource> defintion, decimal? value)

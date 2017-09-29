@@ -50,6 +50,7 @@
     <Compile Include="Columns\ArrayCsvColumn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Columns\ColumnDataType.cs" />
     <Compile Include="Columns\CompositeCsvColumn.cs" />
     <Compile Include="Columns\ICsvColumn.cs" />
     <Compile Include="Columns\TimeCsvColumn.cs" />
@@ -114,6 +115,9 @@
       <Project>{00b25a05-00d8-4419-9127-87512805cb3e}</Project>
       <Name>Devshed.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Importing\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

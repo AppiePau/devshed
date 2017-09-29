@@ -18,6 +18,15 @@
             this.Format = value => value;
         }
 
+        public override ColumnDataType DataType
+        {
+            get
+            {
+                return ColumnDataType.Text;
+            }
+        }
+
+
         public bool ForceNumberToTextFormatting { get; set; }
 
         public Func<string, string> Format { get; set; }

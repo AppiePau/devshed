@@ -15,6 +15,13 @@
         {
             this.Format = value => value.ToString();
         }
+        public override ColumnDataType DataType
+        {
+            get
+            {
+                return ColumnDataType.Boolean;
+            }
+        }
 
         public Func<bool, string> Format { get; set; }
 

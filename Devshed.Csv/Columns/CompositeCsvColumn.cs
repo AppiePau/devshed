@@ -43,6 +43,14 @@
         {
         }
 
+        public override ColumnDataType DataType
+        {
+            get
+            {
+                return ColumnDataType.Composite;
+            }
+        }
+
         /// <summary>
         /// Gets or sets the format.
         /// </summary>
