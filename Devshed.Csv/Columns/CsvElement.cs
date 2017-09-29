@@ -15,6 +15,21 @@
         private string[] headers;
 
         /// <summary>
+        /// Returns the result type of the data type that is being mapped.
+        /// </summary>
+        /// <example>
+        ///    var column = new TextCsvColumn<T>(m => m.Username);
+        ///    column.ConversionResultType == typeof(string); // returns true
+        /// </example>
+        public Type ConversionResultType
+        {
+            get
+            {
+                return typeof(TResult);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the name of the header. The reflected property name by default.
         /// </summary>
         /// <value>
@@ -89,6 +104,8 @@
         /// </value>
         public string PropertyName { get; private set; }
 
+        public abstract ColumnDataType DataType { get; }
+
         public Expression<Func<TSource, TResult>> Selector { get; private set; }
 
         /// <summary>
@@ -109,13 +126,13 @@
         /// <param name="element">The element.</param>
         /// <returns></returns>
         public virtual string[] Render(CsvDefinition<TSource> definition, TSource element)
-        {    
+        {
             var value = this.Selector.Compile().Invoke(element);
 
 
             //var value = typeof(TSource).GetProperty(PropertyName).GetValue(element, null);
 
-            
+
             return new[] { this.OnRender(definition, value) };
         }
 

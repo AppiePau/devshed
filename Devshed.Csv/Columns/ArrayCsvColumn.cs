@@ -23,6 +23,14 @@
             this.Format = value => value.ToString();
         }
 
+        public override ColumnDataType DataType
+        {
+            get
+            {
+                return ColumnDataType.Currency;
+            }
+        }
+
         /// <summary> Specifies the delimiter between the array element, a comma by default.
         /// Do not change unless needed, a comma is always needed for reading. </summary>
         public string ElementDelimiter
