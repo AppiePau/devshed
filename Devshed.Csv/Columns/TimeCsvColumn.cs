@@ -17,6 +17,14 @@ namespace Devshed.Csv
             ? string.Format("{0:00}:{1:00}", time.Value.Hours, time.Value.Minutes)
             : string.Empty;
         }
+        
+        public override ColumnDataType DataType
+        {
+            get
+            {
+                return ColumnDataType.Time;
+            }
+        }
 
         public Func<TimeSpan?, string> Format { get; set; }
 

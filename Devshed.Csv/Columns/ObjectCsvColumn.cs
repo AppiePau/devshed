@@ -18,6 +18,14 @@
                 : string.Empty;
         }
 
+        public override ColumnDataType DataType
+        {
+            get
+            {
+                return ColumnDataType.Object;
+            }
+        }
+
         public Func<object, string> Format { get; set; }
 
         protected override string OnRender(CsvDefinition<TSource> defintion, object value)

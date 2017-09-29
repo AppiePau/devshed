@@ -1,4 +1,4 @@
-﻿namespace Devshed.Csv.Columns
+﻿namespace Devshed.Csv
 {
     using System;
     using System.Globalization;
@@ -26,6 +26,13 @@
             this.Format = value => value != null
                 ? string.Format(this.culture, "{0:c2}", value)
                 : string.Empty;
+        }
+        public override ColumnDataType DataType
+        {
+            get
+            {
+                return ColumnDataType.Currency;
+            }
         }
 
         public Func<decimal?, string> Format { get; set; }
