@@ -76,6 +76,7 @@
     <Compile Include="Columns\TextCsvColumn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ICsvDefinition.cs" />
     <Compile Include="Reading\CsvLine.cs" />
     <Compile Include="Reading\CsvRawLine.cs" />
     <Compile Include="Reading\CsvStreamMapperException.cs" />

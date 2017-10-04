@@ -57,7 +57,7 @@
         }
 
 
-        public CsvRawLine ReadLine()
+        public CsvSourceLine ReadLine()
         {
             this.parser.SetDelimiters(this.ElementDelimiter);
             this.parser.HasFieldsEnclosedInQuotes = this.HasFieldsEnclosedInQuotes;
@@ -65,7 +65,7 @@
             var elements = this.parser.ReadFields();
 
             this.lineCount += 1;
-            return new CsvRawLine(this.lineCount, elements);
+            return new CsvSourceLine(this.lineCount, elements);
         }
     }
 }
