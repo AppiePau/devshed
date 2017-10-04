@@ -1,6 +1,7 @@
 ﻿namespace Devshed.Csv
 {
     using System;
+    using System.Globalization;
     using System.Linq.Expressions;
 
     public sealed class BooleanCsvColumn<TSource> : CsvColumn<TSource, bool>
@@ -13,7 +14,7 @@
         public BooleanCsvColumn(Expression<Func<TSource, bool>> selector)
             : base(selector)
         {
-            this.Format = value => value.ToString();
+            this.Format = (value, culture) => value.ToString(culture);
         }
         public override ColumnDataType DataType
         {
@@ -23,11 +24,11 @@
             }
         }
 
-        public Func<bool, string> Format { get; set; }
+        public Func<bool, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(CsvDefinition<TSource> defintion, bool value)
+        protected override string OnRender(CsvDefinition<TSource> defintion, bool value, CultureInfo culture)
         {
-            return this.Format(value);
+            return this.Format(value, culture);
         }
     }
 }

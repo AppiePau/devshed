@@ -5,6 +5,7 @@
     using System.Diagnostics;
     using System.Linq.Expressions;
     using Devshed.Shared;
+    using System.Globalization;
 
     /// <summary> Provides basic column behavior. </summary>
     /// <typeparam name="TSource">The selected source row type.</typeparam>
@@ -125,18 +126,14 @@
         /// </summary>
         /// <param name="element">The element.</param>
         /// <returns></returns>
-        public virtual string[] Render(CsvDefinition<TSource> definition, TSource element)
+        public virtual string[] Render(CsvDefinition<TSource> definition, TSource element, CultureInfo formattingCulture)
         {
             var value = this.Selector.Compile().Invoke(element);
 
-
-            //var value = typeof(TSource).GetProperty(PropertyName).GetValue(element, null);
-
-
-            return new[] { this.OnRender(definition, value) };
+            return new[] { this.OnRender(definition, value, formattingCulture) };
         }
 
-        protected virtual string OnRender(CsvDefinition<TSource> defintion, TResult value)
+        protected virtual string OnRender(CsvDefinition<TSource> defintion, TResult value, CultureInfo formattingCulture)
         {
             if (value == null)
             {

@@ -1,6 +1,7 @@
 namespace Devshed.Csv
 {
     using System;
+    using System.Globalization;
     using System.Linq.Expressions;
 
     public sealed class TimeCsvColumn<TSource> : CsvColumn<TSource, TimeSpan?>
@@ -13,8 +14,8 @@ namespace Devshed.Csv
         public TimeCsvColumn(Expression<Func<TSource, TimeSpan?>> selector)
             : base(selector)
         {
-            this.Format = time => time != null
-            ? string.Format("{0:00}:{1:00}", time.Value.Hours, time.Value.Minutes)
+            this.Format = (time, culture) => time != null
+            ? string.Format("{0:00}:{1:00}", culture, time.Value.Hours, time.Value.Minutes)
             : string.Empty;
         }
         
@@ -26,11 +27,11 @@ namespace Devshed.Csv
             }
         }
 
-        public Func<TimeSpan?, string> Format { get; set; }
+        public Func<TimeSpan?, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(CsvDefinition<TSource> defintion, TimeSpan? value)
+        protected override string OnRender(CsvDefinition<TSource> defintion, TimeSpan? value, CultureInfo culture)
         {
-            return this.Format(value);
+            return this.Format(value, culture);
         }
     }
 }

@@ -124,7 +124,7 @@
             }
             if (prop.CanWrite)
             {
-                prop.SetValue(row, Conversion.AsValue(prop.PropertyType, element), null);
+                prop.SetValue(row, Conversion.AsValue(prop.PropertyType, element, Definition.FormattingCulture), null);
             }
         }
 

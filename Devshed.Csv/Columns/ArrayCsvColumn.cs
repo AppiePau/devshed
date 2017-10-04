@@ -6,6 +6,7 @@
     using System.Linq.Expressions;
     using Devshed.Csv.Writing;
     using Devshed.Shared;
+    using System.Globalization;
 
     public class ArrayCsvColumn<TSource, TArray> : CsvColumn<TSource, IEnumerable<TArray>>
     {
@@ -48,7 +49,7 @@
 
         public Func<TArray, string> Format { get; set; }
 
-        protected override string OnRender(CsvDefinition<TSource> defintion, IEnumerable<TArray> value)
+        protected override string OnRender(CsvDefinition<TSource> defintion, IEnumerable<TArray> value, CultureInfo culture)
         {
             var values = value.Select(e => CleanAndFormatValue(defintion, e)).ToArray();
 

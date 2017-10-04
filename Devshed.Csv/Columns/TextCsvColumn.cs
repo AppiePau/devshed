@@ -1,6 +1,7 @@
 ﻿namespace Devshed.Csv
 {
     using System;
+    using System.Globalization;
     using System.Linq.Expressions;
     using Devshed.Csv.Writing;
 
@@ -15,7 +16,7 @@
             : base(selector)
         {
             this.ForceNumberToTextFormatting = false;
-            this.Format = value => value;
+            this.Format = (value, culture) => value.ToString(culture);
         }
 
         public override ColumnDataType DataType
@@ -29,11 +30,11 @@
 
         public bool ForceNumberToTextFormatting { get; set; }
 
-        public Func<string, string> Format { get; set; }
+        public Func<string, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(CsvDefinition<TSource> defintion, string value)
+        protected override string OnRender(CsvDefinition<TSource> defintion, string value, CultureInfo culture)
         {
-            var text = this.Format(value ?? string.Empty);
+            var text = this.Format(value ?? string.Empty, culture);
 
             if (this.ForceNumberToTextFormatting)
             {
