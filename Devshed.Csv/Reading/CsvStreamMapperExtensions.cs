@@ -96,6 +96,11 @@
         /// </returns>
         public static TRow[] FromStream<TRow>(this CsvStreamMapper<TRow> mapper, Stream stream, Encoding encoding, bool detectEncoding) where TRow : new()
         {
+            return FromStreamVerbose(mapper, stream, encoding, detectEncoding).Select(e => e.Row).ToArray();
+        }
+
+        public static CsvLine<TRow>[] FromStreamVerbose<TRow>(this CsvStreamMapper<TRow> mapper, Stream stream, Encoding encoding, bool detectEncoding) where TRow : new()
+        {
             var reader = new CsvStreamReader(stream, encoding, detectEncoding)
             {
                 ElementDelimiter = mapper.Definition.ElementDelimiter,

@@ -1,11 +1,12 @@
 namespace Devshed.Csv.Reading
 {
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
 
-    public sealed class CsvRawLine
+    public sealed class CsvSourceLine
     {
-        public CsvRawLine(int lineNumer, string[] elements)
+        public CsvSourceLine(int lineNumer, string[] elements)
         {
             this.LineNumber = lineNumer;
             this.Elements = elements;
@@ -18,6 +19,8 @@ namespace Devshed.Csv.Reading
         public string[] Elements { get; private set; }
 
         public int Count { get { return this.Elements.Count(); } }
+
+        public List<string> ErrorMessages { get; } = new List<string>();
 
         public bool IsEmpty
         {

@@ -4,11 +4,11 @@ namespace Devshed.Csv.Reading
 
     public sealed class CsvLine : Dictionary<string, string>
     {
-        public CsvLine(int line)
+        public CsvLine(CsvSourceLine line)
         {
-            this.LineNumber = line;
+            this.Line = line;
         }
 
-        public int LineNumber { get; set; }
+        public CsvSourceLine Line { get; set; }
     }
 }

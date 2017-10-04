@@ -6,6 +6,27 @@
     using System.Reflection;
     using Devshed.Shared;
 
+    public sealed class CsvLine<TRow>
+    {
+        private readonly CsvLine line;
+
+        public CsvLine(CsvLine line, TRow row)
+        {
+            this.line = line;
+            this.Row = row;
+        }
+
+        public IEnumerable<string> ErrorMessages
+        {
+            get
+            {
+                return this.line.Line.ErrorMessages;
+            }
+        }
+
+        public TRow Row { get; private set; }
+    }
+
     /// <summary> Maps a CSV stream source to a strong typed definition. </summary>
     /// <typeparam name="TRow">The type of the row.</typeparam>
     public sealed class CsvStreamMapper<TRow> where TRow : new()
@@ -23,7 +44,7 @@
             this.Definition = definition;
             var headers = definition.Columns.SelectMany(e => e.GetHeaderNames()).ToArray();
 
-            this.reader = new CsvStreamLineReader(definition.ElementProcessing, headers);
+            this.reader = new CsvStreamLineReader(definition, headers);
             this.reader.FirstRowContainsHeaders = this.Definition.FirstRowContainsHeaders;
         }
 
@@ -32,7 +53,7 @@
         /// </summary>
         /// <param name="reader">The reader.</param>
         /// <returns></returns>
-        public IEnumerable<TRow> GetRows(CsvStreamReader reader)
+        public IEnumerable<CsvLine<TRow>> GetRows(CsvStreamReader reader)
         {
             foreach (var line in this.reader.GetRows(reader))
             {
@@ -40,7 +61,7 @@
 
                 this.SetPropertyValues(line, row);
 
-                yield return row;
+                yield return new CsvLine<TRow>(line, row);
             }
         }
 
@@ -61,17 +82,33 @@
                         }
                         catch (NullReferenceException e)
                         {
-                            //throw new NullReferenceException("The value of '" + header + "' was NULL on line " + line.LineNumber + ".", e);
-                            throw new CsvStreamMapperException("The value of '" + header + "' (" + column.PropertyName + ") was NULL on line " + line.LineNumber + ".", e, line);
+                            var message = "The value of '" + header + "' (" + column.PropertyName + ") was NULL on line " + line.Line.LineNumber + ".";
+                            line.Line.ErrorMessages.Add(message);
+
+                            if (Definition.ThrowExceptionOnError)
+                            {
+                                throw new CsvStreamMapperException(message, e, line);
+                            }
                         }
                         catch (ArgumentException e)
                         {
-                            //throw new ArgumentException("The value of '" + header + "' was invalid on line " + line.LineNumber + ".", e);
-                            throw new CsvStreamMapperException("The value of '" + header + "' (" + column.PropertyName + ") was invalid on line " + line.LineNumber + ".", e, line);
+                            var message = "The value of '" + header + "' (" + column.PropertyName + ") was invalid on line " + line.Line.LineNumber + ".";
+                            line.Line.ErrorMessages.Add(message);
+
+                            if (Definition.ThrowExceptionOnError)
+                            {
+                                throw new CsvStreamMapperException(message, e, line);
+                            }
                         }
                         catch (Exception e)
                         {
-                            throw new CsvStreamMapperException("An error ocurred in field '" + header + "' (" + column.PropertyName + ") on line " + line.LineNumber + ".", e, line);
+                            var message = "An error ocurred in field '" + header + "' (" + column.PropertyName + ") on line " + line.Line.LineNumber + ".";
+                            line.Line.ErrorMessages.Add(message);
+
+                            if (Definition.ThrowExceptionOnError)
+                            {
+                                throw new CsvStreamMapperException(message, e, line);
+                            }
                         }
                     }
                 }
@@ -91,7 +128,7 @@
             }
         }
 
-        private static string GetValue(CsvLine line, string header)
+        private string GetValue(CsvLine line, string header)
         {
             try
             {
@@ -99,8 +136,16 @@
             }
             catch (KeyNotFoundException exception)
             {
-                throw new CsvStreamMapperException("The corresponding value of header name '" + header + "' was not found in the collection on line " + line.LineNumber + ".", exception, line);
+                var message = "The corresponding value of header name '" + header + "' was not found in the collection on line " + line.Line.LineNumber + ".";
+                line.Line.ErrorMessages.Add(message);
+
+                if (Definition.ThrowExceptionOnError)
+                {
+                    throw new CsvStreamMapperException(message, exception, line);
+                }
             }
+
+            return null;
         }
     }
 }
