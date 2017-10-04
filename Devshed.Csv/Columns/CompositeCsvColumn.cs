@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Globalization;
     using System.Linq;
     using System.Linq.Expressions;
     using Devshed.Csv.Writing;
@@ -26,7 +27,7 @@
             : base(selector, headers)
         {
             this.headers = headers;
-            this.Format = value => value.ToString();
+            this.Format = (value, culture) => value.ToString();
             this.SetDefaultValueForUnknowHeaders = false;
         }
 
@@ -57,7 +58,7 @@
         /// <value>
         /// The format.
         /// </value>
-        public Func<TValue, string> Format { get; set; }
+        public Func<TValue, CultureInfo, string> Format { get; set; }
 
         /// <summary>
         /// Gets the header names.
@@ -73,11 +74,11 @@
         /// </summary>
         /// <param name="element">The element.</param>
         /// <returns></returns>
-        public override string[] Render(CsvDefinition<TSource> defintion, TSource element)
+        public override string[] Render(CsvDefinition<TSource> defintion, TSource element, CultureInfo culture)
         {
             var collection = this.Selector.Compile()(element);
 
-            return this.ProcessElementsByHeaderNames(collection).ToArray();
+            return this.ProcessElementsByHeaderNames(collection, culture).ToArray();
         }
 
         private static string[] GetHeaderNames(IEnumerable<CompositeColumnValue<TValue>> rows)
@@ -87,7 +88,7 @@
                     select headers.Key).ToArray();
         }
 
-        private IEnumerable<string> ProcessElementsByHeaderNames(IEnumerable<CompositeColumnValue<TValue>> collection)
+        private IEnumerable<string> ProcessElementsByHeaderNames(IEnumerable<CompositeColumnValue<TValue>> collection, CultureInfo culture)
         {
             foreach (var header in this.headers)
             {
@@ -98,11 +99,11 @@
                 }
                 else if (column == null && this.SetDefaultValueForUnknowHeaders)
                 {
-                    yield return CsvString.FormatStringCell(this.Format(default(TValue)));
+                    yield return CsvString.FormatStringCell(this.Format(default(TValue), culture));
                 }
                 else
                 {
-                    yield return CsvString.FormatStringCell(this.Format(column.Value));
+                    yield return CsvString.FormatStringCell(this.Format(column.Value, culture));
                 }
             }
         }

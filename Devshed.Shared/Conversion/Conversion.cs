@@ -103,6 +103,11 @@
             return AsString(value, Thread.CurrentThread.CurrentCulture);
         }
 
+        public static object AsValue(Type propertyType, string element, object culture)
+        {
+            throw new NotImplementedException();
+        }
+
         //// [DebuggerStepThrough]
         public static string AsString<T>(T value, CultureInfo culture)
         {

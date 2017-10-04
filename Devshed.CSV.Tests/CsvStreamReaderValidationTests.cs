@@ -7,6 +7,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
     using System.Diagnostics;
+    using System.Globalization;
 
     public sealed class TestCsvDefinition : ICsvDefinition
     {
@@ -18,13 +19,15 @@
 
         public bool FirstRowContainsHeaders { get; set; }
 
+        public CultureInfo FormattingCulture { get; set; } = CultureInfo.CurrentCulture;
+
         public bool HasFieldsEnclosedInQuotes { get; set; }
 
         public bool IgnoreReadonlyProperties { get; set; }
 
         public bool RemoveNewLineCharacters { get; set; }
 
-        public bool ThrowExceptionOnError { get; set; } = true;
+        public bool ThrowExceptionOnError { get; set; } = true; // Default behavior
 
         public bool WriteBitOrderMarker { get; set; }
     }

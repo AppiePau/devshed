@@ -48,7 +48,7 @@ namespace Devshed.Csv.Writing
 
         private void AddLine<T>(StreamWriter writer, CsvDefinition<T> definition, T item)
         {  
-            var values = definition.Columns.SelectMany(e => e.Render(definition, item));
+            var values = definition.Columns.SelectMany(e => e.Render(definition, item, definition.FormattingCulture));
             writer.WriteLine(string.Join(definition.ElementDelimiter, values.ToArray()));
         }
 

@@ -1,6 +1,7 @@
 ﻿namespace Devshed.Csv
 {
     using System;
+    using System.Globalization;
     using System.Linq.Expressions;
 
     public class ObjectCsvColumn<TSource> : CsvColumn<TSource, object>
@@ -13,7 +14,7 @@
         public ObjectCsvColumn(Expression<Func<TSource, object>> selector)
             : base(selector)
         {
-            this.Format = value => value != null
+            this.Format = (value, culture) => value != null
                 ? value.ToString()
                 : string.Empty;
         }
@@ -26,11 +27,11 @@
             }
         }
 
-        public Func<object, string> Format { get; set; }
+        public Func<object, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(CsvDefinition<TSource> defintion, object value)
+        protected override string OnRender(CsvDefinition<TSource> defintion, object value, CultureInfo culture)
         {
-            return this.Format(value);
+            return this.Format(value, culture);
         }
     }
 }
