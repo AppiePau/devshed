@@ -9,13 +9,13 @@ namespace Devshed.Csv.Reading
     {
         private string[] headers;
 
-        private readonly ElementProcessing elementProcessing;
+        private readonly ICsvDefinition definition;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvStreamLineReader"/> class.
         /// </summary>
-        public CsvStreamLineReader(ElementProcessing elementProcessing)
-            : this(elementProcessing, new string[] { })
+        public CsvStreamLineReader(ICsvDefinition definition)
+            : this(definition, new string[] { })
         {
         }
 
@@ -23,10 +23,10 @@ namespace Devshed.Csv.Reading
         /// Initializes a new instance of the <see cref="CsvStreamLineReader"/> class.
         /// </summary>
         /// <param name="headerNames">The header names.</param>
-        public CsvStreamLineReader(ElementProcessing elementProcessing, params string[] headerNames)
+        public CsvStreamLineReader(ICsvDefinition definition, params string[] headerNames)
         {
             this.headers = headerNames;
-            this.elementProcessing = elementProcessing;
+            this.definition = definition;
         }
 
         /// <summary>
@@ -64,16 +64,16 @@ namespace Devshed.Csv.Reading
                     var line = reader.ReadLine();
                     if (!line.IsEmpty)
                     {
-                        if (elementProcessing == ElementProcessing.Strict)
+                        if (definition.ElementProcessing == ElementProcessing.Strict)
                         {
                             this.ValidateTooManyColumns(line);
                             this.ValidateTooLessColumns(line);
                         }
-                        else if (elementProcessing == ElementProcessing.OnlyTooFew)
+                        else if (definition.ElementProcessing == ElementProcessing.OnlyTooFew)
                         {
                             this.ValidateTooLessColumns(line);
                         }
-                        else if (elementProcessing == ElementProcessing.OnlyTooMany)
+                        else if (definition.ElementProcessing == ElementProcessing.OnlyTooMany)
                         {
                             this.ValidateTooManyColumns(line);
                         }
@@ -84,43 +84,58 @@ namespace Devshed.Csv.Reading
             }
         }
 
-        private void ValidateTooLessColumns(CsvRawLine line)
+        private void ValidateTooLessColumns(CsvSourceLine line)
         {
             if (line.Count < this.headers.Count())
             {
-                throw new InvalidOperationException(
-                    "The line (" + line.LineNumber + ") contains not enough elements (" + line.Count + ") than headers (" + this.headers.Count() + ") available.");
+                var message = "The line (" + line.LineNumber + ") contains not enough elements (" + line.Count + ") than headers (" + this.headers.Count() + ") available.";
+                line.ErrorMessages.Add(message);
+
+                if (definition.ThrowExceptionOnError)
+                {
+                    throw new InvalidOperationException(message);
+                }
             }
         }
 
-        private void ValidateTooManyColumns(CsvRawLine line)
+        private void ValidateTooManyColumns(CsvSourceLine line)
         {
             if (line.Count > this.headers.Count())
             {
-                throw new InvalidOperationException(
-                    "The line (" + line.LineNumber + ") contains more elements (" + line.Count + ") than headers (" + this.headers.Count() + ") available.");
+                var message = "The line (" + line.LineNumber + ") contains more elements (" + line.Count + ") than headers (" + this.headers.Count() + ") available.";
+                line.ErrorMessages.Add(message);
+
+                if (definition.ThrowExceptionOnError)
+                {
+                    throw new InvalidOperationException(message);
+                }
             }
         }
 
-        private CsvLine CreateDictionaryLine(CsvRawLine line)
+        private CsvLine CreateDictionaryLine(CsvSourceLine line)
         {
-            var dic = new CsvLine(line.LineNumber);
+            var indexedLine = new CsvLine(line);
             for (int index = 0; index < this.headers.Length; index++)
             {
                 var header = this.GetHeaderName(index).ToUpper();
 
-                if (dic.ContainsKey(header))
+                if (indexedLine.ContainsKey(header))
                 {
-                    throw new DuplicateHeaderException(header, line.LineNumber);
+                    line.ErrorMessages.Add($"A duplicate header name was found '{header}' on line {line.LineNumber}.");
+
+                    if (definition.ThrowExceptionOnError)
+                    {
+                        throw new DuplicateHeaderException(header, line.LineNumber);
+                    }
                 }
 
-                dic.Add(header, GetElementValue(line, index));
+                indexedLine.Add(header, GetElementValue(line, index));
             }
 
-            return dic;
+            return indexedLine;
         }
 
-        private static string GetElementValue(CsvRawLine line, int index)
+        private static string GetElementValue(CsvSourceLine line, int index)
         {
             if (index >= line.Elements.Length)
             {

@@ -16,7 +16,7 @@
 
     /// <summary> Defines the CSV document layout. </summary>
     /// <typeparam name="TSource">The type of the source.</typeparam>
-    public sealed class CsvDefinition<TSource>
+    public sealed class CsvDefinition<TSource> : ICsvDefinition
     {
         private readonly ICollection<ICsvColumn<TSource>> columns;
 
@@ -111,5 +111,7 @@
         /// Instructs the materializer to ignore readonly properties without throwing an exception.
         /// </summary>
         public bool IgnoreReadonlyProperties { get;  set; }
+
+        public bool ThrowExceptionOnError { get; set; } = true;
     }
 }
