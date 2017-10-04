@@ -1,6 +1,7 @@
 ﻿namespace Devshed.Csv
 {
     using System;
+    using System.Globalization;
     using System.Linq.Expressions;
 
     public sealed class DateCsvColumn<TSource> : CsvColumn<TSource, DateTime?>
@@ -13,7 +14,7 @@
         public DateCsvColumn(Expression<Func<TSource, DateTime?>> selector)
             : base(selector)
         {
-            this.Format = date => date != null
+            this.Format = (date, culture) => date != null
                     ? date.Value.ToShortDateString()
                     : string.Empty;
         }
@@ -26,11 +27,11 @@
             }
         }
 
-        public Func<DateTime?, string> Format { get; set; }
+        public Func<DateTime?, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(CsvDefinition<TSource> defintion, DateTime? value)
+        protected override string OnRender(CsvDefinition<TSource> defintion, DateTime? value, CultureInfo culture)
         {
-            return this.Format(value);
+            return this.Format(value, culture);
         }
     }
 

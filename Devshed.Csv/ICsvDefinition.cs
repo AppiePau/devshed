@@ -1,17 +1,28 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 
 namespace Devshed.Csv
 {
     public interface ICsvDefinition
     {
-        string ElementDelimiter { get; set; }
-        ElementProcessing ElementProcessing { get; set; }
-        Encoding Encoding { get; set; }
-        bool FirstRowContainsHeaders { get; set; }
-        bool HasFieldsEnclosedInQuotes { get; set; }
-        bool IgnoreReadonlyProperties { get; set; }
-        bool RemoveNewLineCharacters { get; set; }
-        bool ThrowExceptionOnError { get; set; }
-        bool WriteBitOrderMarker { get; set; }
+        string ElementDelimiter { get; }
+
+        ElementProcessing ElementProcessing { get; }
+
+        Encoding Encoding { get; }
+
+        bool FirstRowContainsHeaders { get; }
+
+        bool HasFieldsEnclosedInQuotes { get; }
+
+        bool IgnoreReadonlyProperties { get; }
+
+        bool RemoveNewLineCharacters { get; }
+
+        bool ThrowExceptionOnError { get; }
+
+        bool WriteBitOrderMarker { get; }
+
+        CultureInfo FormattingCulture { get; }
     }
 }

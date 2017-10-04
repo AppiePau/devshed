@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Globalization;
 
     public static class CsvConfiguration
     {
@@ -113,5 +114,7 @@
         public bool IgnoreReadonlyProperties { get;  set; }
 
         public bool ThrowExceptionOnError { get; set; } = true;
+
+        public CultureInfo FormattingCulture { get; set; } = CultureInfo.CurrentCulture;
     }
 }

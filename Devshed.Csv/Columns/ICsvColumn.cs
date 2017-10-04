@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 
 namespace Devshed.Csv
 {
@@ -10,7 +11,7 @@ namespace Devshed.Csv
 
         ColumnDataType DataType { get; }
 
-        string[] Render(CsvDefinition<TSource> defintion, TSource element);
+        string[] Render(CsvDefinition<TSource> defintion, TSource element, CultureInfo writingFormat);
 
         string[] GetHeaderNames();
     }

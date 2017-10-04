@@ -7,26 +7,19 @@
 
     public sealed class CurrencyCsvColumn<TSource> : CsvColumn<TSource, decimal?>
     {
-        private readonly CultureInfo culture;
-
         public CurrencyCsvColumn(string propertyName)
             : base(propertyName)
         {
         }
 
-        public CurrencyCsvColumn(Expression<Func<TSource, decimal?>> selector, CultureInfo culture)
+        public CurrencyCsvColumn(Expression<Func<TSource, decimal?>> selector)
             : base(selector)
         {
-            this.culture = culture;
-        }
-
-        public CurrencyCsvColumn(Expression<Func<TSource, decimal?>> selector)
-            : this(selector, Thread.CurrentThread.CurrentUICulture)
-        {
-            this.Format = value => value != null
-                ? string.Format(this.culture, "{0:c2}", value)
+            this.Format = (value, culture) => value != null
+                ? string.Format(culture, "{0:c2}", value)
                 : string.Empty;
         }
+
         public override ColumnDataType DataType
         {
             get
@@ -35,11 +28,11 @@
             }
         }
 
-        public Func<decimal?, string> Format { get; set; }
+        public Func<decimal?, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(CsvDefinition<TSource> defintion, decimal? value)
+        protected override string OnRender(CsvDefinition<TSource> defintion, decimal? value, CultureInfo culture)
         {
-            return this.Format(value);
+            return this.Format(value, culture);
         }
     }
 }
