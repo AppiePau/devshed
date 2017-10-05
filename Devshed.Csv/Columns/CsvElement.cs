@@ -6,6 +6,7 @@
     using System.Linq.Expressions;
     using Devshed.Shared;
     using System.Globalization;
+    using System.Collections.Generic;
 
     /// <summary> Provides basic column behavior. </summary>
     /// <typeparam name="TSource">The selected source row type.</typeparam>
@@ -112,11 +113,17 @@
         /// <summary>
         /// Gets the header names for this column.
         /// </summary>
+        /// <param name="rows"> Contains the whole set of data. </param>
         /// <remarks>
         /// Multiple header names are posible for composite columns.
         /// </remarks>
         /// <returns></returns>
-        public virtual string[] GetHeaderNames()
+        public virtual string[] GetWritingHeaderNames(IEnumerable<TSource> rows)
+        {
+            return new[] { this.HeaderName };
+        }
+
+        public virtual string[] GetReadingHeaderNames()
         {
             return new[] { this.HeaderName };
         }
@@ -133,7 +140,7 @@
             return new[] { this.OnRender(definition, value, formattingCulture) };
         }
 
-        protected virtual string OnRender(CsvDefinition<TSource> defintion, TResult value, CultureInfo formattingCulture)
+        protected virtual string OnRender( CsvDefinition<TSource> defintion, TResult value, CultureInfo formattingCulture)
         {
             if (value == null)
             {

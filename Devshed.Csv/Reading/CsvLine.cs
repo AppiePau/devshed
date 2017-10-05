@@ -6,9 +6,9 @@ namespace Devshed.Csv.Reading
     {
         public CsvLine(CsvSourceLine line)
         {
-            this.Line = line;
+            this.SourceLine = line;
         }
 
-        public CsvSourceLine Line { get; set; }
+        public CsvSourceLine SourceLine { get; set; }
     }
 }
