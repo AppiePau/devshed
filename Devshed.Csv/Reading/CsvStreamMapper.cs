@@ -16,11 +16,19 @@
             this.Row = row;
         }
 
+        public int LineNumber
+        {
+            get
+            {
+                return this.line.SourceLine.LineNumber;
+            }
+        }
+
         public IEnumerable<string> ErrorMessages
         {
             get
             {
-                return this.line.Line.ErrorMessages;
+                return this.line.SourceLine.ErrorMessages;
             }
         }
 
@@ -42,7 +50,7 @@
         public CsvStreamMapper(CsvDefinition<TRow> definition)
         {
             this.Definition = definition;
-            var headers = definition.Columns.SelectMany(e => e.GetHeaderNames()).ToArray();
+            var headers = definition.Columns.SelectMany(e => e.GetReadingHeaderNames()).ToArray();
 
             this.reader = new CsvStreamLineReader(definition, headers);
             this.reader.FirstRowContainsHeaders = this.Definition.FirstRowContainsHeaders;
@@ -70,9 +78,9 @@
             foreach (var column in this.Definition.Columns)
             {
                 ////TODO: Add support for composite columns?
-                if (column.GetHeaderNames().Count() == 1)
+                if (column.GetReadingHeaderNames().Count() == 1)
                 {
-                    foreach (var header in column.GetHeaderNames())
+                    foreach (var header in column.GetReadingHeaderNames())
                     {
                         var element = GetValue(line, header);
 
@@ -82,8 +90,8 @@
                         }
                         catch (NullReferenceException e)
                         {
-                            var message = "The value of '" + header + "' (" + column.PropertyName + ") was NULL on line " + line.Line.LineNumber + ".";
-                            line.Line.ErrorMessages.Add(message);
+                            var message = "The value of '" + header + "' (" + column.PropertyName + ") was NULL on line " + line.SourceLine.LineNumber + ".";
+                            line.SourceLine.ErrorMessages.Add(message);
 
                             if (Definition.ThrowExceptionOnError)
                             {
@@ -92,8 +100,8 @@
                         }
                         catch (ArgumentException e)
                         {
-                            var message = "The value of '" + header + "' (" + column.PropertyName + ") was invalid on line " + line.Line.LineNumber + ".";
-                            line.Line.ErrorMessages.Add(message);
+                            var message = "The value of '" + header + "' (" + column.PropertyName + ") was invalid on line " + line.SourceLine.LineNumber + ".";
+                            line.SourceLine.ErrorMessages.Add(message);
 
                             if (Definition.ThrowExceptionOnError)
                             {
@@ -102,8 +110,8 @@
                         }
                         catch (Exception e)
                         {
-                            var message = "An error ocurred in field '" + header + "' (" + column.PropertyName + ") on line " + line.Line.LineNumber + ".";
-                            line.Line.ErrorMessages.Add(message);
+                            var message = "An error ocurred in field '" + header + "' (" + column.PropertyName + ") on line " + line.SourceLine.LineNumber + ".";
+                            line.SourceLine.ErrorMessages.Add(message);
 
                             if (Definition.ThrowExceptionOnError)
                             {
@@ -136,8 +144,8 @@
             }
             catch (KeyNotFoundException exception)
             {
-                var message = "The corresponding value of header name '" + header + "' was not found in the collection on line " + line.Line.LineNumber + ".";
-                line.Line.ErrorMessages.Add(message);
+                var message = "The corresponding value of header name '" + header + "' was not found in the collection on line " + line.SourceLine.LineNumber + ".";
+                line.SourceLine.ErrorMessages.Add(message);
 
                 if (Definition.ThrowExceptionOnError)
                 {
