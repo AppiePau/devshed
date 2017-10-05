@@ -28,12 +28,13 @@ namespace Devshed.Csv.Writing
         public void Write<T>(T[] rows, CsvDefinition<T> definition)
         {
             var writer = new StreamWriter(this.stream, definition.Encoding);
-            
+
+
             WriteBitOrderMarker<T>(definition);
             
             if (definition.FirstRowContainsHeaders)
             {
-                this.AddHeader<T>(writer, definition);
+                this.AddHeader<T>(writer, definition, rows);
             }
 
             foreach (var row in rows)
@@ -52,15 +53,15 @@ namespace Devshed.Csv.Writing
             writer.WriteLine(string.Join(definition.ElementDelimiter, values.ToArray()));
         }
 
-        private void AddHeader<T>(StreamWriter writer, CsvDefinition<T> definition)
+        private void AddHeader<T>(StreamWriter writer, CsvDefinition<T> definition, T[] rows)
         {             
-            var headers = definition.Columns.SelectMany(column => GetHeaderNames<T>(definition, column));
+            var headers = definition.Columns.SelectMany(column => GetHeaderNames<T>(definition, column, rows));
             writer.WriteLine(string.Join(definition.ElementDelimiter, headers.ToArray()));
         }
 
-        private static IEnumerable<string> GetHeaderNames<T>(CsvDefinition<T> definition, ICsvColumn<T> column)
+        private static IEnumerable<string> GetHeaderNames<T>(CsvDefinition<T> definition, ICsvColumn<T> column, T[] rows)
         {
-            return column.GetHeaderNames().Select(header => GetColumnHeaderWithoutEnters(header));
+            return column.GetWritingHeaderNames(rows).Select(header => GetColumnHeaderWithoutEnters(header));
         }
 
         private static string GetColumnHeaderWithoutEnters(string header)

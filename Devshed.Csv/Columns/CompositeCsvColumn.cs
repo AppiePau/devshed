@@ -15,7 +15,7 @@
     /// <typeparam name="TValue">The type of the value.</typeparam>
     public class CompositeCsvColumn<TSource, TValue> : CsvColumn<TSource, IEnumerable<CompositeColumnValue<TValue>>>
     {
-        private readonly string[] headers;
+        private string[] headers;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CompositeCsvColumn{TSource, TValue}"/> class.
@@ -28,10 +28,13 @@
         {
             this.headers = headers;
             this.Format = (value, culture) => value.ToString();
-            this.SetDefaultValueForUnknowHeaders = false;
+            this.AllowUndefinedColumnsInCollection = false;
         }
 
-        public bool SetDefaultValueForUnknowHeaders { get; set; }
+        /// <summary>
+        /// If false an exception will be thrown when a header is not found the collection.
+        /// </summary>
+        public bool AllowUndefinedColumnsInCollection { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CompositeCsvColumn{TSource, TValue}"/> class.
@@ -42,6 +45,7 @@
             IEnumerable<CompositeColumnValue<TValue>> rows)
             : this(selector, GetHeaderNames(rows))
         {
+            //selector = selector;
         }
 
         public override ColumnDataType DataType
@@ -64,8 +68,21 @@
         /// Gets the header names.
         /// </summary>
         /// <returns></returns>
-        public override string[] GetHeaderNames()
+        public override string[] GetWritingHeaderNames(IEnumerable<TSource> rows)
         {
+            if (this.headers.Length == 0)
+            {
+                var func = Selector.Compile();
+
+                this.headers =
+                    (from row in rows
+                     from col in func(row)
+                     group col by col.HeaderName into name
+                     orderby name.Key
+                     select name.Key).ToArray();
+
+            }
+
             return this.headers;
         }
 
@@ -90,14 +107,19 @@
 
         private IEnumerable<string> ProcessElementsByHeaderNames(IEnumerable<CompositeColumnValue<TValue>> collection, CultureInfo culture)
         {
+            if (this.headers.Length == 0)
+            {
+                this.headers = GetHeaderNames(collection);
+            }
+
             foreach (var header in this.headers)
             {
                 var column = collection.SingleOrDefault(c => c.HeaderName == header);
-                if (column == null && !this.SetDefaultValueForUnknowHeaders)
+                if (column == null && !this.AllowUndefinedColumnsInCollection)
                 {
                     throw new KeyNotFoundException("The header key '" + header + "' was not found in the composite collection.");
                 }
-                else if (column == null && this.SetDefaultValueForUnknowHeaders)
+                else if (column == null && this.AllowUndefinedColumnsInCollection)
                 {
                     yield return CsvString.FormatStringCell(this.Format(default(TValue), culture));
                 }

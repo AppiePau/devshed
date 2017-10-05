@@ -55,6 +55,28 @@
                             + "\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\"\r\n", result);
         }
 
+
+        [TestMethod]
+        public void CompositeProperty_WithoutHeadernames_ShouldGenerateHeadernames()
+        {
+            var rows = this.GetCompositeRows();
+
+            var definition =
+                new CsvDefinition<CompositeTestModel>(
+                    new TextCsvColumn<CompositeTestModel>(e => e.Name),
+                    new ObjectCsvColumn<CompositeTestModel>(e => e.TestColor),
+                    new CompositeCsvColumn<CompositeTestModel, string>(e => e.GetTestColors())) //// Purple is not in the source
+                {
+                    FirstRowContainsHeaders = true,
+                    WriteBitOrderMarker = false
+                };
+
+            var result = CsvWriter.CreateStream(definition, rows).GetString();
+
+            Assert.AreEqual("\"Name\";\"TestColor\";\"Header1\";\"Header2\";\"Header3\"\r\n"
+                            + "\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\";\"ValueThree\"\r\n", result);
+        }
+
         [TestMethod]
         [ExpectedException(typeof(KeyNotFoundException))]
         public void Composition_NotInCollection_ThrowsException()

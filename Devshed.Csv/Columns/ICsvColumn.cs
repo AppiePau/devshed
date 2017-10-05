@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace Devshed.Csv
@@ -13,6 +14,8 @@ namespace Devshed.Csv
 
         string[] Render(CsvDefinition<TSource> defintion, TSource element, CultureInfo writingFormat);
 
-        string[] GetHeaderNames();
+        string[] GetWritingHeaderNames(IEnumerable<TSource> rows);
+
+        string[] GetReadingHeaderNames();
     }
 }
