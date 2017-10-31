@@ -29,7 +29,7 @@ namespace Devshed.Csv
 
         public Func<TimeSpan?, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(CsvDefinition<TSource> defintion, TimeSpan? value, CultureInfo culture)
+        protected override string OnRender(ICsvDefinition defintion, TimeSpan? value, CultureInfo culture)
         {
             return this.Format(value, culture);
         }

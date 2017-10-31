@@ -118,7 +118,7 @@
         /// Multiple header names are posible for composite columns.
         /// </remarks>
         /// <returns></returns>
-        public virtual string[] GetWritingHeaderNames(IEnumerable<TSource> rows)
+        public virtual string[] GetWritingHeaderNames(TSource[] rows)
         {
             return new[] { this.HeaderName };
         }
@@ -133,14 +133,14 @@
         /// </summary>
         /// <param name="element">The element.</param>
         /// <returns></returns>
-        public virtual string[] Render(CsvDefinition<TSource> definition, TSource element, CultureInfo formattingCulture)
+        public virtual string[] Render(ICsvDefinition definition, TSource element, CultureInfo formattingCulture)
         {
             var value = this.Selector.Compile().Invoke(element);
 
             return new[] { this.OnRender(definition, value, formattingCulture) };
         }
 
-        protected virtual string OnRender( CsvDefinition<TSource> defintion, TResult value, CultureInfo formattingCulture)
+        protected virtual string OnRender(ICsvDefinition defintion, TResult value, CultureInfo formattingCulture)
         {
             if (value == null)
             {

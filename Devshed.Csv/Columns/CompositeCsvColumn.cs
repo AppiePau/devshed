@@ -68,7 +68,7 @@
         /// Gets the header names.
         /// </summary>
         /// <returns></returns>
-        public override string[] GetWritingHeaderNames(IEnumerable<TSource> rows)
+        public override string[] GetWritingHeaderNames(TSource[] rows)
         {
             if (this.headers.Length == 0)
             {
@@ -91,7 +91,7 @@
         /// </summary>
         /// <param name="element">The element.</param>
         /// <returns></returns>
-        public override string[] Render(CsvDefinition<TSource> defintion, TSource element, CultureInfo culture)
+        public override string[] Render(ICsvDefinition defintion, TSource element, CultureInfo culture)
         {
             var collection = this.Selector.Compile()(element);
 

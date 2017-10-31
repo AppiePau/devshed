@@ -83,6 +83,10 @@
     <Compile Include="UrlBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\DelegateValidator.cs" />
+    <Compile Include="Validation\PasswordAdvisor.cs" />
+    <Compile Include="Validation\PasswordResult.cs" />
+    <Compile Include="Validation\PasswordScore.cs" />
+    <Compile Include="Validation\PasswordStrengthValidator.cs" />
     <Compile Include="Validation\Requires.cs" />
     <Compile Include="RequestSerializer.cs" />
     <Compile Include="Webforms\DropDownDataHelper.cs" />

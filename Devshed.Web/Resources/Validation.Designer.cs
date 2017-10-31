@@ -124,6 +124,33 @@ namespace Devshed.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password does not contain any digits..
+        /// </summary>
+        internal static string DoesNotContainDigit {
+            get {
+                return ResourceManager.GetString("DoesNotContainDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password does not contain any letters..
+        /// </summary>
+        internal static string DoesNotContainLetters {
+            get {
+                return ResourceManager.GetString("DoesNotContainLetters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password does not contain any special characters..
+        /// </summary>
+        internal static string DoesNotContainSpecialCharacter {
+            get {
+                return ResourceManager.GetString("DoesNotContainSpecialCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email formatting is not valid..
         /// </summary>
         internal static string EmailIsNotValid {
@@ -183,6 +210,15 @@ namespace Devshed.Web.Resources {
         internal static string PasswordDoesNotMatchRequirements {
             get {
                 return ResourceManager.GetString("PasswordDoesNotMatchRequirements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password length is too short..
+        /// </summary>
+        internal static string PasswordTooShort {
+            get {
+                return ResourceManager.GetString("PasswordTooShort", resourceCulture);
             }
         }
         

@@ -32,7 +32,7 @@
 
         public Func<string, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(CsvDefinition<TSource> defintion, string value, CultureInfo culture)
+        protected override string OnRender(ICsvDefinition defintion, string value, CultureInfo culture)
         {
             var text = this.Format(value ?? string.Empty, culture);
 

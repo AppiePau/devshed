@@ -2,32 +2,24 @@ namespace Devshed.Web
 {
     using System;
     using System.Globalization;
-    using System.Text;
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
+
     public static class ControlValidationExtensions
     {
-        public static string BasicPasswordExpression(int length)
-        {
-            return "^.*(?=.{" + length + ",})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*?()-_+=\"'\\|?/.,<>]).*$";
-        }
-
         public static string UrlValidationExpression =
                 @"^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$";
 
         public static string EmailValidationExpression =
                 @"^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z](?:[a-zA-Z-]*[a-zA-Z])?$";
 
-        public static RegularExpressionValidator BasicPassword(this ControlValidatorInjector controlValidator)
+        public static PasswordStrengthValidator BasicPassword(this ControlValidatorInjector controlValidator, int minimumLength = 8, PasswordScore minimumScore = PasswordScore.Strong)
         {
-            return BasicPassword(controlValidator, null);
-        }
-
-        public static RegularExpressionValidator BasicPassword(this ControlValidatorInjector controlValidator, int? length)
-        {
-            var validator = controlValidator.AddValidator<RegularExpressionValidator>(Resources.Validation.PasswordDoesNotMatchRequirements);
-            validator.ValidationExpression = BasicPasswordExpression(length ?? 6);
+            var validator = controlValidator.AddValidator<PasswordStrengthValidator>(Resources.Validation.PasswordDoesNotMatchRequirements);
+            validator.MinimumLength = minimumLength;
+            validator.MinimumScore = minimumScore;
+                        
             return validator;
         }
 

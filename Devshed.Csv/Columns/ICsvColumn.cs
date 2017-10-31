@@ -12,9 +12,9 @@ namespace Devshed.Csv
 
         ColumnDataType DataType { get; }
 
-        string[] Render(CsvDefinition<TSource> defintion, TSource element, CultureInfo writingFormat);
+        string[] Render(ICsvDefinition defintion, TSource element, CultureInfo writingFormat);
 
-        string[] GetWritingHeaderNames(IEnumerable<TSource> rows);
+        string[] GetWritingHeaderNames(TSource[] rows);
 
         string[] GetReadingHeaderNames();
     }

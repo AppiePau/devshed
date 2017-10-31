@@ -138,6 +138,15 @@
   <data name="DateMustBeLaterThan" xml:space="preserve">
     <value>Date must be later than '{0}'.</value>
   </data>
+  <data name="DoesNotContainDigit" xml:space="preserve">
+    <value>Password does not contain any digits.</value>
+  </data>
+  <data name="DoesNotContainLetters" xml:space="preserve">
+    <value>Password does not contain any letters.</value>
+  </data>
+  <data name="DoesNotContainSpecialCharacter" xml:space="preserve">
+    <value>Password does not contain any special characters.</value>
+  </data>
   <data name="EmailIsNotValid" xml:space="preserve">
     <value>Email formatting is not valid.</value>
   </data>
@@ -158,6 +167,9 @@
   </data>
   <data name="PasswordDoesNotMatchRequirements" xml:space="preserve">
     <value>Password does not meet requirements.</value>
+  </data>
+  <data name="PasswordTooShort" xml:space="preserve">
+    <value>Password length is too short.</value>
   </data>
   <data name="RequiredField" xml:space="preserve">
     <value>The field '{0}' is required.</value>

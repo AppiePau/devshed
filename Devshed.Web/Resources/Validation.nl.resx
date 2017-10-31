@@ -138,6 +138,15 @@
   <data name="DateMustBeLaterThan" xml:space="preserve">
     <value>De datum moet latyer zijn dan '{0}'.</value>
   </data>
+  <data name="DoesNotContainDigit" xml:space="preserve">
+    <value>Wachtwoord heeft geen getallen.</value>
+  </data>
+  <data name="DoesNotContainLetters" xml:space="preserve">
+    <value>Wachtwoord bevat geen leestekens.</value>
+  </data>
+  <data name="DoesNotContainSpecialCharacter" xml:space="preserve">
+    <value>Wachtwoord heeft geen speciale tekens.</value>
+  </data>
   <data name="EmailIsNotValid" xml:space="preserve">
     <value>E-mail formaat is niet geldig.</value>
   </data>
@@ -158,6 +167,9 @@
   </data>
   <data name="PasswordDoesNotMatchRequirements" xml:space="preserve">
     <value>Het wacht voldoet niet aan de eisen.</value>
+  </data>
+  <data name="PasswordTooShort" xml:space="preserve">
+    <value>Wachtwoord is te kort (minimaal 4 tekens).</value>
   </data>
   <data name="RequiredField" xml:space="preserve">
     <value>Het veld '{0}' is verplicht.</value>

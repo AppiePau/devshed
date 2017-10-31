@@ -30,7 +30,7 @@
 
         public Func<decimal?, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(CsvDefinition<TSource> defintion, decimal? value, CultureInfo culture)
+        protected override string OnRender(ICsvDefinition defintion, decimal? value, CultureInfo culture)
         {
             return this.Format(value, culture);
         }

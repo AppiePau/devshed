@@ -29,7 +29,7 @@
 
         public Func<object, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(CsvDefinition<TSource> defintion, object value, CultureInfo culture)
+        protected override string OnRender(ICsvDefinition defintion, object value, CultureInfo culture)
         {
             return this.Format(value, culture);
         }

@@ -15,6 +15,7 @@ namespace Devshed.Csv
         Boolean = 7,
         Composite = 8,
         StrongTyped = 9,
-        Object = 10
+        Object = 10,
+        Dynamic = 11
     }
 }

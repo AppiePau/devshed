@@ -49,7 +49,7 @@
 
         public Func<TArray, string> Format { get; set; }
 
-        protected override string OnRender(CsvDefinition<TSource> defintion, IEnumerable<TArray> value, CultureInfo culture)
+        protected override string OnRender(ICsvDefinition defintion, IEnumerable<TArray> value, CultureInfo culture)
         {
             var values = value.Select(e => CleanAndFormatValue(defintion, e)).ToArray();
 
@@ -58,7 +58,7 @@
             return CsvString.FormatStringCell(element, defintion.RemoveNewLineCharacters);
         }
 
-        private string CleanAndFormatValue(CsvDefinition<TSource> defintion, TArray e)
+        private string CleanAndFormatValue(ICsvDefinition defintion, TArray e)
         {
             return this.Format(e).Replace(this.ElementDelimiter, "_");
         }

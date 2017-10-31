@@ -29,7 +29,7 @@
 
         public Func<DateTime?, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(CsvDefinition<TSource> defintion, DateTime? value, CultureInfo culture)
+        protected override string OnRender(ICsvDefinition defintion, DateTime? value, CultureInfo culture)
         {
             return this.Format(value, culture);
         }
