@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Linq.Expressions;
     using Devshed.Csv.Writing;
+    using Shared;
 
     /// <summary>
     /// 
@@ -67,17 +68,18 @@
         {
             if (this.headers.Length == 0)
             {
-                var func = Selector.Compile();
-
-                this.headers =
+                var headers =
                     (from row in rows
-                     from colrow in func(row)
+                     from colrow in Selector(row)
                      let sub = converter(colrow)
-                     from header in sub.GetReadingHeaderNames() 
-                     group header by header into name
-                     orderby name.Key
-                     select name.Key).ToArray();
+                     from header in sub.GetReadingHeaderNames()
+                     select header);
 
+                var collection = new HashSet<string>();
+
+                collection.AddRange(headers);
+
+                return collection.ToArray();
             }
 
             return this.headers;
@@ -90,9 +92,8 @@
         /// <returns></returns>
         public override string[] Render(ICsvDefinition defintion, TSource element, CultureInfo culture)
         {
-            var collection = this.Selector.Compile()(element);
-            var func = Selector.Compile();
-
+            var collection = this.Selector(element);
+            
             return (from item in collection
                     let column = converter(item)
                     select column.Render(defintion, item, culture))

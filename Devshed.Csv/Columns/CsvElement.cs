@@ -14,7 +14,10 @@
     [DebuggerDisplay("{HeaderName}")]
     public abstract class CsvColumn<TSource, TResult> : ICsvColumn<TSource>
     {
+        protected readonly Expression<Func<TSource, TResult>> propertySelector;
+
         private string[] headers;
+        private Func<TSource, TResult> _selector;
 
         /// <summary>
         /// Returns the result type of the data type that is being mapped.
@@ -58,7 +61,7 @@
         {
             ParameterExpression argParam = Expression.Parameter(typeof(TSource), "s");
             var selectedField = Expression.PropertyOrField(argParam, propertyName);
-            this.Selector = Expression.Lambda<Func<TSource, TResult>>(selectedField, argParam);
+            this.propertySelector = Expression.Lambda<Func<TSource, TResult>>(selectedField, argParam);
 
             this.PropertyName = propertyName;
             this.headers = headers;
@@ -93,7 +96,7 @@
             Requires.IsNotNull(selector, "selector");
             Requires.IsNotNull(headers, "headers");
 
-            this.Selector = selector;
+            this.propertySelector = selector;
             this.headers = headers;
             this.PropertyName = selector.GetMemberName();
         }
@@ -108,7 +111,19 @@
 
         public abstract ColumnDataType DataType { get; }
 
-        public Expression<Func<TSource, TResult>> Selector { get; private set; }
+
+        public Func<TSource, TResult> Selector
+        {
+            get
+            {
+                if (this._selector == null)
+                {
+                    this._selector = this.propertySelector.Compile();
+                }
+
+                return this._selector;
+            }
+        }
 
         /// <summary>
         /// Gets the header names for this column.
@@ -135,7 +150,7 @@
         /// <returns></returns>
         public virtual string[] Render(ICsvDefinition definition, TSource element, CultureInfo formattingCulture)
         {
-            var value = this.Selector.Compile().Invoke(element);
+            var value = this.Selector(element);
 
             return new[] { this.OnRender(definition, value, formattingCulture) };
         }

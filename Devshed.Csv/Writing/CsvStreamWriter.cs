@@ -49,14 +49,14 @@ namespace Devshed.Csv.Writing
 
         private void AddLine<T>(StreamWriter writer, CsvDefinition<T> definition, T item)
         {  
-            var values = definition.Columns.SelectMany(e => e.Render(definition, item, definition.FormattingCulture));
-            writer.WriteLine(string.Join(definition.ElementDelimiter, values.ToArray()));
+            var values = definition.Columns.SelectMany(e => e.Render(definition, item, definition.FormattingCulture)).ToArray();
+            writer.WriteLine(string.Join(definition.ElementDelimiter, values));
         }
 
         private void AddHeader<T>(StreamWriter writer, CsvDefinition<T> definition, T[] rows)
         {             
-            var headers = definition.Columns.SelectMany(column => GetHeaderNames<T>(definition, column, rows));
-            writer.WriteLine(string.Join(definition.ElementDelimiter, headers.ToArray()));
+            var headers = definition.Columns.SelectMany(column => GetHeaderNames<T>(definition, column, rows)).ToArray();
+            writer.WriteLine(string.Join(definition.ElementDelimiter, headers));
         }
 
         private static IEnumerable<string> GetHeaderNames<T>(CsvDefinition<T> definition, ICsvColumn<T> column, T[] rows)

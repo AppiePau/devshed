@@ -27,7 +27,7 @@
             : base(selector, headers)
         {
             this.headers = headers;
-            this.Format = (value, culture) => value.ToString();
+            this.Format = (value, culture) => value?.ToString() ?? string.Empty;
             this.AllowUndefinedColumnsInCollection = false;
         }
 
@@ -72,11 +72,10 @@
         {
             if (this.headers.Length == 0)
             {
-                var func = Selector.Compile();
-
+                
                 this.headers =
                     (from row in rows
-                     from col in func(row)
+                     from col in Selector(row)
                      group col by col.HeaderName into name
                      orderby name.Key
                      select name.Key).ToArray();
@@ -93,7 +92,7 @@
         /// <returns></returns>
         public override string[] Render(ICsvDefinition defintion, TSource element, CultureInfo culture)
         {
-            var collection = this.Selector.Compile()(element);
+            var collection = this.Selector(element);
 
             return this.ProcessElementsByHeaderNames(collection, culture).ToArray();
         }
