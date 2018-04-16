@@ -4,6 +4,19 @@ namespace Devshed.Web
     using System.Web;
     using System.Web.UI;
 
+    public static class PageUrl
+    {
+        public static string Url(Type page, params object[] parameters)
+        {
+            return PageUrlBuilder.Builder.For(page, parameters).ToString();
+        }
+
+        public static string UrlFor<TPage>(params object[] parameters)
+        {
+            return PageUrlBuilder.Builder.For(typeof(TPage), parameters).ToString();
+        }
+    }
+
     public sealed class PageUrlBuilder
     {
         public static PageUrlBuilder Builder { get; private set; }
@@ -41,6 +54,37 @@ namespace Devshed.Web
 
             throw new InvalidOperationException("Wrong namespace for page '" + name + "', expected '" + this.root + "'.");
         }
+
+
+        public UrlBuilder For(Type page, params object[] parameters)
+        {
+            if (!typeof(IHttpHandler).IsAssignableFrom(page))
+            {
+                throw new InvalidOperationException($"The page '{page.Name}' meust derive from IHttpHandler.");
+            }
+
+            string name = page.FullName;
+
+
+
+            if (name.StartsWith(this.root))
+            {
+                //// Cut off the prefix and replace dots by slashes:
+                string fullPathToFile = name.Substring(this.root.Length).Replace(".", "/");
+                string fullPagePath = string.Format("~/{0}.{1}", fullPathToFile, GetExtension(page));
+
+                var builder = new UrlBuilder(fullPagePath);
+                foreach (var parameter in parameters)
+                {
+                    RequestSerializer.AddParameters(builder, parameter);
+                }
+
+                return builder;
+            }
+
+            throw new InvalidOperationException("Wrong namespace for page '" + name + "', expected '" + this.root + "'.");
+        }
+
 
         /// <summary>
         /// Creates an instance using a custom path, in case the namespace is different to the
