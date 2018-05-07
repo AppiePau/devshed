@@ -18,7 +18,7 @@ var BasicPasswordValidation =
         DoesNotContainLetters: """ + Resources.Validation.DoesNotContainLetters + @""",
         DoesNotContainSpecialCharacter: """ + Resources.Validation.DoesNotContainSpecialCharacter + @"""
     },
-    CreatePassworScore: function (password, minLength)
+    CreatePasswordScore: function (password, minLength)
     {
 	    minLength = minLength || 8;
         var result = { score: 0, messages: [] };
@@ -34,12 +34,12 @@ var BasicPasswordValidation =
             return result;
         }
 
-        if (password.Length >= minLength)
+        if (password.length >= minLength)
         {
             result.score++;
         }
 
-        if (password.Length >= minLength + 4)
+        if (password.length >= minLength + 4)
         {
             result.score++;
         }
@@ -101,17 +101,21 @@ var BasicPasswordValidation =
             var script = @"
                 function " + functionName + @"(source, arguments)
                 {
-                    var result = BasicPasswordValidation.CreatePassworScore(arguments.Value); 
+                    var result = BasicPasswordValidation.CreatePasswordScore(arguments.Value, " + MinimumLength + @"); 
                     arguments.IsValid = result.score >= " + (int)MinimumScore + @";
 
-                    var message = '';
-                    for(t = 0; t < result.messages.length; t++)
+                    if(result.messages.length > 0)
                     {
-                        message += ' - ' + result.messages[t] + '\n';
+                        var message = '';
+                        for(t = 0; t < result.messages.length; t++)
+                        {
+                            message += ' - ' + result.messages[t] + '\n';
+                        }
+
+                        alert(message);
                     }
 
                     console.log(result);
-                    alert(message);
                 }";
 
             this.ClientValidationFunction = functionName;
