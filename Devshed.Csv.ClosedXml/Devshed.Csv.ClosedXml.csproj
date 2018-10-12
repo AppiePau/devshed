@@ -65,7 +65,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CsvWriter.cs" />
+    <Compile Include="XlsxWriter.cs" />
     <Compile Include="XlsxStreamWriter.cs" />
     <Compile Include="XlsxStringFormatter.cs" />
   </ItemGroup>

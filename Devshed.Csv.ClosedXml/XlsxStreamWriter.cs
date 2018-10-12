@@ -13,9 +13,10 @@ namespace Devshed.Csv.ClosedXml
         private readonly string sheetName;
 
         private readonly SaveOptions options;
+
         private readonly IStringFormatter formatter;
 
-        public XlsxStreamWriter(string sheetName = "Export", SaveOptions options = null)
+        public XlsxStreamWriter(string sheetName = "Document", SaveOptions options = null)
         {
             this.sheetName = sheetName;
             this.options = options;

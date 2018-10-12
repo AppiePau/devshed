@@ -4,7 +4,7 @@ namespace Devshed.Csv.ClosedXml
     using System.Text;
     using Devshed.Csv.Writing;
 
-    public static class CsvWriter
+    public static class XlsxWriter
     {
         /// <summary>
         /// Writes the CSV data into a new stream and returns it.
@@ -13,10 +13,10 @@ namespace Devshed.Csv.ClosedXml
         /// <param name="definition"></param>
         /// <param name="rows"></param>
         /// <returns></returns>
-        public static MemoryStream WriteAsXlsx<T>(this CsvDefinition<T> definition, T[] rows)
+        public static MemoryStream WriteAsXlsx<T>(this CsvDefinition<T> definition, T[] rows, string name = "Document")
         {
             var stream = new MemoryStream();
-            definition.WriteAsXlsx(rows, stream);
+            definition.WriteAsXlsx(rows, stream, name);
             return stream;
         }
 
@@ -27,9 +27,9 @@ namespace Devshed.Csv.ClosedXml
         /// <param name="definition"></param>
         /// <param name="stream"></param>
         /// <param name="rows"></param>
-        public static void WriteAsXlsx<T>(this CsvDefinition<T> definition, T[] rows, Stream stream)
+        public static void WriteAsXlsx<T>(this CsvDefinition<T> definition, T[] rows, Stream stream, string name = "Document")
         {
-            var builder = new XlsxStreamWriter();
+            var builder = new XlsxStreamWriter(name);
             builder.Write<T>(stream, rows, definition);
         }
     }
