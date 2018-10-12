@@ -7,6 +7,12 @@ namespace Devshed.Csv.Writing
 
     public sealed class CsvStreamWriter : ICsvStreamWriter
     {
+        private IStringFormatter formatter;
+
+        public CsvStreamWriter()
+        {
+            this.formatter = new CsvStringFormatter();
+        }
 
         /// <summary>
         /// Writes the array according to the specified definition.
@@ -20,7 +26,7 @@ namespace Devshed.Csv.Writing
 
 
             WriteBitOrderMarker<T>(stream, definition);
-            
+
             if (definition.FirstRowContainsHeaders)
             {
                 this.AddHeader<T>(writer, definition, rows);
@@ -37,25 +43,25 @@ namespace Devshed.Csv.Writing
         }
 
         private void AddLine<T>(StreamWriter writer, CsvDefinition<T> definition, T item)
-        {  
-            var values = definition.Columns.SelectMany(e => e.Render(definition, item, definition.FormattingCulture)).ToArray();
+        {
+            var values = definition.Columns.SelectMany(e => e.Render(definition, item, definition.FormattingCulture, formatter)).ToArray();
             writer.WriteLine(string.Join(definition.ElementDelimiter, values));
         }
 
         private void AddHeader<T>(StreamWriter writer, CsvDefinition<T> definition, T[] rows)
-        {             
+        {
             var headers = definition.Columns.SelectMany(column => GetHeaderNames<T>(definition, column, rows)).ToArray();
             writer.WriteLine(string.Join(definition.ElementDelimiter, headers));
         }
 
-        private static IEnumerable<string> GetHeaderNames<T>(CsvDefinition<T> definition, ICsvColumn<T> column, T[] rows)
+        private IEnumerable<string> GetHeaderNames<T>(CsvDefinition<T> definition, ICsvColumn<T> column, T[] rows)
         {
             return column.GetWritingHeaderNames(rows).Select(header => GetColumnHeaderWithoutEnters(header));
         }
 
-        private static string GetColumnHeaderWithoutEnters(string header)
+        private string GetColumnHeaderWithoutEnters(string header)
         {
-            return CsvString.FormatStringCell(header, true);
+            return formatter.FormatStringCell(header, true);
         }
 
         private void WriteBitOrderMarker<T>(Stream stream, CsvDefinition<T> definition)

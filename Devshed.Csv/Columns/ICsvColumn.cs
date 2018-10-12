@@ -1,3 +1,4 @@
+using Devshed.Csv.Writing;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,7 +13,7 @@ namespace Devshed.Csv
 
         ColumnDataType DataType { get; }
 
-        string[] Render(ICsvDefinition defintion, TSource element, CultureInfo writingFormat);
+        string[] Render(ICsvDefinition defintion, TSource element, CultureInfo writingFormat, IStringFormatter formatter);
 
         string[] GetWritingHeaderNames(TSource[] rows);
 

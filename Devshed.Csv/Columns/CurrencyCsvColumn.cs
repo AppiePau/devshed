@@ -1,5 +1,6 @@
 ﻿namespace Devshed.Csv
 {
+    using Devshed.Csv.Writing;
     using System;
     using System.Globalization;
     using System.Linq.Expressions;
@@ -30,7 +31,7 @@
 
         public Func<decimal?, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(ICsvDefinition defintion, decimal? value, CultureInfo culture)
+        protected override string OnRender(ICsvDefinition defintion, decimal? value, CultureInfo culture, IStringFormatter formatter)
         {
             return this.Format(value, culture);
         }

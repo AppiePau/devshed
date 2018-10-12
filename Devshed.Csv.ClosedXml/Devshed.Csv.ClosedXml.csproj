@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="CsvWriter.cs" />
     <Compile Include="XlsxStreamWriter.cs" />
+    <Compile Include="XlsxStringFormatter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

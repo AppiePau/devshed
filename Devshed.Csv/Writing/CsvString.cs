@@ -2,24 +2,24 @@ using System.Text;
 
 namespace Devshed.Csv.Writing
 {
-    internal static class CsvString
+    internal class CsvStringFormatter : IStringFormatter
     {
-        internal static string FormatStringCell(string value)
+        public  string FormatStringCell(string value)
         {
             return FormatStringCell(value, true);
         }
 
-        internal static string FormatForcedExcelStringCell(string value)
+        public string FormatForcedExcelStringCell(string value)
         {
             return FormatForcedExcelStringCell(value, true);
         }
 
-        internal static string FormatForcedExcelStringCell(string value, bool removeEnters)
+        public string FormatForcedExcelStringCell(string value, bool removeEnters)
         {
             return string.Format("={0}", FormatStringCell(value, removeEnters));
         }
 
-        internal static string FormatStringCell(string value, bool removeEnters)
+        public string FormatStringCell(string value, bool removeEnters)
         {
             var sb = new StringBuilder(value);
             sb.Replace("\"", "\"\"");

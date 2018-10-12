@@ -7,6 +7,7 @@
     using Devshed.Shared;
     using System.Globalization;
     using System.Collections.Generic;
+    using Devshed.Csv.Writing;
 
     /// <summary> Provides basic column behavior. </summary>
     /// <typeparam name="TSource">The selected source row type.</typeparam>
@@ -148,14 +149,14 @@
         /// </summary>
         /// <param name="element">The element.</param>
         /// <returns></returns>
-        public virtual string[] Render(ICsvDefinition definition, TSource element, CultureInfo formattingCulture)
+        public virtual string[] Render(ICsvDefinition definition, TSource element, CultureInfo formattingCulture, IStringFormatter formatter)
         {
             var value = this.Selector(element);
 
-            return new[] { this.OnRender(definition, value, formattingCulture) };
+            return new[] { this.OnRender(definition, value, formattingCulture.Parent, formatter) };
         }
 
-        protected virtual string OnRender(ICsvDefinition defintion, TResult value, CultureInfo formattingCulture)
+        protected virtual string OnRender(ICsvDefinition defintion, TResult value, CultureInfo formattingCulture, IStringFormatter formatter)
         {
             if (value == null)
             {

@@ -90,13 +90,13 @@
         /// </summary>
         /// <param name="element">The element.</param>
         /// <returns></returns>
-        public override string[] Render(ICsvDefinition defintion, TSource element, CultureInfo culture)
+        public override string[] Render(ICsvDefinition defintion, TSource element, CultureInfo culture, IStringFormatter formatter)
         {
             var collection = this.Selector(element);
             
             return (from item in collection
                     let column = converter(item)
-                    select column.Render(defintion, item, culture))
+                    select column.Render(defintion, item, culture, formatter))
                     .SelectMany(elements => elements)
                     .ToArray();
         }

@@ -72,7 +72,7 @@
         {
             if (this.headers.Length == 0)
             {
-                
+
                 this.headers =
                     (from row in rows
                      from col in Selector(row)
@@ -90,11 +90,11 @@
         /// </summary>
         /// <param name="element">The element.</param>
         /// <returns></returns>
-        public override string[] Render(ICsvDefinition defintion, TSource element, CultureInfo culture)
+        public override string[] Render(ICsvDefinition defintion, TSource element, CultureInfo culture, IStringFormatter formatter)
         {
             var collection = this.Selector(element);
 
-            return this.ProcessElementsByHeaderNames(collection, culture).ToArray();
+            return this.ProcessElementsByHeaderNames(collection, culture, formatter).ToArray();
         }
 
         private static string[] GetHeaderNames(IEnumerable<CompositeColumnValue<TValue>> rows)
@@ -104,7 +104,7 @@
                     select headers.Key).ToArray();
         }
 
-        private IEnumerable<string> ProcessElementsByHeaderNames(IEnumerable<CompositeColumnValue<TValue>> collection, CultureInfo culture)
+        private IEnumerable<string> ProcessElementsByHeaderNames(IEnumerable<CompositeColumnValue<TValue>> collection, CultureInfo culture, IStringFormatter formatter)
         {
             if (this.headers.Length == 0)
             {
@@ -120,11 +120,11 @@
                 }
                 else if (column == null && this.AllowUndefinedColumnsInCollection)
                 {
-                    yield return CsvString.FormatStringCell(this.Format(default(TValue), culture));
+                    yield return formatter.FormatStringCell(this.Format(default(TValue), culture));
                 }
                 else
                 {
-                    yield return CsvString.FormatStringCell(this.Format(column.Value, culture));
+                    yield return formatter.FormatStringCell(this.Format(column.Value, culture));
                 }
             }
         }

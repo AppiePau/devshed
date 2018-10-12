@@ -1,5 +1,6 @@
 namespace Devshed.Csv
 {
+    using Devshed.Csv.Writing;
     using System;
     using System.Globalization;
     using System.Linq.Expressions;
@@ -29,7 +30,7 @@ namespace Devshed.Csv
 
         public Func<TimeSpan?, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(ICsvDefinition defintion, TimeSpan? value, CultureInfo culture)
+        protected override string OnRender(ICsvDefinition defintion, TimeSpan? value, CultureInfo culture, IStringFormatter formatter)
         {
             return this.Format(value, culture);
         }

@@ -13,11 +13,13 @@ namespace Devshed.Csv.ClosedXml
         private readonly string sheetName;
 
         private readonly SaveOptions options;
+        private readonly IStringFormatter formatter;
 
         public XlsxStreamWriter(string sheetName = "Export", SaveOptions options = null)
         {
             this.sheetName = sheetName;
             this.options = options;
+            this.formatter = new XlsxStringFormatter();
         }
 
         public void Write<T>(Stream stream, T[] rows, CsvDefinition<T> definition)
@@ -55,7 +57,7 @@ namespace Devshed.Csv.ClosedXml
             var colid = 1;
             foreach (var column in definition.Columns)
             {
-                foreach (var value in column.Render(definition, item, definition.FormattingCulture))
+                foreach (var value in column.Render(definition, item, definition.FormattingCulture, formatter))
                 {
                     var cell = worksheet.Row(rowid).Cell(colid);
                     cell.DataType = GetDataType(column);

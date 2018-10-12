@@ -32,16 +32,16 @@
 
         public Func<string, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(ICsvDefinition defintion, string value, CultureInfo culture)
+        protected override string OnRender(ICsvDefinition defintion, string value, CultureInfo culture, IStringFormatter formatter)
         {
             var text = this.Format(value ?? string.Empty, culture);
 
             if (this.ForceNumberToTextFormatting)
             {
-                return CsvString.FormatForcedExcelStringCell(text, defintion.RemoveNewLineCharacters);
+                return formatter.FormatForcedExcelStringCell(text, defintion.RemoveNewLineCharacters);
             }
 
-            return CsvString.FormatStringCell(text, defintion.RemoveNewLineCharacters);
+            return formatter.FormatStringCell(text, defintion.RemoveNewLineCharacters);
         }
     }
 }
