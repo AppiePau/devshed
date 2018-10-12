@@ -5,19 +5,8 @@ namespace Devshed.Csv.Writing
     using System.Linq;
     using System.Text;
 
-    public sealed class CsvStreamWriter
+    public sealed class CsvStreamWriter : ICsvStreamWriter
     {
-        private readonly Stream stream;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CsvStreamWriter"/> class.
-        /// </summary>
-        /// <param name="stream"> The stream to write to. </param>
-        /// <param name="encoding"> The encoding to use. Unicode by default. </param>
-        public CsvStreamWriter(Stream stream)
-        {
-            this.stream = stream;
-        }
 
         /// <summary>
         /// Writes the array according to the specified definition.
@@ -25,12 +14,12 @@ namespace Devshed.Csv.Writing
         /// <typeparam name="T"></typeparam>
         /// <param name="rows">The rows.</param>
         /// <param name="definition">The definition.</param>
-        public void Write<T>(T[] rows, CsvDefinition<T> definition)
+        public void Write<T>(Stream stream, T[] rows, CsvDefinition<T> definition)
         {
-            var writer = new StreamWriter(this.stream, definition.Encoding);
+            var writer = new StreamWriter(stream, definition.Encoding);
 
 
-            WriteBitOrderMarker<T>(definition);
+            WriteBitOrderMarker<T>(stream, definition);
             
             if (definition.FirstRowContainsHeaders)
             {
@@ -44,7 +33,7 @@ namespace Devshed.Csv.Writing
 
             writer.Flush();
 
-            this.stream.Flush();
+            stream.Flush();
         }
 
         private void AddLine<T>(StreamWriter writer, CsvDefinition<T> definition, T item)
@@ -69,12 +58,12 @@ namespace Devshed.Csv.Writing
             return CsvString.FormatStringCell(header, true);
         }
 
-        private void WriteBitOrderMarker<T>(CsvDefinition<T> definition)
+        private void WriteBitOrderMarker<T>(Stream stream, CsvDefinition<T> definition)
         {
-            if (this.stream.Position == 0 && definition.WriteBitOrderMarker)
+            if (stream.Position == 0 && definition.WriteBitOrderMarker)
             {
                 var bom = definition.Encoding.GetPreamble();
-                this.stream.Write(bom, 0, bom.Length);
+                stream.Write(bom, 0, bom.Length);
             }
         }
     }

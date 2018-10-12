@@ -77,7 +77,7 @@
         {
             foreach (var column in this.Definition.Columns)
             {
-                ////TODO: Add support for composite columns?
+                ////TODO: Add support for composite columns, now the first is used
                 if (column.GetReadingHeaderNames().Count() == 1)
                 {
                     foreach (var header in column.GetReadingHeaderNames())
