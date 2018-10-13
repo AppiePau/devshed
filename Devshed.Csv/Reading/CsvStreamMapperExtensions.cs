@@ -15,7 +15,7 @@
         /// <returns>
         /// An array of objects.
         /// </returns>
-        public static TRow[] FromBytes<TRow>(this CsvStreamMapper<TRow> mapper, byte[] bytes) where TRow : new()
+        public static TRow[] FromBytes<TRow>(this TableDataMapper<TRow> mapper, byte[] bytes) where TRow : new()
         {
             return FromBytes(mapper, bytes, CsvConfiguration.DefaultEncoding, true);
         }
@@ -30,7 +30,7 @@
         /// <returns>
         /// An array of objects.
         /// </returns>
-        public static TRow[] FromBytes<TRow>(this CsvStreamMapper<TRow> mapper, byte[] bytes, Encoding encoding) where TRow : new()
+        public static TRow[] FromBytes<TRow>(this TableDataMapper<TRow> mapper, byte[] bytes, Encoding encoding) where TRow : new()
         {
             return FromBytes(mapper, bytes, encoding, false);
         }
@@ -46,7 +46,7 @@
         /// <returns>
         /// An array of objects.
         /// </returns>
-        public static TRow[] FromBytes<TRow>(this CsvStreamMapper<TRow> mapper, byte[] bytes, Encoding encoding, bool detectEncoding) where TRow : new()
+        public static TRow[] FromBytes<TRow>(this TableDataMapper<TRow> mapper, byte[] bytes, Encoding encoding, bool detectEncoding) where TRow : new()
         {
             using (var memory = new MemoryStream(bytes))
             {
@@ -63,7 +63,7 @@
         /// <returns>
         /// An array of objects.
         /// </returns>
-        public static TRow[] FromStream<TRow>(this CsvStreamMapper<TRow> mapper, Stream stream) where TRow : new()
+        public static TRow[] FromStream<TRow>(this TableDataMapper<TRow> mapper, Stream stream) where TRow : new()
         {
             return FromStream<TRow>(mapper, stream, CsvConfiguration.DefaultEncoding, true);
         }
@@ -78,7 +78,7 @@
         /// <returns>
         /// An array of objects.
         /// </returns>
-        public static TRow[] FromStream<TRow>(this CsvStreamMapper<TRow> mapper, Stream stream, Encoding encoding) where TRow : new()
+        public static TRow[] FromStream<TRow>(this TableDataMapper<TRow> mapper, Stream stream, Encoding encoding) where TRow : new()
         {
             return FromStream<TRow>(mapper, stream, encoding, false);
         }
@@ -94,12 +94,12 @@
         /// <returns>
         /// An array of objects.
         /// </returns>
-        public static TRow[] FromStream<TRow>(this CsvStreamMapper<TRow> mapper, Stream stream, Encoding encoding, bool detectEncoding) where TRow : new()
+        public static TRow[] FromStream<TRow>(this TableDataMapper<TRow> mapper, Stream stream, Encoding encoding, bool detectEncoding) where TRow : new()
         {
             return FromStreamVerbose(mapper, stream, encoding, detectEncoding).Select(e => e.Row).ToArray();
         }
 
-        public static CsvLine<TRow>[] FromStreamVerbose<TRow>(this CsvStreamMapper<TRow> mapper, Stream stream, Encoding encoding, bool detectEncoding) where TRow : new()
+        public static CsvLine<TRow>[] FromStreamVerbose<TRow>(this TableDataMapper<TRow> mapper, Stream stream, Encoding encoding, bool detectEncoding) where TRow : new()
         {
             var reader = new CsvStreamReader(stream, encoding, detectEncoding)
             {

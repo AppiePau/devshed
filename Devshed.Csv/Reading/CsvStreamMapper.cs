@@ -6,48 +6,19 @@
     using System.Reflection;
     using Devshed.Shared;
 
-    public sealed class CsvLine<TRow>
-    {
-        private readonly CsvLine line;
-
-        public CsvLine(CsvLine line, TRow row)
-        {
-            this.line = line;
-            this.Row = row;
-        }
-
-        public int LineNumber
-        {
-            get
-            {
-                return this.line.SourceLine.LineNumber;
-            }
-        }
-
-        public IEnumerable<string> ErrorMessages
-        {
-            get
-            {
-                return this.line.SourceLine.ErrorMessages;
-            }
-        }
-
-        public TRow Row { get; private set; }
-    }
-
     /// <summary> Maps a CSV stream source to a strong typed definition. </summary>
     /// <typeparam name="TRow">The type of the row.</typeparam>
-    public sealed class CsvStreamMapper<TRow> where TRow : new()
+    public sealed class TableDataMapper<TRow> where TRow : new()
     {
         private readonly CsvStreamLineReader reader;
 
         internal CsvDefinition<TRow> Definition { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CsvStreamMapper{TRow}"/> class.
+        /// Initializes a new instance of the <see cref="TableDataMapper{TRow}"/> class.
         /// </summary>
         /// <param name="definition">The document definition.</param>
-        public CsvStreamMapper(CsvDefinition<TRow> definition)
+        public TableDataMapper(CsvDefinition<TRow> definition)
         {
             this.Definition = definition;
             var headers = definition.Columns.SelectMany(e => e.GetReadingHeaderNames()).ToArray();
@@ -61,7 +32,7 @@
         /// </summary>
         /// <param name="reader">The reader.</param>
         /// <returns></returns>
-        public IEnumerable<CsvLine<TRow>> GetRows(CsvStreamReader reader)
+        public IEnumerable<CsvLine<TRow>> GetRows(IStreamReader reader)
         {
             foreach (var line in this.reader.GetRows(reader))
             {

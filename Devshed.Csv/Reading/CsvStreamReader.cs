@@ -1,15 +1,12 @@
 ﻿namespace Devshed.Csv.Reading
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
     using Microsoft.VisualBasic.FileIO;
+    using System;
+    using System.IO;
+    using System.Text;
 
     /// <summary> Reads s stream as CSV content. </summary>
-    public sealed class CsvStreamReader : IDisposable
+    public sealed class CsvStreamReader : IStreamReader, IDisposable
     {
         private readonly TextFieldParser parser;
 

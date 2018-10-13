@@ -23,7 +23,7 @@ namespace Devshed.Csv.Tests
 
             var data = "\"Name\";\"TestColors\"\r\n\"OK_NAME\";\"Red\"";
 
-            var mapper = new CsvStreamMapper<TestModel>(def);
+            var mapper = new TableDataMapper<TestModel>(def);
             var result = mapper.FromStream(new MemoryStream(Encoding.UTF8.GetBytes(data)));
 
             Assert.AreEqual("OK_NAME", result[0].Name);

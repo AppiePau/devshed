@@ -42,7 +42,7 @@ namespace Devshed.Csv.Reading
         /// </summary>
         /// <param name="reader">The CSV reader.</param>
         /// <returns></returns>
-        public IEnumerable<CsvLine> GetRows(CsvStreamReader reader)
+        public IEnumerable<CsvLine> GetRows(IStreamReader reader)
         {
             if (!this.FirstRowContainsHeaders && this.headers.Count() == 0)
             {
@@ -154,19 +154,5 @@ namespace Devshed.Csv.Reading
 
             return this.headers[index];
         }
-    }
-
-    public sealed class DuplicateHeaderException : Exception
-    {
-        public DuplicateHeaderException(string header, int lineNumber)
-            : base($"A duplicate header name was found '{header}' on line {lineNumber}.")
-        {
-            this.LineNumber = lineNumber;
-            this.Header = header;
-        }
-
-        public string Header { get; private set; }
-
-        public int LineNumber { get; private set; }
     }
 }

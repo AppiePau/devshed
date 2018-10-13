@@ -65,9 +65,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Reading\XlsxStreamLineReader.cs" />
+    <Compile Include="Reading\XlsxLine.cs" />
+    <Compile Include="Writing\XlsxStreamWriter.cs" />
+    <Compile Include="Writing\XlsxStringFormatter.cs" />
+    <Compile Include="XlsxReader.cs" />
     <Compile Include="XlsxWriter.cs" />
-    <Compile Include="XlsxStreamWriter.cs" />
-    <Compile Include="XlsxStringFormatter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

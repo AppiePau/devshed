@@ -1,7 +1,8 @@
-namespace Devshed.Csv.ClosedXml
+namespace Devshed.Csv
 {
     using System.IO;
     using System.Text;
+    using Devshed.Csv.ClosedXml;
     using Devshed.Csv.Writing;
 
     public static class XlsxWriter

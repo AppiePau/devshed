@@ -77,11 +77,16 @@
     <Compile Include="Columns\TextCsvColumn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CsvConfiguration.cs" />
     <Compile Include="ICsvDefinition.cs" />
     <Compile Include="Reading\CsvLine.cs" />
     <Compile Include="Reading\CsvRawLine.cs" />
+    <Compile Include="Reading\CsvSourceLine.cs" />
     <Compile Include="Reading\CsvStreamMapperException.cs" />
+    <Compile Include="Reading\DuplicateHeaderException.cs" />
     <Compile Include="Reading\ElementProcessing.cs" />
+    <Compile Include="Reading\IStreamLineReader.cs" />
+    <Compile Include="TableDefinition.cs" />
     <Compile Include="Writing\CsvStreamWriter.cs" />
     <Compile Include="CsvWriter.cs" />
     <Compile Include="CsvReader.cs" />

@@ -30,7 +30,7 @@ namespace Devshed.Csv
         /// <returns></returns>
         public static TRow[] Read<TRow>(Stream stream, CsvDefinition<TRow> definition, bool detectEncodig) where TRow : new()
         {
-            var mapper = new CsvStreamMapper<TRow>(definition);
+            var mapper = new TableDataMapper<TRow>(definition);
             return mapper.FromStream(stream, definition.Encoding, detectEncodig);
         }
     }

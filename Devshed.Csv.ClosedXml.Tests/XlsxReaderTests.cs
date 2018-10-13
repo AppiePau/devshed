@@ -7,11 +7,9 @@
     using System.Text;
 
     [TestClass]
-    public class CsvBuilderTests
+    public class XlsxReaderTests
     {
         #region Constants
-
-        private static readonly string UTF8Bom = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
 
         private static TestRow[] oneRow = new[] { new TestRow { Id = 1, Name = "OK_NAME", IsActive = true } };
 
@@ -25,25 +23,27 @@
         [TestMethod]
         public void Build_OneTestRow_CreatesCsv()
         {
-            var result = NameDefinition().WriteAsXlsx(oneRow);
+            var stream = FullDefinition().WriteAsXlsx(twoRows);
 
-            using (var s = new FileStream("D:\\" + DateTime.Now.Ticks + ".xlsx", FileMode.CreateNew))
-            {
-                s.Write(result.GetBytes(), 0, (int)result.Length);
-            }
+            //stream.Flush();
+
+            //stream.Position = 0;
+
+
+            //using (var s = new FileStream("D:\\" + DateTime.Now.Ticks + ".xlsx", FileMode.CreateNew))
+            //{
+            //    s.Write(stream.GetBytes(), 0, (int)stream.Length);
+            //}
+
+            stream.Position = 0;
+            var result = FullDefinition().ReadXlsx(stream);
+
+            Assert.AreEqual(1, result[0].Id);
+            Assert.AreEqual("OK_NAME1", result[0].Name);
+            Assert.AreEqual(true, result[0].IsActive);
         }
 
-
-        [TestMethod]
-        public void Build_TwoTestRowsWithHeader_CreatesCsv()
-        {
-            var result = FullDefinitionWithHeaders().WriteAsXlsx(twoRows);
-            using (var s = new FileStream("D:\\" + DateTime.Now.Ticks + ".xlsx", FileMode.CreateNew))
-            {
-                s.Write(result.GetBytes(), 0, (int)result.Length);
-            }
-        }
-
+        
         private static CsvDefinition<TestRow> NameDefinition()
         {
             return new CsvDefinition<TestRow>(

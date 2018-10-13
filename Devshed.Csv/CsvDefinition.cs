@@ -5,25 +5,16 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Globalization;
-
-    public static class CsvConfiguration
-    {
-        /// <summary>
-        /// Specifies the app domain default encoding for all created definitions. The default is UTF-8.
-        /// </summary>
-        public static Encoding DefaultEncoding = Encoding.Default;
-    }
 
     /// <summary> Defines the CSV document layout. </summary>
     /// <typeparam name="TSource">The type of the source.</typeparam>
-    public sealed class CsvDefinition<TSource> : ICsvDefinition
+    public sealed class CsvDefinition<TSource> : TableDefinition<TSource>, ICsvDefinition
     {
         private readonly ICollection<ICsvColumn<TSource>> columns;
 
         private Encoding encoding;
 
-        public CsvDefinition(Encoding encoding, params ICsvColumn<TSource>[] columns)
+        public CsvDefinition(Encoding encoding, params ICsvColumn<TSource>[] columns) : base(columns)
         {
             Requires.IsNotNull(columns, "columns");
             Requires.IsNotNull(encoding, "encoding");
@@ -36,7 +27,7 @@
             this.Encoding = encoding;
         }
 
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvDefinition{TSource}"/> class.
         /// </summary>
@@ -63,24 +54,8 @@
             }
         }
 
-        /// <summary>
-        /// Gets the elements.
-        /// </summary>
-        /// <value>
-        /// The elements.
-        /// </value>
-        public ICollection<ICsvColumn<TSource>> Columns
-        {
-            get { return this.columns; }
-        }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether [first row contains headers].
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if [first row contains headers]; otherwise, <c>false</c>.
-        /// </value>
-        public bool FirstRowContainsHeaders { get; set; }
+
 
         /// <summary> Indicates if new line characters should be removed when writing an text the element. </summary>
         public bool RemoveNewLineCharacters { get; set; }
@@ -97,24 +72,10 @@
         /// Wether the fields are enclosed in quotes.
         /// </summary>
         public bool HasFieldsEnclosedInQuotes { get; set; }
-        
+
         /// <summary>
         /// Writes a the Byte Order Marker specifying the encoding.
         /// </summary>
         public bool WriteBitOrderMarker { get; set; }
-        
-        /// <summary>
-        /// Writes a the Byte Order Marker specifying the encoding.
-        /// </summary>
-        public ElementProcessing ElementProcessing { get; set; }
-
-        /// <summary>
-        /// Instructs the materializer to ignore readonly properties without throwing an exception.
-        /// </summary>
-        public bool IgnoreReadonlyProperties { get;  set; }
-
-        public bool ThrowExceptionOnError { get; set; } = true;
-
-        public CultureInfo FormattingCulture { get; set; } = CultureInfo.CurrentCulture;
     }
 }
