@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <!--*-->
+    <id>Devshed.Shared</id>
+    <!--*-->
+    <version>1.3.8</version>
+    <title>Devshed.Shared</title>
+    <!--*-->
+    <authors>Paul Appeldoorn</authors>
+    <owners>Paul Appeldoorn</owners>
+    <!--
+    <iconUrl></iconUrl>
+-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <!--*-->
+    <description>Devshed Shared Library</description>
+    <!--*-->
+    <licenseUrl>https://github.com/AppiePau/devshed-tools/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/AppiePau/devshed-tools/</projectUrl>
+    <releaseNotes> Shared code for libraries. </releaseNotes>
+    <copyright>Copyright 2018 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>
+    <tags>Shared Devshed </tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+</package>

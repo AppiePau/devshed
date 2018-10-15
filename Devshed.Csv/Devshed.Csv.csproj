@@ -85,6 +85,7 @@
     <Compile Include="Reading\CsvStreamMapperException.cs" />
     <Compile Include="Reading\DuplicateHeaderException.cs" />
     <Compile Include="Reading\ElementProcessing.cs" />
+    <Compile Include="Reading\HeaderCollection.cs" />
     <Compile Include="Reading\IStreamLineReader.cs" />
     <Compile Include="TableDefinition.cs" />
     <Compile Include="Writing\CsvStreamWriter.cs" />
@@ -125,7 +126,11 @@
       <Name>Devshed.Shared</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="package.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

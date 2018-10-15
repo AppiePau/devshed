@@ -90,7 +90,7 @@
         {
             using (var stream = new MemoryStream(data.GetUnicodeBytes()))
             {
-                return CsvReader.Read<UserView>(stream, definition);
+                return CsvReader.Read(stream, definition);
             }
         }
 

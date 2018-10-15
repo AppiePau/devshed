@@ -30,7 +30,6 @@
                     new TextCsvColumn<DynamicTestModel>(e => e.Name),
                     new DynamicCsvColumn<DynamicTestModel, TestColumn>(e => e.Columns, column =>
                     {
-
                         if (column.Type == 1)
                         {
                             return new TextCsvColumn<TestColumn>(sf => sf.Value) { HeaderName = column.Name };

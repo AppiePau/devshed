@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <!--*-->
+    <id>Devshed.MVC</id>
+    <!--*-->
+    <version>1.6.0</version>
+    <title>Devshed MVC</title>
+    <!--*-->
+    <authors>Paul Appeldoorn</authors>
+    <owners>Paul Appeldoorn</owners>
+    <!--
+    <iconUrl></iconUrl>
+-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <!--*-->
+    <description>Devshed MVC Library</description>
+    <!--*-->
+    <licenseUrl>https://github.com/AppiePau/devshed-tools/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/AppiePau/devshed-tools/</projectUrl>
+    <releaseNotes>  </releaseNotes>
+    <copyright>Copyright 2018 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>
+    <tags>Devshed MVC helpers</tags>
+    <dependencies>
+      <dependency id="Devshed.Shared" version="1.3.8" />
+    </dependencies>
+  </metadata>
+</package>

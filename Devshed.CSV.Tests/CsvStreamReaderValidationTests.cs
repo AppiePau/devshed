@@ -36,13 +36,13 @@
     [TestClass]
     public class CsvStreamReaderValidationTests
     {
-        private const string HEADER1 = "HEADER1";
+        private static readonly Header HEADER1 = new Header("HEADER1");
 
-        private const string HEADER2 = "HEADER2";
+        private static readonly Header HEADER2 = new Header("HEADER2");
 
-        private const string CELL1 = "CELL1";
+        private static readonly Header CELL1 = new Header("CELL1");
 
-        private const string CELL2 = "CELL2";
+        private static readonly Header CELL2 = new Header("CELL2");
 
         [TestMethod]
         public void GetRows_StrictElementProcessingNormalData_ReturnsElements()
@@ -51,13 +51,13 @@
 
             using (var reader = GetReader(data))
             {
-                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.Strict }, HEADER1, HEADER2);
+                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.Strict }, HEADER1.Name, HEADER2.Name);
                 var lines = parser.GetRows(reader).ToList();
 
-                Assert.AreEqual(HEADER1, lines[0][HEADER1]);
-                Assert.AreEqual(HEADER2, lines[0][HEADER2]);
-                Assert.AreEqual(CELL1, lines[1][HEADER1]);
-                Assert.AreEqual(CELL2, lines[1][HEADER2]);
+                Assert.AreEqual(HEADER1.Name, lines[0][HEADER1]);
+                Assert.AreEqual(HEADER2.Name, lines[0][HEADER2]);
+                Assert.AreEqual(CELL1.Name, lines[1][HEADER1]);
+                Assert.AreEqual(CELL2.Name, lines[1][HEADER2]);
             }
         }
 
@@ -68,7 +68,7 @@
 
             using (var reader = GetReader(data))
             {
-                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.Strict }, HEADER1, HEADER2);
+                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.Strict }, HEADER1.Name, HEADER2.Name);
                 Expect.Throws<InvalidOperationException>(() => parser.GetRows(reader).ToList())
                     .Message.Contains("The line (2) contains more elements (3) than headers (2) available.");
             }
@@ -81,7 +81,7 @@
 
             using (var reader = GetReader(data))
             {
-                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.Strict }, HEADER1, HEADER2);
+                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.Strict }, HEADER1.Name, HEADER2.Name);
 
                 Expect.Throws<InvalidOperationException>(() => parser.GetRows(reader).ToList())
                     .Message.Contains("The line (2) contains not enough elements (1) than headers (2) available.");
@@ -96,7 +96,7 @@
 
             using (var reader = GetReader(data))
             {
-                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.OnlyTooFew }, HEADER1, HEADER2);
+                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.OnlyTooFew }, HEADER1.Name, HEADER2.Name);
 
                 Expect.Throws<InvalidOperationException>(() => parser.GetRows(reader).ToList())
                     .Message.Contains("The line (2) contains not enough elements (1) than headers (2) available.");
@@ -110,7 +110,7 @@
 
             using (var reader = GetReader(data))
             {
-                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.OnlyTooFew }, HEADER1, HEADER2);
+                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.OnlyTooFew }, HEADER1.Name, HEADER2.Name);
                 var lines = parser.GetRows(reader).ToList();
 
                 Assert.AreEqual(2, lines.Count());
@@ -124,7 +124,7 @@
 
             using (var reader = GetReader(data))
             {
-                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.OnlyTooMany }, HEADER1, HEADER2);
+                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.OnlyTooMany }, HEADER1.Name, HEADER2.Name);
                 var lines = parser.GetRows(reader).ToList();
 
                 Assert.AreEqual(2, lines.Count());
@@ -138,7 +138,7 @@
 
             using (var reader = GetReader(data))
             {
-                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.OnlyTooMany }, HEADER1, HEADER2);
+                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.OnlyTooMany }, HEADER1.Name, HEADER2.Name);
 
                 Expect.Throws<InvalidOperationException>(() => parser.GetRows(reader).ToList())
                     .Message.Contains("The line (2) contains more elements (3) than headers (2) available.");
@@ -152,7 +152,7 @@
 
             using (var reader = GetReader(data))
             {
-                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.Loose }, HEADER1, HEADER2);
+                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.Loose }, HEADER1.Name, HEADER2.Name);
                 var lines = parser.GetRows(reader).ToList();
 
                 Assert.AreEqual(string.Empty, lines[1][HEADER2]);
@@ -166,13 +166,13 @@
 
             using (var reader = GetReader(data))
             {
-                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.Loose }, HEADER1, HEADER2);
+                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.Loose }, HEADER1.Name, HEADER2.Name);
                 var lines = parser.GetRows(reader).ToList();
 
-                Assert.AreEqual(HEADER1, lines[0][HEADER1]);
-                Assert.AreEqual(HEADER2, lines[0][HEADER2]);
-                Assert.AreEqual(CELL1, lines[1][HEADER1]);
-                Assert.AreEqual(CELL2, lines[1][HEADER2]);
+                Assert.AreEqual(HEADER1.Name, lines[0][HEADER1]);
+                Assert.AreEqual(HEADER2.Name, lines[0][HEADER2]);
+                Assert.AreEqual(CELL1.Name, lines[1][HEADER1]);
+                Assert.AreEqual(CELL2.Name, lines[1][HEADER2]);
             }
         }
 
@@ -185,7 +185,7 @@
 
             using (var reader = GetReader(data))
             {
-                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.Loose }, HEADER1, HEADER1);
+                var parser = new CsvStreamLineReader(new TestCsvDefinition { ElementProcessing = ElementProcessing.Loose }, HEADER1.Name, HEADER1.Name);
                 var lines = parser.GetRows(reader).ToList();
                 
             }

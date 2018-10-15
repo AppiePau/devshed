@@ -114,9 +114,9 @@ namespace Devshed.Csv.ClosedXml
             }
         }
 
-        private static IEnumerable<string> GetHeaderNames<T>(CsvDefinition<T> definition, ICsvColumn<T> column, T[] rows)
+        private static HeaderCollection GetHeaderNames<T>(CsvDefinition<T> definition, ICsvColumn<T> column, T[] rows)
         {
-            return column.GetWritingHeaderNames(rows).Select(header => (header));
+            return column.GetWritingHeaderNames(rows);
         }
     }
 }
