@@ -4,7 +4,7 @@ namespace Devshed.Csv
     using System.Linq;
     using Devshed.Csv.Reading;
 
-    public static class CsvReader
+    public static class XlsxReader
     {
         /// <summary>
         /// Reads the specified stream.
