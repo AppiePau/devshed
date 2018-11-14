@@ -77,4 +77,7 @@
     <Compile Include="XlsxWriter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)nuget.exe" pack $(SolutionDir)Devshed.Csv.ClosedXml\Devshed.Csv.ClosedXml.csproj -Properties Configuration=Release</PostBuildEvent>
+  </PropertyGroup>
 </Project>
