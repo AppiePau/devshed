@@ -63,13 +63,14 @@ namespace Devshed.Csv.ClosedXml
                     var cell = worksheet.Row(rowid).Cell(colid);
                     cell.DataType = GetDataType(column);
                     cell.Value = value;
+                    cell.Style.Alignment.WrapText = false;
 
                     colid++;
                 }
             }
         }
 
-        private static XLDataType GetDataType<T>(ICsvColumn<T> column)
+        private static XLDataType GetDataType<T>(IColumDefinition<T> column)
         {
             switch (column.DataType)
             {
@@ -114,7 +115,7 @@ namespace Devshed.Csv.ClosedXml
             }
         }
 
-        private static HeaderCollection GetHeaderNames<T>(CsvDefinition<T> definition, ICsvColumn<T> column, T[] rows)
+        private static HeaderCollection GetHeaderNames<T>(CsvDefinition<T> definition, IColumDefinition<T> column, T[] rows)
         {
             return column.GetWritingHeaderNames(rows);
         }

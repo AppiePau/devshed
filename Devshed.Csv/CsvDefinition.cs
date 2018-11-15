@@ -10,11 +10,11 @@
     /// <typeparam name="TSource">The type of the source.</typeparam>
     public sealed class CsvDefinition<TSource> : TableDefinition<TSource>, ICsvDefinition
     {
-        private readonly ICollection<ICsvColumn<TSource>> columns;
+        private readonly ICollection<IColumDefinition<TSource>> columns;
 
         private Encoding encoding;
 
-        public CsvDefinition(Encoding encoding, params ICsvColumn<TSource>[] columns) : base(columns)
+        public CsvDefinition(Encoding encoding, params IColumDefinition<TSource>[] columns) : base(columns)
         {
             Requires.IsNotNull(columns, "columns");
             Requires.IsNotNull(encoding, "encoding");
@@ -32,7 +32,7 @@
         /// Initializes a new instance of the <see cref="CsvDefinition{TSource}"/> class.
         /// </summary>
         /// <param name="columns">The elements.</param>
-        public CsvDefinition(params ICsvColumn<TSource>[] columns)
+        public CsvDefinition(params IColumDefinition<TSource>[] columns)
             : this(CsvConfiguration.DefaultEncoding, columns)
         {
         }

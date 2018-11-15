@@ -54,7 +54,7 @@ namespace Devshed.Csv.Writing
             writer.WriteLine(string.Join(definition.ElementDelimiter, headers));
         }
 
-        private IEnumerable<string> GetHeaderNames<T>(CsvDefinition<T> definition, ICsvColumn<T> column, T[] rows)
+        private IEnumerable<string> GetHeaderNames<T>(CsvDefinition<T> definition, IColumDefinition<T> column, T[] rows)
         {
             return column.GetWritingHeaderNames(rows).Select(header => GetColumnHeaderWithoutEnters(header));
         }

@@ -5,7 +5,7 @@
     using System.Globalization;
     using System.Linq.Expressions;
 
-    public sealed class BooleanCsvColumn<TSource> : CsvColumn<TSource, bool>
+    public sealed class BooleanCsvColumn<TSource> : ColumnDefinition<TSource, bool>
     {
         public BooleanCsvColumn(string propertyName)
             : base(propertyName)
@@ -27,9 +27,9 @@
 
         public Func<bool, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(ICsvDefinition defintion, bool value, CultureInfo culture, IStringFormatter formatter)
+        protected override IColumnValueProvider OnRender(ICsvDefinition defintion, bool value, CultureInfo culture, IStringFormatter formatter)
         {
-            return this.Format(value, culture);
+            return new CsvColumnTextValue(this.Format(value, culture));
         }
     }
 }

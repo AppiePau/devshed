@@ -13,7 +13,7 @@
     /// <typeparam name="TSource">The selected source row type.</typeparam>
     /// <typeparam name="TResult">The selected result proprty type to be rendered.</typeparam>
     [DebuggerDisplay("{HeaderName}")]
-    public abstract class CsvColumn<TSource, TResult> : ICsvColumn<TSource>
+    public abstract class ColumnDefinition<TSource, TResult> : IColumDefinition<TSource>
     {
         protected readonly Expression<Func<TSource, TResult>> propertySelector;
 
@@ -54,12 +54,12 @@
             }
         }
 
-        public CsvColumn(string propertyName)
+        public ColumnDefinition(string propertyName)
             : this(propertyName, propertyName)
         {
         }
 
-        public CsvColumn(string propertyName, params string[] headers)
+        public ColumnDefinition(string propertyName, params string[] headers)
         {
             ParameterExpression argParam = Expression.Parameter(typeof(TSource), "s");
             var selectedField = Expression.PropertyOrField(argParam, propertyName);
@@ -70,30 +70,30 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CsvColumn{TSource, TResult}"/> class.
+        /// Initializes a new instance of the <see cref="ColumnDefinition{TSource, TResult}"/> class.
         /// </summary>
         /// <param name="selector">The selector.</param>
-        public CsvColumn(Expression<Func<TSource, TResult>> selector)
+        public ColumnDefinition(Expression<Func<TSource, TResult>> selector)
             : this(selector, selector.GetMemberName())
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CsvColumn{TSource, TResult}"/> class.
+        /// Initializes a new instance of the <see cref="ColumnDefinition{TSource, TResult}"/> class.
         /// </summary>
         /// <param name="selector">The selector.</param>
         /// <param name="header">The header.</param>
-        public CsvColumn(Expression<Func<TSource, TResult>> selector, string header)
+        public ColumnDefinition(Expression<Func<TSource, TResult>> selector, string header)
             : this(selector, new HeaderCollection(new[] { header }))
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CsvColumn{TSource, TResult}"/> class.
+        /// Initializes a new instance of the <see cref="ColumnDefinition{TSource, TResult}"/> class.
         /// </summary>
         /// <param name="selector">The property selector.</param>
         /// <param name="headers">The property headers.</param>
-        public CsvColumn(Expression<Func<TSource, TResult>> selector, HeaderCollection headers)
+        public ColumnDefinition(Expression<Func<TSource, TResult>> selector, HeaderCollection headers)
         {
             Requires.IsNotNull(selector, "selector");
             Requires.IsNotNull(headers, "headers");
@@ -150,21 +150,21 @@
         /// </summary>
         /// <param name="element">The element.</param>
         /// <returns></returns>
-        public virtual string[] Render(ICsvDefinition definition, TSource element, CultureInfo formattingCulture, IStringFormatter formatter)
+        public virtual IColumnValueProvider[] Render(ICsvDefinition definition, TSource element, CultureInfo formattingCulture, IStringFormatter formatter)
         {
             var value = this.Selector(element);
 
             return new[] { this.OnRender(definition, value, formattingCulture.Parent, formatter) };
         }
 
-        protected virtual string OnRender(ICsvDefinition defintion, TResult value, CultureInfo formattingCulture, IStringFormatter formatter)
+        protected virtual IColumnValueProvider OnRender(ICsvDefinition defintion, TResult value, CultureInfo formattingCulture, IStringFormatter formatter)
         {
             if (value == null)
             {
-                return string.Empty;
+                return new CsvColumnValue(string.Empty);
             }
 
-            return value.ToString();
+            return new CsvColumnValue(value.ToString());
         }
     }
 }

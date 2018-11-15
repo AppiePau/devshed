@@ -5,7 +5,7 @@
     using System.Globalization;
     using System.Linq.Expressions;
 
-    public sealed class NumberCsvColumn<TSource> : CsvColumn<TSource, int?>
+    public sealed class NumberCsvColumn<TSource> : ColumnDefinition<TSource, int?>
     {
         public NumberCsvColumn(string propertyName)
             : base(propertyName)

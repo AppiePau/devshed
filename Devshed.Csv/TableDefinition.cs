@@ -7,13 +7,13 @@
     /// <typeparam name="TSource">The type of the source.</typeparam>
     public class TableDefinition<TSource>
     {
-        private readonly ICollection<ICsvColumn<TSource>> columns;
+        private readonly ICollection<IColumDefinition<TSource>> columns;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvDefinition{TSource}"/> class.
         /// </summary>
         /// <param name="columns">The elements.</param>
-        public TableDefinition(params ICsvColumn<TSource>[] columns)
+        public TableDefinition(params IColumDefinition<TSource>[] columns)
         {
             this.columns = columns;
         }
@@ -24,7 +24,7 @@
         /// <value>
         /// The elements.
         /// </value>
-        public ICollection<ICsvColumn<TSource>> Columns
+        public ICollection<IColumDefinition<TSource>> Columns
         {
             get { return this.columns; }
         }

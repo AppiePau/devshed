@@ -5,7 +5,7 @@
     using System.Linq.Expressions;
     using Devshed.Csv.Writing;
 
-    public sealed class TextCsvColumn<TSource> : CsvColumn<TSource, string>
+    public sealed class TextCsvColumn<TSource> : ColumnDefinition<TSource, string>
     {
         public TextCsvColumn(string propertyName)
             : base(propertyName)

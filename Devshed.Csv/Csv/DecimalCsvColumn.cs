@@ -6,18 +6,19 @@
     using System.Linq.Expressions;
     using System.Threading;
 
-    public sealed class CurrencyCsvColumn<TSource> : CsvColumn<TSource, decimal?>
+    public sealed class DecimalCsvColumn<TSource> : ColumnDefinition<TSource, decimal?>
     {
-        public CurrencyCsvColumn(string propertyName)
+        public DecimalCsvColumn(string propertyName)
             : base(propertyName)
         {
         }
 
-        public CurrencyCsvColumn(Expression<Func<TSource, decimal?>> selector)
+
+        public DecimalCsvColumn(Expression<Func<TSource, decimal?>> selector)
             : base(selector)
         {
-            this.Format = (value, culture) => value != null
-                ? string.Format(culture, "{0:c2}", value)
+            this.Format = (number, formatter) => number != null
+                ? number.Value.ToString(formatter)
                 : string.Empty;
         }
 
@@ -25,9 +26,10 @@
         {
             get
             {
-                return ColumnDataType.Currency;
+                return ColumnDataType.Decimal;
             }
         }
+
 
         public Func<decimal?, CultureInfo, string> Format { get; set; }
 

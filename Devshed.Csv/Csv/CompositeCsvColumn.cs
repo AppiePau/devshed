@@ -13,7 +13,7 @@
     /// </summary>
     /// <typeparam name="TSource">The type of the source.</typeparam>
     /// <typeparam name="TValue">The type of the value.</typeparam>
-    public class CompositeCsvColumn<TSource, TValue> : CsvColumn<TSource, IEnumerable<CompositeColumnValue<TValue>>>
+    public class CompositeCsvColumn<TSource, TValue> : ColumnDefinition<TSource, IEnumerable<CompositeColumnValue<TValue>>>
     {
         private HeaderCollection headers;
 

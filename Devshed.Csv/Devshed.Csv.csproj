@@ -44,37 +44,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Columns\BooleanCsvColumn.cs">
+    <Compile Include="Csv\BooleanCsvColumn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Columns\ArrayCsvColumn.cs">
+    <Compile Include="Csv\ArrayCsvColumn.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Columns\ColumnDataType.cs" />
-    <Compile Include="Columns\DynamicCsvColumn.cs" />
-    <Compile Include="Columns\CompositeCsvColumn.cs" />
-    <Compile Include="Columns\ICsvColumn.cs" />
-    <Compile Include="Columns\TimeCsvColumn.cs" />
-    <Compile Include="Columns\TypedCsvColumn.cs" />
-    <Compile Include="Columns\CsvElement.cs">
+    <Compile Include="Csv\DynamicCsvColumn.cs" />
+    <Compile Include="Csv\CompositeCsvColumn.cs" />
+    <Compile Include="Columns\IColumDefinition.cs" />
+    <Compile Include="Csv\TimeCsvColumn.cs" />
+    <Compile Include="Csv\TypedCsvColumn.cs" />
+    <Compile Include="Columns\ColumnDefinition.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Columns\CurrencyCsvColumn.cs">
+    <Compile Include="Csv\CurrencyCsvColumn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Columns\DateCsvColumn.cs">
+    <Compile Include="Csv\DateCsvColumn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Columns\DecimalCsvColumn.cs">
+    <Compile Include="Csv\DecimalCsvColumn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Columns\NumberCsvColumn.cs">
+    <Compile Include="Csv\NumberCsvColumn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Columns\ObjectCsvColumn.cs">
+    <Compile Include="Csv\ObjectCsvColumn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Columns\TextCsvColumn.cs">
+    <Compile Include="Csv\TextCsvColumn.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CsvConfiguration.cs" />

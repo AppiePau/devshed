@@ -5,7 +5,7 @@
     using System.Globalization;
     using System.Linq.Expressions;
 
-    public sealed class DateCsvColumn<TSource> : CsvColumn<TSource, DateTime?>
+    public sealed class DateCsvColumn<TSource> : ColumnDefinition<TSource, DateTime?>
     {
         public DateCsvColumn(string propertyName)
             : base(propertyName)

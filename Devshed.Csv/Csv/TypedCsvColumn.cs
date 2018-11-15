@@ -5,14 +5,14 @@
     using System.Globalization;
     using System.Linq.Expressions;
 
-    public class ObjectCsvColumn<TSource> : CsvColumn<TSource, object>
+    public class TypedCsvColumn<TSource, TProperty> : ColumnDefinition<TSource, TProperty>
     {
-        public ObjectCsvColumn(string propertyName)
+        public TypedCsvColumn(string propertyName)
             : base(propertyName)
         {
         }
 
-        public ObjectCsvColumn(Expression<Func<TSource, object>> selector)
+        public TypedCsvColumn(Expression<Func<TSource, TProperty>> selector)
             : base(selector)
         {
             this.Format = (value, culture) => value != null
@@ -20,17 +20,20 @@
                 : string.Empty;
         }
 
+
+
         public override ColumnDataType DataType
         {
             get
             {
-                return ColumnDataType.Object;
+                return ColumnDataType.StrongTyped;
             }
         }
 
-        public Func<object, CultureInfo, string> Format { get; set; }
 
-        protected override string OnRender(ICsvDefinition defintion, object value, CultureInfo culture, IStringFormatter formatter)
+        public Func<TProperty, CultureInfo, string> Format { get; set; }
+
+        protected override string OnRender(ICsvDefinition defintion, TProperty value, CultureInfo culture, IStringFormatter formatter)
         {
             return this.Format(value, culture);
         }

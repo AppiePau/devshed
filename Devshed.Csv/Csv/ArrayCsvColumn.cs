@@ -8,7 +8,7 @@
     using Devshed.Shared;
     using System.Globalization;
 
-    public class ArrayCsvColumn<TSource, TArray> : CsvColumn<TSource, IEnumerable<TArray>>
+    public class ArrayCsvColumn<TSource, TArray> : ColumnDefinition<TSource, IEnumerable<TArray>>
     {
         private string elementDelimiter;
 
@@ -28,7 +28,7 @@
         {
             get
             {
-                return ColumnDataType.Currency;
+                return ColumnDataType.Text;
             }
         }
 
@@ -49,13 +49,13 @@
 
         public Func<TArray, string> Format { get; set; }
 
-        protected override string OnRender(ICsvDefinition defintion, IEnumerable<TArray> value, CultureInfo culture, IStringFormatter formatter)
+        protected override IColumnValueProvider OnRender(ICsvDefinition defintion, IEnumerable<TArray> value, CultureInfo culture, IStringFormatter formatter)
         {
             var values = value.Select(e => CleanAndFormatValue(defintion, e)).ToArray();
 
             var element = string.Join(this.ElementDelimiter, values);
 
-            return formatter.FormatStringCell(element, defintion.RemoveNewLineCharacters);
+            return new CsvColumnTextValue(element, defintion.RemoveNewLineCharacters);
         }
 
         private string CleanAndFormatValue(ICsvDefinition defintion, TArray e)

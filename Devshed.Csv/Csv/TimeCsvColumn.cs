@@ -5,7 +5,7 @@ namespace Devshed.Csv
     using System.Globalization;
     using System.Linq.Expressions;
 
-    public sealed class TimeCsvColumn<TSource> : CsvColumn<TSource, TimeSpan?>
+    public sealed class TimeCsvColumn<TSource> : ColumnDefinition<TSource, TimeSpan?>
     {
         public TimeCsvColumn(string propertyName)
             : base(propertyName)

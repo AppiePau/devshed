@@ -4,7 +4,7 @@
     <!--*-->
     <id>Devshed.CSV.ClosedXML</id>
     <!--*-->
-    <version>1.6.0-beta1</version>
+    <version>1.6.0</version>
     <title>Devshed CSV ClosedXML</title>
     <!--*-->
     <authors>Paul Appeldoorn</authors>
@@ -18,7 +18,7 @@
     <!--*-->
     <licenseUrl>https://github.com/AppiePau/devshed-tools/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/AppiePau/devshed-tools/</projectUrl>
-    <copyright>Copyright 2017 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>
+    <copyright>Copyright 2018 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>
     <releaseNotes> See https://github.com/AppiePau/devshed-tools/issues </releaseNotes>
     <tags>XLSX ClosedXML CSV Devshed mapper tables</tags>
     <dependencies>

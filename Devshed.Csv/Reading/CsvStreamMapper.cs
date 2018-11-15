@@ -94,7 +94,7 @@
             }
         }
 
-        private void SetPropertyValue(TRow row, ICsvColumn<TRow> column, CsvLine line, string element)
+        private void SetPropertyValue(TRow row, IColumDefinition<TRow> column, CsvLine line, string element)
         {
             PropertyInfo prop = typeof(TRow).GetProperty(column.PropertyName);
             if (!this.Definition.IgnoreReadonlyProperties && !prop.CanWrite)

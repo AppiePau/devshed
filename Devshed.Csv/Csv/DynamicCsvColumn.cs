@@ -14,11 +14,11 @@
     /// </summary>
     /// <typeparam name="TSource">The type of the source.</typeparam>
     /// <typeparam name="TValue">The type of the value.</typeparam>
-    public class DynamicCsvColumn<TSource, TValue> : CsvColumn<TSource, IEnumerable<TValue>>
+    public class DynamicCsvColumn<TSource, TValue> : ColumnDefinition<TSource, IEnumerable<TValue>>
     {
         private HeaderCollection headers;
 
-        private readonly Func<TValue, ICsvColumn<TValue>> converter;
+        private readonly Func<TValue, IColumDefinition<TValue>> converter;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicCsvColumn{TSource, TValue}"/> class.
@@ -27,7 +27,7 @@
         /// <param name="headers">The headers.</param>
         public DynamicCsvColumn(
             Expression<Func<TSource, IEnumerable<TValue>>> selector,
-            Func<TValue, ICsvColumn<TValue>> converter,
+            Func<TValue, IColumDefinition<TValue>> converter,
             HeaderCollection headers)
             : base(selector, headers)
         {
@@ -37,7 +37,7 @@
         }
         public DynamicCsvColumn(
             Expression<Func<TSource, IEnumerable<TValue>>> selector,
-           Func<TValue, ICsvColumn<TValue>> converter,
+           Func<TValue, IColumDefinition<TValue>> converter,
            params string[] headers)
            : this(selector, converter, new HeaderCollection(headers))
         {
@@ -54,7 +54,7 @@
         /// <param name="headers">The headers.</param>
         public DynamicCsvColumn(Expression<Func<TSource, IEnumerable<TValue>>> selector,
             IEnumerable<TValue> rows,
-            Func<TValue, ICsvColumn<TValue>> converter)
+            Func<TValue, IColumDefinition<TValue>> converter)
             : this(selector, converter, GetHeaderNames(rows, converter))
         {
             //selector = selector;
@@ -110,7 +110,7 @@
                     .ToArray();
         }
 
-        private static HeaderCollection GetHeaderNames(IEnumerable<TValue> rows, Func<TValue, ICsvColumn<TValue>> converter)
+        private static HeaderCollection GetHeaderNames(IEnumerable<TValue> rows, Func<TValue, IColumDefinition<TValue>> converter)
         {
             return new HeaderCollection(
                 (from row in rows
