@@ -64,6 +64,15 @@ namespace Devshed.Csv.ClosedXml
                     cell.DataType = GetDataType(column);
                     cell.Value = value;
 
+                    //if (cell.DataType == XLDataType.Text && !value.StartsWith("'"))
+                    //{
+                    //    cell.Value = "'" + value;
+                    //}
+                    //else
+                    //{
+                    //    cell.Value = value;
+                    //}
+
                     colid++;
                 }
             }
@@ -84,6 +93,7 @@ namespace Devshed.Csv.ClosedXml
                     return XLDataType.Boolean;
 
                 case ColumnDataType.Time:
+                    //return XLDataType.Text;
                     return XLDataType.TimeSpan;
 
                 case ColumnDataType.Currency:
