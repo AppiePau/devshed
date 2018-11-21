@@ -23,7 +23,7 @@
     <tags>XLSX ClosedXML CSV Devshed mapper tables</tags>
     <dependencies>
       <dependency id="Devshed.Shared" version="1.3.8" />
-      <dependency id="Devshed.Csv" version="1.6.0-beta4" />
+      <dependency id="Devshed.Csv" version="1.6.0-beta5" />
     </dependencies>
   </metadata>
 </package>
