@@ -33,8 +33,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Release\Devshed.IO.xml</DocumentationFile>
     <NoWarn>NU5128</NoWarn>
   </PropertyGroup>
   <ItemGroup>
