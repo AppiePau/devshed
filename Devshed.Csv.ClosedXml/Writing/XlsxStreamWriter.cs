@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Devshed.Csv.ClosedXml
 {
+    /// <summary>
+    /// Writes an object model to a XLSX file.
+    /// </summary>
     public class XlsxStreamWriter : ICsvStreamWriter
     {
         private readonly string sheetName;
@@ -16,6 +19,11 @@ namespace Devshed.Csv.ClosedXml
 
         private readonly IStringFormatter formatter;
 
+        /// <summary>
+        /// Inititize the writer.
+        /// </summary>
+        /// <param name="sheetName"> The sheet name. </param>
+        /// <param name="options"> Saving options. </param>
         public XlsxStreamWriter(string sheetName = "Document", SaveOptions options = null)
         {
             this.sheetName = sheetName;
@@ -23,6 +31,13 @@ namespace Devshed.Csv.ClosedXml
             this.formatter = new XlsxStringFormatter();
         }
 
+        /// <summary>
+        /// Write the object model / collection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="stream"></param>
+        /// <param name="rows"></param>
+        /// <param name="definition"></param>
         public void Write<T>(Stream stream, T[] rows, CsvDefinition<T> definition)
         {
             using (var workbook = new XLWorkbook())

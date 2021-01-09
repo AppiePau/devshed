@@ -6,6 +6,9 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
 
+    /// <summary>
+    /// String to type converter helper class.
+    /// </summary>
     public class StringToTypeConvertor
     {
         /// <summary>

@@ -16,14 +16,16 @@
     <!--*-->
     <description>Devshed Web Library</description>
     <!--*-->
-    <licenseUrl>https://github.com/AppiePau/devshed-tools/blob/master/LICENSE</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/AppiePau/devshed-tools/</projectUrl>
     <releaseNotes> Added support for reading and writing XLSX files. Requires ClosedXML extension. </releaseNotes>
     <copyright>Copyright 2018 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>
     <tags>Web Mvc webforms Devshed validation</tags>
     <dependencies>
-      <dependency id="Devshed.Shared" version="1.3.8" />
-      <dependency id="AntiXSS" version="4.2.1" />
+      <group targetFramework=".NETFramework3.5">
+        <dependency id="Devshed.Shared" version="1.3.8" />
+        <dependency id="AntiXSS" version="4.2.1" />
+      </group>
     </dependencies>
   </metadata>
 </package>

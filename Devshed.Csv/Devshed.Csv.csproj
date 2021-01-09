@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>NU5128</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
@@ -133,7 +136,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir)nuget.exe" pack $(SolutionDir)Devshed.Csv\Devshed.Csv.csproj -Properties Configuration=Release</PostBuildEvent>
+    <PostBuildEvent>"$(SolutionDir).nuget\nuget.exe" pack $(ProjectPath) -Properties Configuration=$(ConfigurationName)
+mkdir $(SolutionDir)dist\
+copy $(TargetDir)*.nupkg $(SolutionDir)dist\</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>del $(TargetDir)*.nupkg</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

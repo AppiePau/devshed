@@ -23,6 +23,7 @@ namespace Devshed.Csv.Reading
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvStreamLineReader"/> class.
         /// </summary>
+        /// <param name="definition">The CSV definition.</param>
         /// <param name="headers">The header names.</param>
         public CsvStreamLineReader(ICsvDefinition definition, params string[] headers)
             : this(definition, new HeaderCollection(headers))
@@ -32,7 +33,8 @@ namespace Devshed.Csv.Reading
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvStreamLineReader"/> class.
         /// </summary>
-        /// <param name="headerNames">The header names.</param>
+        /// <param name="definition">The CSV definition.</param>
+        /// <param name="headers">The header names.</param>
         public CsvStreamLineReader(ICsvDefinition definition, HeaderCollection headers)
         {
             this.headers = headers;

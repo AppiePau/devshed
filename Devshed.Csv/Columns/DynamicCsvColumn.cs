@@ -51,7 +51,8 @@
         /// Initializes a new instance of the <see cref="DynamicCsvColumn{TSource, TValue}"/> class.
         /// </summary>
         /// <param name="selector">The selector.</param>
-        /// <param name="headers">The headers.</param>
+        /// <param name="rows">The rows.</param>
+        /// <param name="converter">The value converter.</param>
         public DynamicCsvColumn(Expression<Func<TSource, IEnumerable<TValue>>> selector,
             IEnumerable<TValue> rows,
             Func<TValue, ICsvColumn<TValue>> converter)
@@ -60,6 +61,9 @@
             //selector = selector;
         }
 
+        /// <summary>
+        /// The data type of the column.
+        /// </summary>
         public override ColumnDataType DataType
         {
             get
@@ -67,7 +71,6 @@
                 return ColumnDataType.Dynamic;
             }
         }
-
 
         /// <summary>
         /// Gets the header names.
@@ -97,7 +100,10 @@
         /// <summary>
         /// Renders the specified element.
         /// </summary>
-        /// <param name="element">The element.</param>
+        /// <param name="defintion">The CSV defintion.</param>
+        /// <param name="element">The rendered element.</param>
+        /// <param name="culture">The culture. </param>
+        /// <param name="formatter">The formatter. </param>
         /// <returns></returns>
         public override string[] Render(ICsvDefinition defintion, TSource element, CultureInfo culture, IStringFormatter formatter)
         {
