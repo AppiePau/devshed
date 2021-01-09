@@ -63,6 +63,7 @@ namespace Devshed.Csv.ClosedXml
                     var cell = worksheet.Row(rowid).Cell(colid);
                     cell.DataType = GetDataType(column);
                     cell.Value = value;
+                    cell.Style.Alignment.WrapText = false;
 
                     //if (cell.DataType == XLDataType.Text && !value.StartsWith("'"))
                     //{
