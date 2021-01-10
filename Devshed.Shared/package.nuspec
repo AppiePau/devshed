@@ -16,12 +16,16 @@
     <!--*-->
     <description>Devshed Shared Library</description>
     <!--*-->
-    <licenseUrl>https://github.com/AppiePau/devshed-tools/blob/master/LICENSE</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/AppiePau/devshed-tools/</projectUrl>
     <releaseNotes> Shared code for libraries. </releaseNotes>
     <copyright>Copyright 2018 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>
     <tags>Shared Devshed </tags>
     <dependencies>
+      <group targetFramework=".NETFramework3.5"></group>
     </dependencies>
   </metadata>
+  <files>
+    <file src="bin\$configuration$\$id$.pdb" target="lib\net35\" />
+  </files>
 </package>

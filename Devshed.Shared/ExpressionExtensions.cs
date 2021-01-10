@@ -6,6 +6,12 @@
     /// <summary> Helps with expressions. </summary>
     public static class ExpressionExtensions
     {
+        /// <summary>
+        /// Gets a member name from an expression.
+        /// </summary>
+        /// <typeparam name="TDelegate"> The expression delegate type to use. </typeparam>
+        /// <param name="expression"> The expression as value. Example: e =&lt; e.Username </param>
+        /// <returns></returns>
         public static string GetMemberName<TDelegate>(this Expression<TDelegate> expression)
         {
             var body = expression.Body as MemberExpression;

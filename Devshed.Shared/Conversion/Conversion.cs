@@ -16,8 +16,14 @@
             FromConvertor = new TypeToStringConvertor();
         }
 
+        /// <summary>
+        /// The convertor to prive String to Type conversions. StringToTypeConvertor by default.
+        /// </summary>
         public static StringToTypeConvertor ToConvertor { get; set; }
 
+        /// <summary>
+        /// The convertor to prive String to Type conversions. TypeToStringConvertor by default.
+        /// </summary>
         public static TypeToStringConvertor FromConvertor { get; set; }
 
         /// <summary>
@@ -103,23 +109,44 @@
             return AsString(value, Thread.CurrentThread.CurrentCulture);
         }
 
-        public static object AsValue(Type propertyType, string element, object culture)
-        {
-            throw new NotImplementedException();
-        }
+        //public static object AsValue(Type propertyType, string element, object culture)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
+        /// <summary>
+        /// Converts a strong type value to string using the specified culture.
+        /// </summary>
+        /// <typeparam name="T"> The type of value to convert. </typeparam>
+        /// <param name="value"> The value itself. </param>
+        /// <param name="culture"> The culture as conversion context. </param>
+        /// <returns></returns>
         //// [DebuggerStepThrough]
         public static string AsString<T>(T value, CultureInfo culture)
         {
             return AsString(typeof(T), value, culture);
         }
 
+        /// <summary>
+        /// Converts value to string using the current thread culture.   
+        /// </summary>
+        /// <param name="type"> The type as Type to convert. </param>
+        /// <param name="value"> The value itself. </param>
+        /// <returns></returns>
         //// [DebuggerStepThrough]
         public static string AsString(Type type, object value)
         {
             return AsString(type, value, Thread.CurrentThread.CurrentCulture);
         }
 
+
+        /// <summary>
+        /// Converts value to string using the current thread culture. 
+        /// </summary>
+        /// <param name="type"> The type as Type to convert. </param>
+        /// <param name="value"> The value itself. </param>
+        /// <param name="culture"> The culture as conversion context. </param>
+        /// <returns></returns>
         //// [DebuggerStepThrough]
         public static string AsString(Type type, object value, CultureInfo culture)
         {

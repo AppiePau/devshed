@@ -16,7 +16,7 @@ namespace Devshed.Csv
             : base(selector)
         {
             this.Format = (time, culture) => time != null
-            ? string.Format("{0:00}:{1:00}", culture, time.Value.Hours, time.Value.Minutes)
+            ? string.Format(culture, "{0:00}:{1:00}", time.Value.Hours, time.Value.Minutes)
             : string.Empty;
         }
         

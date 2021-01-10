@@ -6,6 +6,11 @@
     /// <summary> Helps removing the Bit Order Mark (BOM). </summary>
     public static class BomRemover
     {
+        /// <summary>
+        /// Gets the cursor position in the stream.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns></returns>
         public static int GetCursorPosition(Stream stream)
         {
             //// UTF-32, big-endian

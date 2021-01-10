@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2041
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Web", "Devshed.Web\Devshed.Web.csproj", "{F9430E84-7285-4F78-AD46-EC70C5D62BB1}"
 EndProject
@@ -42,6 +42,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Csv.ClosedXml", "Devshed.Csv.ClosedXml\Devshed.Csv.ClosedXml.csproj", "{BC15975A-7CF0-4936-91C8-7CFE2A079AFF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Csv.ClosedXml.Tests", "Devshed.Csv.ClosedXml.Tests\Devshed.Csv.ClosedXml.Tests.csproj", "{F85C0FAC-F758-47B5-854C-8D3ACFA7C1F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{64878CDB-161B-433D-A8D5-32031B904DE6}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+		Devshed.Csv.ClosedXml\package.nuspec = Devshed.Csv.ClosedXml\package.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

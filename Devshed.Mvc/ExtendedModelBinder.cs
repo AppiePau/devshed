@@ -6,6 +6,9 @@
     using System.Web.Mvc;
     using Devshed.Shared;
 
+    /// <summary>
+    /// Extends the default MVC model binding, especially for older verions 4.x or lower.
+    /// </summary>
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass",
          Justification = "They ought to ha ve a strong relation.")]
     public sealed class ExtendedModelBinder : DefaultModelBinder

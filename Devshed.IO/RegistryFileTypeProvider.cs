@@ -6,6 +6,11 @@ namespace Devshed.IO
     /// <summary> Looks up the MIME type from the registry. </summary>
     public sealed class RegistryFileTypeProvider : IFileTypeProvider
     {
+        /// <summary>
+        /// Gets the file type of file by extension from the Windows registry.
+        /// </summary>
+        /// <param name="extension"></param>
+        /// <returns></returns>
         public FileType GetMimeType(string extension)
         {
             Requires.StartsWith(extension, ".", "extension");

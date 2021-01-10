@@ -12,11 +12,18 @@ namespace Devshed.Web
 
 
     /// <summary>
+    /// Checks password strength and advises on improvements.
     /// </summary>
-    /// <seealso cref="https://stackoverflow.com/questions/12899876/checking-strings-for-a-strong-enough-password"/>
-    /// <seealso cref="https://social.msdn.microsoft.com/Forums/vstudio/en-US/5e3f27d2-49af-410a-85a2-3c47e3f77fb1/how-to-check-for-password-strength?forum=csharpgeneral"/>
+    /// <see cref="https://stackoverflow.com/questions/12899876/checking-strings-for-a-strong-enough-password"/>
+    /// <see cref="https://social.msdn.microsoft.com/Forums/vstudio/en-US/5e3f27d2-49af-410a-85a2-3c47e3f77fb1/how-to-check-for-password-strength?forum=csharpgeneral"/>
     public static class PasswordAdvisor
     {
+        /// <summary>
+        /// Checks the strength of a password.
+        /// </summary>
+        /// <param name="password"> The password. </param>
+        /// <param name="minLength"> The minimum length. </param>
+        /// <returns></returns>
         public static PasswordResult CheckStrength(string password, int minLength = 8)
         {
             if (minLength < 4) { throw new ArgumentOutOfRangeException("Minimum length must be at least 4 characters."); }
