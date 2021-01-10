@@ -113,7 +113,8 @@
                     let column = converter(item)
                     select column.Render(defintion, item, culture, formatter))
                     //.SelectMany(elements => elements.Select(e => formatter.FormatStringCell(e.ToString())))
-                    .SelectMany(elements => elements.Select(e => formatter.FormatCell(e.ToString())))
+                    //.SelectMany(elements => elements.Select(e => formatter.FormatCell(e.ToString())))
+                    .SelectMany(elements => elements.Select(e => e.ToString()))
                     .ToArray();
         }
 

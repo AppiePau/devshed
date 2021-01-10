@@ -1,4 +1,5 @@
 ﻿using Devshed.Csv.Writing;
+using System.Text;
 
 namespace Devshed.Csv.ClosedXml
 {
@@ -6,7 +7,21 @@ namespace Devshed.Csv.ClosedXml
     {
         public string FormatCell(string value)
         {
-            return value;
+            return FormatCell(value, false);
+        }
+
+        public string FormatCell(string value, bool removeNewLineCharacters)
+        {
+            var sb = new StringBuilder(value);
+            sb.Replace("\"", "");
+
+            if (removeNewLineCharacters)
+            {
+                sb.Replace("\r\n", "");
+                sb.Replace("\n", "");
+            }
+
+            return sb.ToString();
         }
 
         public string FormatStringCell(string value)
@@ -14,11 +29,18 @@ namespace Devshed.Csv.ClosedXml
             return FormatStringCell(value, false);
         }
 
-        public string FormatStringCell(string value, bool removeEnters)
+        public string FormatStringCell(string value, bool removeNewLineCharacters)
         {
-            if (value == null) return string.Empty;
+            var sb = new StringBuilder(value);
+            sb.Replace("\"", "");
 
-            return value.Replace("\r\n", "");
+            if (removeNewLineCharacters)
+            {
+                sb.Replace("\r\n", "");
+                sb.Replace("\n", "");
+            }
+
+            return sb.ToString();
         }
     }
 }
