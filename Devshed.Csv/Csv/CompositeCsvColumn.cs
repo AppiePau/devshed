@@ -9,7 +9,7 @@
     using Devshed.Csv.Writing;
 
     /// <summary>
-    /// 
+    /// Supports columns containing multiple values.
     /// </summary>
     /// <typeparam name="TSource">The type of the source.</typeparam>
     /// <typeparam name="TValue">The type of the value.</typeparam>
@@ -36,7 +36,7 @@
         /// Initializes a new instance of the <see cref="CompositeCsvColumn{TSource, TValue}"/> class.
         /// </summary>
         /// <param name="selector">The selector.</param>
-        /// <param name="headers">The headers.</param>
+        /// <param name="rows">The rows.</param>
         public CompositeCsvColumn(
             Expression<Func<TSource, IEnumerable<CompositeColumnValue<TValue>>>> selector,
             IEnumerable<CompositeColumnValue<TValue>> rows)
@@ -44,6 +44,11 @@
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="selector">The selector for values. </param>
+        /// <param name="headers"> The headers corresponing to the value within the column. </param>
         public CompositeCsvColumn(Expression<Func<TSource, IEnumerable<CompositeColumnValue<TValue>>>> selector, params string[] headers)
         : this(selector, new HeaderCollection(headers))
         {
@@ -54,6 +59,9 @@
         /// </summary>
         public bool AllowUndefinedColumnsInCollection { get; set; }
 
+        /// <summary>
+        /// The data type of the column.
+        /// </summary>
         public override ColumnDataType DataType
         {
             get
@@ -95,12 +103,15 @@
         /// Renders the specified element.
         /// </summary>
         /// <param name="element">The element.</param>
+        /// <param name="defintion">The defintion.</param>
+        /// <param name="culture">The culture.</param>
+        /// <param name="formatter">The formatter.</param>
         /// <returns></returns>
         public override string[] Render(ICsvDefinition defintion, TSource element, CultureInfo culture, IStringFormatter formatter)
         {
             var collection = this.Selector(element);
 
-            return this.ProcessElementsByHeaderNames(collection, culture, formatter).ToArray();
+            return  this.ProcessElementsByHeaderNames(collection, culture, formatter).ToArray();
         }
 
         private static HeaderCollection GetHeaderNames(IEnumerable<CompositeColumnValue<TValue>> rows)
@@ -142,14 +153,26 @@
     [DebuggerDisplay("{HeaderName}: {Value}")]
     public sealed class CompositeColumnValue<TValue>
     {
+        /// <summary>
+        /// A value of the CompositeCsvColumn object.
+        /// </summary>
+        /// <param name="header"></param>
+        /// <param name="value"></param>
         public CompositeColumnValue(string header, TValue value)
         {
             // TODO: Complete member initialization
             this.HeaderName = header;
             this.Value = value;
         }
+
+        /// <summary>
+        /// The header name of the value within the CompositeCsvColumn.
+        /// </summary>
         public string HeaderName { get; private set; }
 
+        /// <summary>
+        /// The value of the subcolumn (header) within the CompositeCsvColumn.
+        /// </summary>
         public TValue Value { get; private set; }
     }
 }

@@ -10,7 +10,7 @@
         private const string Header1 = "Header1";
 
         private const string Header2 = "Header2";
-        
+
         private const string Header3 = "Header3";
 
         [TestMethod]
@@ -23,10 +23,11 @@
                     new TextCsvColumn<CompositeTestModel>(e => e.Name),
                     new ObjectCsvColumn<CompositeTestModel>(e => e.TestColor),
                     new CompositeCsvColumn<CompositeTestModel, string>(e => e.TestColors, Header1, Header2, Header3))
-                    {
-                        FirstRowContainsHeaders = true,
-                        WriteBitOrderMarker = false
-                    };
+                {
+                    HasFieldsEnclosedInQuotes = true,
+                    FirstRowContainsHeaders = true,
+                    WriteBitOrderMarker = false
+                };
 
             var result = CsvWriter.CreateStream(definition, rows).GetString();
 
@@ -97,7 +98,7 @@
 
         private CompositeTestModel[] GetCompositeRows()
         {
-            return new[] 
+            return new[]
             {
                 new CompositeTestModel
                 {

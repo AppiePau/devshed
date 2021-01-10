@@ -49,13 +49,13 @@
 
         public Func<TArray, string> Format { get; set; }
 
-        protected override IColumnValueProvider OnRender(ICsvDefinition defintion, IEnumerable<TArray> value, CultureInfo culture, IStringFormatter formatter)
+        protected override string OnRender(ICsvDefinition defintion, IEnumerable<TArray> value, CultureInfo culture, IStringFormatter formatter)
         {
             var values = value.Select(e => CleanAndFormatValue(defintion, e)).ToArray();
 
             var element = string.Join(this.ElementDelimiter, values);
 
-            return new CsvColumnTextValue(element, defintion.RemoveNewLineCharacters);
+            return new CsvColumnTextValue(element, defintion.RemoveNewLineCharacters).ToString();
         }
 
         private string CleanAndFormatValue(ICsvDefinition defintion, TArray e)

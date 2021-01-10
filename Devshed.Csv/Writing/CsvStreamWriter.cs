@@ -5,6 +5,9 @@ namespace Devshed.Csv.Writing
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// Writes the CSV data through a stream.
+    /// </summary>
     public sealed class CsvStreamWriter : ICsvStreamWriter
     {
         private IStringFormatter formatter;
@@ -17,7 +20,8 @@ namespace Devshed.Csv.Writing
         /// <summary>
         /// Writes the array according to the specified definition.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T"> The model type to write. </typeparam>
+        /// <param name="stream">The stream to write to.</param>
         /// <param name="rows">The rows.</param>
         /// <param name="definition">The definition.</param>
         public void Write<T>(Stream stream, T[] rows, CsvDefinition<T> definition)

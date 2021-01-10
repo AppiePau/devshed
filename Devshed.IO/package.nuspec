@@ -16,7 +16,7 @@
     <!--*-->
     <description>Devshed IO Library</description>
     <!--*-->
-    <licenseUrl>https://github.com/AppiePau/devshed-tools/blob/master/LICENSE</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/AppiePau/devshed-tools/</projectUrl>
     <releaseNotes> Added support for reading and writing XLSX files. Requires ClosedXML extension. </releaseNotes>
     <copyright>Copyright 2018 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>

@@ -14,7 +14,7 @@ namespace Devshed.Csv
 
         ColumnDataType DataType { get; }
 
-        IColumnValueProvider[] Render(ICsvDefinition defintion, TSource element, CultureInfo formatCulture, IStringFormatter formatter);
+        string[] Render(ICsvDefinition defintion, TSource element, CultureInfo formatCulture, IStringFormatter formatter);
 
         HeaderCollection GetWritingHeaderNames(TSource[] rows);
 

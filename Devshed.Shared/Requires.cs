@@ -24,9 +24,6 @@
         /// <summary>
         /// Determines whether the value starts with the specified string seqence.
         /// </summary>
-        /// <param name="extension">The extension.</param>
-        /// <param name="namename">The namename.</param>
-        /// <param name="condition">The condition.</param>
         /// <exception cref="System.FormatException"> A FormatException is thrown when the string does not start with the specified string. </exception>
         public static void StartsWith(string value, string start, string name)
         {
@@ -41,9 +38,6 @@
         /// <summary>
         /// Determines whether the value ends with the specified string seqence.
         /// </summary>
-        /// <param name="extension">The extension.</param>
-        /// <param name="namename">The namename.</param>
-        /// <param name="condition">The expected end.</param>
         /// <exception cref="System.FormatException"> A FormatException is thrown when the string does not start with the specified string. </exception>
         public static void EndsWith(string value, string end, string name)
         {

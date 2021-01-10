@@ -4,6 +4,9 @@
     using System.Web;
     using System.Web.Mvc;
 
+    /// <summary>
+    /// URL helper extension to create server sided URLs.
+    /// </summary>
     public static class UrlHelperExtension
     {
         /// <summary>
@@ -18,6 +21,9 @@
         }
     }
 
+    /// <summary>
+    /// Request helper extensions. 
+    /// </summary>
     public static class RequestExtensions
     {
         /// <summary>

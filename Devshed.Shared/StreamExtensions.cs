@@ -3,6 +3,9 @@
     using System.IO;
     using System.Text;
 
+    /// <summary>
+    /// Stream helper extensions
+    /// </summary>
     public static class StreamExtensions
     {
 
@@ -10,6 +13,7 @@
         /// Returns the content of the stream as a byte array and removes the BOM (UTF Bit Order Marker).
         /// </summary>
         /// <param name="stream">The stream.</param>
+        /// <param name="resetPosition">Set the stream position to 0 before reading.</param>
         /// <returns></returns>
         public static byte[] GetBytesWithoutBom(this Stream stream, bool resetPosition = true)
         {

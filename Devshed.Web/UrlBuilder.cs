@@ -64,6 +64,11 @@
             this.Merge(builder);
         }
 
+        /// <summary>
+        /// Merge urls by merging parameters from given UrlBuilder.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public UrlBuilder Merge(UrlBuilder source)
         {
             this.parameters.Merge(source.parameters);

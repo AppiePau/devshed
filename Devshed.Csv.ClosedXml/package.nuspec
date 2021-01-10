@@ -4,7 +4,7 @@
     <!--*-->
     <id>Devshed.CSV.ClosedXML</id>
     <!--*-->
-    <version>1.6.0</version>
+    <version>1.6.1</version>
     <title>Devshed CSV ClosedXML</title>
     <!--*-->
     <authors>Paul Appeldoorn</authors>
@@ -16,14 +16,19 @@
     <!--*-->
     <description>Devshed CSV Library</description>
     <!--*-->
-    <licenseUrl>https://github.com/AppiePau/devshed-tools/blob/master/LICENSE</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/AppiePau/devshed-tools/</projectUrl>
     <copyright>Copyright 2018 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>
     <releaseNotes> See https://github.com/AppiePau/devshed-tools/issues </releaseNotes>
     <tags>XLSX ClosedXML CSV Devshed mapper tables</tags>
     <dependencies>
-      <dependency id="Devshed.Shared" version="1.3.8" />
-      <dependency id="Devshed.Csv" version="1.6.0" />
+      <group targetFramework=".NETFramework3.5">
+        <dependency id="Devshed.Shared" version="1.3.8" />
+        <dependency id="Devshed.Csv" version="1.6.1" />
+      </group>
     </dependencies>
   </metadata>
+  <files>
+    <!--<file src="bin\$configuration$\$id$.pdb" target="lib\net35\" />-->
+  </files>
 </package>

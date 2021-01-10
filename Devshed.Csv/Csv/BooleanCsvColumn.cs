@@ -27,9 +27,9 @@
 
         public Func<bool, CultureInfo, string> Format { get; set; }
 
-        protected override IColumnValueProvider OnRender(ICsvDefinition defintion, bool value, CultureInfo culture, IStringFormatter formatter)
+        protected override string OnRender(ICsvDefinition defintion, bool value, CultureInfo culture, IStringFormatter formatter)
         {
-            return new CsvColumnTextValue(this.Format(value, culture));
+            return new CsvColumnTextValue(this.Format(value, culture)).ToString();
         }
     }
 }

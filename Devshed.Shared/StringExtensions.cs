@@ -4,6 +4,9 @@
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// String helper extensions.
+    /// </summary>
     public static class StringExtensions
     {
         /// <summary> Returns the string as a char converted to byte array. </summary>
@@ -64,6 +67,7 @@
 
         /// <summary> Cuts of the the end of and string by the specified length. </summary>
         /// <param name="value"> The string value to cut off. </param>
+        /// <param name="length"> The number of characters to remove. </param>
         /// <returns></returns>
         public static string RemoveBegin(this string value, int length)
         {
@@ -73,7 +77,6 @@
         /// <summary> Cuts of the the end of and string by the specified end string. </summary>
         /// <param name="value">The string value to cut off.</param>
         /// <param name="end">The end.</param>
-        /// <param name="comparison">The comparison.</param>
         /// <returns></returns>
         public static string RemoveBegin(this string value, string end)
         {
@@ -97,6 +100,7 @@
 
         /// <summary> Cuts of the the end of and string by the specified length. </summary>
         /// <param name="value"> The string value to cut off. </param>
+        /// <param name="length">The number of characters to remove. </param>
         /// <returns></returns>
         public static string RemoveEnd(this string value, int length)
         {
@@ -106,7 +110,6 @@
         /// <summary> Cuts of the the end of and string by the specified end string. </summary>
         /// <param name="value">The string value to cut off.</param>
         /// <param name="end">The end.</param>
-        /// <param name="comparison">The comparison.</param>
         /// <returns></returns>
         public static string RemoveEnd(this string value, string end)
         {
