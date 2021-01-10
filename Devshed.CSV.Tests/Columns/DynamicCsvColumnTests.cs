@@ -21,7 +21,10 @@
                 new DynamicTestModel
                 {
                     Name = "Main name",
-                    Columns = new[] { new TestColumn { Name = "Test One", Type = 1, Value = "One" }, new TestColumn { Name = "Test Two", Type = 2, Value = "Two" } }
+                    Columns = new[] {
+                        new TestColumn { Name = "Test One", Type = 1, Value = "One" },
+                        new TestColumn { Name = "Test Two", Type = 2, Value = "Two" }
+                    }
                 }
             };
 

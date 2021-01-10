@@ -32,7 +32,7 @@ namespace Devshed.Csv
 
         protected override string OnRender(ICsvDefinition defintion, TimeSpan? value, CultureInfo culture, IStringFormatter formatter)
         {
-            return this.Format(value, culture);
+            return formatter.FormatCell(this.Format(value, culture));
         }
     }
 }

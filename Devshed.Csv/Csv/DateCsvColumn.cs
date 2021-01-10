@@ -32,7 +32,7 @@
 
         protected override string OnRender(ICsvDefinition defintion, DateTime? value, CultureInfo culture, IStringFormatter formatter)
         {
-            return this.Format(value, culture);
+            return formatter.FormatCell(this.Format(value, culture));
         }
     }
 

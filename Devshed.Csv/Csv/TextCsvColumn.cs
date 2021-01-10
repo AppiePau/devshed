@@ -38,7 +38,7 @@
 
             if (this.ForceNumberToTextFormatting)
             {
-                return formatter.FormatForcedExcelStringCell(text, defintion.RemoveNewLineCharacters);
+                return formatter.FormatStringCell(text, defintion.RemoveNewLineCharacters);
             }
 
             return formatter.FormatStringCell(text, defintion.RemoveNewLineCharacters);

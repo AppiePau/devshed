@@ -55,7 +55,7 @@
 
             var element = string.Join(this.ElementDelimiter, values);
 
-            return new CsvColumnTextValue(element, defintion.RemoveNewLineCharacters).ToString();
+            return formatter.FormatStringCell(element, defintion.RemoveNewLineCharacters);
         }
 
         private string CleanAndFormatValue(ICsvDefinition defintion, TArray e)

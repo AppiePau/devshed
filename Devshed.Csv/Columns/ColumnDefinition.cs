@@ -195,7 +195,7 @@
                 return string.Empty;
             }
 
-            return value.ToString();
+            return formatter.FormatStringCell(value.ToString());
         }
     }
 }

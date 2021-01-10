@@ -2,26 +2,24 @@
 
 namespace Devshed.Csv
 {
-    internal class CsvStringFormatter : IStringFormatter
+    internal sealed class CsvStringFormatter : IStringFormatter
     {
-        public string FormatForcedExcelStringCell(string value)
-        {
-            return value;
-        }
-
-        public string FormatForcedExcelStringCell(string value, bool removeEnters)
+        public string FormatCell(string value)
         {
             return value;
         }
 
         public string FormatStringCell(string value)
         {
-            return value;
+            return FormatStringCell(value, false);
         }
 
         public string FormatStringCell(string value, bool removeEnters)
         {
-            return value;
+            if (value == null) return string.Empty;
+
+            return "\"" + value.Replace("\r\n", "") + "\"";
+
         }
     }
 }

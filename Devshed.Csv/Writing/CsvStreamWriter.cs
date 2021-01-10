@@ -13,8 +13,13 @@ namespace Devshed.Csv.Writing
         private IStringFormatter formatter;
 
         public CsvStreamWriter()
+            : this(new CsvStringFormatter())
+        { 
+        }
+
+        public CsvStreamWriter(IStringFormatter formatter)
         {
-            this.formatter = new CsvStringFormatter();
+            this.formatter = formatter ?? throw new System.ArgumentNullException(nameof(formatter));
         }
 
         /// <summary>
@@ -54,7 +59,10 @@ namespace Devshed.Csv.Writing
 
         private void AddHeader<T>(StreamWriter writer, CsvDefinition<T> definition, T[] rows)
         {
-            var headers = definition.Columns.SelectMany(column => GetHeaderNames<T>(definition, column, rows)).ToArray();
+            var headers = definition.Columns
+                .SelectMany(column => GetHeaderNames<T>(definition, column, rows))
+                //.Select(header => formatter.FormatStringCell(header))
+                .ToArray();
             writer.WriteLine(string.Join(definition.ElementDelimiter, headers));
         }
 

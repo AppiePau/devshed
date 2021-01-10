@@ -121,7 +121,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Writing\CsvString.cs" />
     <Compile Include="Writing\ICsvStreamWriter.cs" />
-    <Compile Include="Writing\ICsvString.cs" />
+    <Compile Include="Writing\IStringFormatter.cs" />
     <Compile Include="Writing\CsvStringFormatter.cs" />
   </ItemGroup>
   <ItemGroup>

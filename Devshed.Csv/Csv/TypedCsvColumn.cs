@@ -35,7 +35,7 @@
 
         protected override string OnRender(ICsvDefinition defintion, TProperty value, CultureInfo culture, IStringFormatter formatter)
         {
-            return this.Format(value, culture);
+            return formatter.FormatStringCell(this.Format(value, culture));
         }
     }
 }

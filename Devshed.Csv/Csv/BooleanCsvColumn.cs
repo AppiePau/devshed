@@ -29,7 +29,7 @@
 
         protected override string OnRender(ICsvDefinition defintion, bool value, CultureInfo culture, IStringFormatter formatter)
         {
-            return new CsvColumnTextValue(this.Format(value, culture)).ToString();
+            return formatter.FormatCell(this.Format(value, culture));
         }
     }
 }

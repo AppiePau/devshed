@@ -76,7 +76,7 @@ namespace Devshed.Csv.Tests
             var result = CsvWriter.CreateStream(definition, rows).GetString();
 
             Assert.AreEqual("\"Name\"\r\n"
-            + "=\"OK_NAME\"\r\n", result);
+            + "\"OK_NAME\"\r\n", result);
         }
 
         private ColorArrayModel[] GetModelRows()

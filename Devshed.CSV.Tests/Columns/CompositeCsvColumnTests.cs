@@ -32,7 +32,7 @@
             var result = CsvWriter.CreateStream(definition, rows).GetString();
 
             Assert.AreEqual("\"Name\";\"TestColor\";\"Header1\";\"Header2\";\"Header3\"\r\n"
-                            + "\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\";\"ValueThree\"\r\n", result);
+                            + "\"OK_NAME\";Green;\"ValueOne\";\"ValueTwo\";\"ValueThree\"\r\n", result);
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@
             var result = CsvWriter.CreateStream(definition, rows).GetString();
 
             Assert.AreEqual("\"Name\";\"TestColor\";\"Header1\";\"Header2\"\r\n"
-                            + "\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\"\r\n", result);
+                            + "\"OK_NAME\";Green;\"ValueOne\";\"ValueTwo\"\r\n", result);
         }
 
 
@@ -75,7 +75,7 @@
             var result = CsvWriter.CreateStream(definition, rows).GetString();
 
             Assert.AreEqual("\"Name\";\"TestColor\";\"Header1\";\"Header2\";\"Header3\"\r\n"
-                            + "\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\";\"ValueThree\"\r\n", result);
+                            + "\"OK_NAME\";Green;\"ValueOne\";\"ValueTwo\";\"ValueThree\"\r\n", result);
         }
 
         [TestMethod]
@@ -103,9 +103,11 @@
                 new CompositeTestModel
                 {
                     Name = "OK_NAME",
-                    TestColors = new[] { new CompositeColumnValue<string>(Header1, "ValueOne"),
-                    new CompositeColumnValue<string>(Header2, "ValueTwo"),
-                    new CompositeColumnValue<string>(Header3, "ValueThree")}
+                    TestColor = TestColor.Green,
+                    TestColors = new[] {
+                        new CompositeColumnValue<string>(Header1, "ValueOne"),
+                        new CompositeColumnValue<string>(Header2, "ValueTwo"),
+                        new CompositeColumnValue<string>(Header3, "ValueThree")}
                 }
             };
         }
