@@ -27,7 +27,7 @@
         {
             var result = NameDefinition().WriteAsXlsx(oneRow);
 
-            using (var s = new FileStream("D:\\" + DateTime.Now.Ticks + ".xlsx", FileMode.CreateNew))
+            using (var s = new FileStream(".\\Test_" + DateTime.Now.Ticks + ".xlsx", FileMode.CreateNew))
             {
                 s.Write(result.GetBytes(), 0, (int)result.Length);
             }
@@ -39,7 +39,7 @@
         public void Build_TwoTestRowsWithHeader_CreatesCsv()
         {
             var result = FullDefinitionWithHeaders().WriteAsXlsx(twoRows);
-            using (var s = new FileStream("D:\\" + DateTime.Now.Ticks + ".xlsx", FileMode.CreateNew))
+            using (var s = new FileStream(".\\Test_" + DateTime.Now.Ticks + ".xlsx", FileMode.CreateNew))
             {
                 s.Write(result.GetBytes(), 0, (int)result.Length);
             }

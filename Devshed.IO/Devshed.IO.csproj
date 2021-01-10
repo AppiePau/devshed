@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -68,8 +68,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir).nuget\nuget.exe" pack $(ProjectPath) -Properties Configuration=$(ConfigurationName)
-mkdir $(SolutionDir)dist\
-copy $(TargetDir)*.nupkg $(SolutionDir)dist\</PostBuildEvent>
+mkdir $(SolutionDir)dist\$(ConfigurationName)
+copy $(TargetDir)*.nupkg $(SolutionDir)dist\$(ConfigurationName)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

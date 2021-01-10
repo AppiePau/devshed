@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -84,8 +84,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir).nuget\nuget.exe" pack $(ProjectPath) -Properties Configuration=$(ConfigurationName)
-mkdir $(SolutionDir)dist\
-copy $(TargetDir)*.nupkg $(SolutionDir)dist\</PostBuildEvent>
+mkdir $(SolutionDir)dist\$(ConfigurationName)
+copy $(TargetDir)*.nupkg $(SolutionDir)dist\$(ConfigurationName)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>del $(TargetDir)*.nupkg</PreBuildEvent>
