@@ -5,6 +5,10 @@
     using System.Globalization;
     using System.Linq.Expressions;
 
+    /// <summary>
+    /// The boolean type of column.
+    /// </summary>
+    /// <typeparam name="TSource"></typeparam>
     public sealed class BooleanCsvColumn<TSource> : CsvColumn<TSource, bool>
     {
         public BooleanCsvColumn(string propertyName)
@@ -25,6 +29,9 @@
             }
         }
 
+        /// <summary>
+        /// The formatting function for rendering the value.
+        /// </summary>
         public Func<bool, CultureInfo, string> Format { get; set; }
 
         protected override string OnRender(ICsvDefinition defintion, bool value, CultureInfo culture, IStringFormatter formatter)

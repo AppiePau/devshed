@@ -29,6 +29,9 @@
         }
 
 
+        /// <summary>
+        /// The formatting function for rendering the value.
+        /// </summary>
         public Func<int?, CultureInfo, string> Format { get; set; }
 
         protected override string OnRender(ICsvDefinition defintion, int? value, CultureInfo culture, IStringFormatter formatter)

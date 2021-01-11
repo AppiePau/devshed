@@ -8,15 +8,28 @@
     using Devshed.Shared;
     using System.Globalization;
 
+    /// <summary>
+    /// Defines an array based column.
+    /// </summary>
+    /// <typeparam name="TSource"> The source of the mapping. </typeparam>
+    /// <typeparam name="TArray"> The type of elements in the array. </typeparam>
     public class ArrayCsvColumn<TSource, TArray> : CsvColumn<TSource, IEnumerable<TArray>>
     {
         private string elementDelimiter;
 
+        /// <summary>
+        /// Initialize the array column definition.
+        /// </summary>
+        /// <param name="propertyName"> The name of the property bound to. </param>
         public ArrayCsvColumn(string propertyName)
             : base(propertyName)
         {
         }
 
+        /// <summary>
+        /// Initialize the array column definition.
+        /// </summary>
+        /// <param name="selector"> The expression mapping the property. </param>
         public ArrayCsvColumn(Expression<Func<TSource, IEnumerable<TArray>>> selector)
             : base(selector)
         {
@@ -24,6 +37,9 @@
             this.Format = value => value.ToString();
         }
 
+        /// <summary>
+        /// The data type of the column.
+        /// </summary>
         public override ColumnDataType DataType
         {
             get
@@ -47,8 +63,19 @@
             }
         }
 
+        /// <summary>
+        /// The formatting function for rendering the value.
+        /// </summary>
         public Func<TArray, string> Format { get; set; }
 
+        /// <summary>
+        /// Renders the value of the column.
+        /// </summary>
+        /// <param name="defintion"> The CSV definition. </param>
+        /// <param name="value"> The value to render. </param>
+        /// <param name="culture"> the culture to render in. </param>
+        /// <param name="formatter"> The formatter to use for rendering the value into the cell. </param>
+        /// <returns></returns>
         protected override string OnRender(ICsvDefinition defintion, IEnumerable<TArray> value, CultureInfo culture, IStringFormatter formatter)
         {
             var values = value.Select(e => CleanAndFormatValue(defintion, e)).ToArray();

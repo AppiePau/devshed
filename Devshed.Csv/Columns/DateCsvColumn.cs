@@ -28,6 +28,10 @@
             }
         }
 
+
+        /// <summary>
+        /// The formatting function for rendering the value.
+        /// </summary>
         public Func<DateTime?, CultureInfo, string> Format { get; set; }
 
         protected override string OnRender(ICsvDefinition defintion, DateTime? value, CultureInfo culture, IStringFormatter formatter)
