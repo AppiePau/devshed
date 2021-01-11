@@ -23,7 +23,7 @@
     <tags>XLSX ClosedXML CSV Devshed mapper tables</tags>
     <dependencies>
       <group targetFramework=".NETFramework3.5">
-        <dependency id="Devshed.Shared" version="1.3.9" />
+        <dependency id="Devshed.Shared" version="1.6.1" />
         <dependency id="Devshed.Csv" version="1.6.1" />
       </group>
     </dependencies>
