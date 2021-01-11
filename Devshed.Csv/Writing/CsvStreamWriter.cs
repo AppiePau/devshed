@@ -18,6 +18,9 @@ namespace Devshed.Csv.Writing
         { 
         }
 
+        /// <summary>Initializes a new instance of the <see cref="CsvStreamWriter" /> class.</summary>
+        /// <param name="formatter">The formatter.</param>
+        /// <exception cref="System.ArgumentNullException">formatter</exception>
         public CsvStreamWriter(IStringFormatter formatter)
         {
             this.formatter = formatter ?? throw new System.ArgumentNullException(nameof(formatter));
