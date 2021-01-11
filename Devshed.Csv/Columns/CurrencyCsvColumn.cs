@@ -29,6 +29,10 @@
             }
         }
 
+
+        /// <summary>
+        /// The formatting function for rendering the value.
+        /// </summary>
         public Func<decimal?, CultureInfo, string> Format { get; set; }
 
         protected override string OnRender(ICsvDefinition defintion, decimal? value, CultureInfo culture, IStringFormatter formatter)

@@ -70,12 +70,10 @@
             }
         }
 
+
         /// <summary>
-        /// Gets or sets the format.
+        /// The formatting function for rendering the value.
         /// </summary>
-        /// <value>
-        /// The format.
-        /// </value>
         public Func<TValue, CultureInfo, string> Format { get; set; }
 
         /// <summary>
