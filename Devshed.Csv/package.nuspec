@@ -30,6 +30,5 @@
   </metadata>
   <files>
     <file src="bin\$configuration$\$id$.pdb" target="lib\net35\" />
-    <file src="bin\$configuration$\$id$.xml" target="lib\net35\" />
   </files>
 </package>
