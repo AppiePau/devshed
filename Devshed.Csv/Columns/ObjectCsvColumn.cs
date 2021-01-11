@@ -28,6 +28,9 @@
             }
         }
 
+        /// <summary>
+        /// The formatting function for rendering the value.
+        /// </summary>
         public Func<object, CultureInfo, string> Format { get; set; }
 
         protected override string OnRender(ICsvDefinition defintion, object value, CultureInfo culture, IStringFormatter formatter)
