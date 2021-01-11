@@ -9,7 +9,7 @@
     using System.Globalization;
 
     /// <summary>
-    /// Defines an array based column.
+    /// Represents an array based CSV column.
     /// </summary>
     /// <typeparam name="TSource"> The source of the mapping. </typeparam>
     /// <typeparam name="TArray"> The type of elements in the array. </typeparam>
@@ -75,7 +75,7 @@
         /// <param name="value"> The value to render. </param>
         /// <param name="culture"> the culture to render in. </param>
         /// <param name="formatter"> The formatter to use for rendering the value into the cell. </param>
-        /// <returns></returns>
+        /// <returns>A string that can be directly written into the CSV file. </returns>
         protected override string OnRender(ICsvDefinition defintion, IEnumerable<TArray> value, CultureInfo culture, IStringFormatter formatter)
         {
             var values = value.Select(e => CleanAndFormatValue(defintion, e)).ToArray();

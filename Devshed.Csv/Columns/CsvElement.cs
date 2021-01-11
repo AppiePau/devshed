@@ -183,12 +183,12 @@
         /// <summary>
         /// Executed each time the cell/value is written to a file.
         /// </summary>
-        /// <param name="defintion"></param>
-        /// <param name="value"></param>
-        /// <param name="formattingCulture"></param>
-        /// <param name="formatter"></param>
-        /// <returns></returns>
-        protected virtual string OnRender(ICsvDefinition defintion, TResult value, CultureInfo formattingCulture, IStringFormatter formatter)
+        /// <param name="defintion"> The CSV definition. </param>
+        /// <param name="value"> The value to render. </param>
+        /// <param name="culture"> the culture to render in. </param>
+        /// <param name="formatter"> The formatter to use for rendering the value into the cell. </param>
+        /// <returns>A string that can be directly written into the CSV file. </returns>
+        protected virtual string OnRender(ICsvDefinition defintion, TResult value, CultureInfo culture, IStringFormatter formatter)
         {
             if (value == null)
             {

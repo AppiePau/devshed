@@ -9,7 +9,7 @@
     using Devshed.Csv.Writing;
 
     /// <summary>
-    /// Supports columns containing multiple values.
+    /// Represents a composite based CSV column. Having multiple columns.
     /// </summary>
     /// <typeparam name="TSource">The type of the source.</typeparam>
     /// <typeparam name="TValue">The type of the value.</typeparam>
@@ -98,16 +98,16 @@
         }
 
         /// <summary>
-        /// Renders the specified element.
+        /// Executed each time the cell/value is written to a file.
         /// </summary>
-        /// <param name="element">The element.</param>
-        /// <param name="defintion">The defintion.</param>
-        /// <param name="culture">The culture.</param>
-        /// <param name="formatter">The formatter.</param>
-        /// <returns></returns>
-        public override string[] Render(ICsvDefinition defintion, TSource element, CultureInfo culture, IStringFormatter formatter)
+        /// <param name="defintion"> The CSV definition. </param>
+        /// <param name="value"> The value to render. </param>
+        /// <param name="culture"> the culture to render in. </param>
+        /// <param name="formatter"> The formatter to use for rendering the value into the cell. </param>
+        /// <returns>A string that can be directly written into the CSV file. </returns>
+        public override string[] Render(ICsvDefinition defintion, TSource value, CultureInfo culture, IStringFormatter formatter)
         {
-            var collection = this.Selector(element);
+            var collection = this.Selector(value);
 
             return this.ProcessElementsByHeaderNames(collection, culture, formatter).ToArray();
         }

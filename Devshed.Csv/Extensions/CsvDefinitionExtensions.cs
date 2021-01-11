@@ -2,6 +2,7 @@
 {
     using System.IO;
 
+    /// <summary>Provided CsvDefinition extension methods.</summary>
     public static class CsvDefinitionExtensions
     {
         /// <summary>

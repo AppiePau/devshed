@@ -4,6 +4,7 @@
     using System.IO;
     using System.Text;
 
+    /// <summary>Reads and converts text to CSV</summary>
     public sealed class CsvTextReader : IDisposable
     {
         private readonly static char[] NewLineCharacters = { '\r', '\n' };
@@ -12,12 +13,17 @@
 
         private readonly StreamReader reader;
 
+        /// <summary>Initializes a new instance of the <see cref="CsvTextReader" /> class.</summary>
+        /// <param name="stream">The stream.</param>
         public CsvTextReader(Stream stream)
         {
             this.reader = new StreamReader(stream);
             this.newLineString = new String(NewLineCharacters);
         }
 
+        /// <summary>Gets a value indicating whether the end of the stream has been reached.</summary>
+        /// <value>
+        ///   <c>true</c> if [end of stream]; otherwise, <c>false</c>.</value>
         public bool EndOfStream
         {
             get
@@ -26,6 +32,8 @@
             }
         }
 
+        /// <summary>Gets the base stream being read from.</summary>
+        /// <value>The base stream.</value>
         public Stream BaseStream
         {
             get
@@ -34,6 +42,8 @@
             }
         }
 
+        /// <summary>Reads the line of text to conver to.</summary>
+        /// <returns>The line of the current position.<br /></returns>
         public string ReadLine()
         {
             var buffer = new StringBuilder();
@@ -62,6 +72,7 @@
             return buffer.ToString().TrimEnd(NewLineCharacters);
         }
 
+        /// <summary>Releases unmanaged and - optionally - managed resources.</summary>
         public void Dispose()
         {
             this.reader.Dispose();

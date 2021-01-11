@@ -12,6 +12,7 @@ namespace Devshed.Csv.Writing
     {
         private IStringFormatter formatter;
 
+        /// <summary>Initializes a new instance of the <see cref="CsvStreamWriter" /> class.</summary>
         public CsvStreamWriter()
         {
             this.formatter = new CsvStringFormatter();

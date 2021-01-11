@@ -4,6 +4,7 @@ namespace Devshed.Csv
     using System.Text;
     using Devshed.Csv.Writing;
 
+    /// <summary>Writes CSV files.</summary>
     public static class CsvWriter
     {
         /// <summary>
@@ -39,7 +40,6 @@ namespace Devshed.Csv
         /// <typeparam name="T"></typeparam>
         /// <param name="definition">The definition.</param>
         /// <param name="rows">The rows.</param>
-        /// <param name="encoding">The encoding.</param>
         /// <returns> A MemoryStream object containing the rendered CSV data.</returns>
         public static MemoryStream CreateStream<T>(CsvDefinition<T> definition, T[] rows)
         {
