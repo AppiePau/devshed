@@ -9,17 +9,15 @@
     <!--*-->
     <authors>Paul Appeldoorn</authors>
     <owners>Paul Appeldoorn</owners>
-    <!--
-    <iconUrl></iconUrl>
--->
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <repository type="git" url="https://github.com/AppiePau/devshed-tools/" />
+    <projectUrl>https://github.com/AppiePau/devshed-tools/</projectUrl>
+    <copyright>Copyright 2021 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>
+    <license type="expression">MIT</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <!--*-->
     <description>Devshed Shared Library</description>
     <!--*-->
-    <license type="expression">MIT</license>
-    <projectUrl>https://github.com/AppiePau/devshed-tools/</projectUrl>
-    <releaseNotes> Shared code for libraries. </releaseNotes>
-    <copyright>Copyright 2021 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>
+    <releaseNotes> Consolidation release to update all packages to version 1.6.1. </releaseNotes>
     <tags>Shared Devshed </tags>
     <dependencies>
       <group targetFramework=".NETFramework3.5"></group>

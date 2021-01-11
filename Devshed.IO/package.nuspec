@@ -9,17 +9,15 @@
     <!--*-->
     <authors>Paul Appeldoorn</authors>
     <owners>Paul Appeldoorn</owners>
-    <!--
-    <iconUrl></iconUrl>
--->
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <repository type="git" url="https://github.com/AppiePau/devshed-tools/" />
+    <projectUrl>https://github.com/AppiePau/devshed-tools/</projectUrl>
+    <copyright>Copyright 2021 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>
+    <license type="expression">MIT</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <!--*-->
     <description>Devshed IO Library</description>
     <!--*-->
-    <license type="expression">MIT</license>
-    <projectUrl>https://github.com/AppiePau/devshed-tools/</projectUrl>
-    <releaseNotes> Added support for reading and writing XLSX files. Requires ClosedXML extension. </releaseNotes>
-    <copyright>Copyright 2018 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>
+    <releaseNotes> Consolidation release to update all packages to version 1.6.1. </releaseNotes>
     <tags>IO Devshed file helpers</tags>
     <dependencies>
       <dependency id="Devshed.Shared" version="1.6.1" />
