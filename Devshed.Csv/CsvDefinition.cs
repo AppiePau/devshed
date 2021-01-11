@@ -14,6 +14,9 @@
 
         private Encoding encoding;
 
+        /// <summary>Initializes a new instance of the <see cref="CsvDefinition{TSource}" /> class.</summary>
+        /// <param name="encoding">The encoding.</param>
+        /// <param name="columns">The columns.</param>
         public CsvDefinition(Encoding encoding, params IColumDefinition<TSource>[] columns) : base(columns)
         {
             Requires.IsNotNull(columns, "columns");

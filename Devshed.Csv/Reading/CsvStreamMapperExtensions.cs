@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Text;
 
+    /// <summary>Provides stream mapper extension methods.</summary>
     public static class CsvStreamMapperExtensions
     {
         /// <summary>
@@ -83,22 +84,25 @@
             return FromStream<TRow>(mapper, stream, encoding, false);
         }
 
-        /// <summary>
-        /// Reads the CSV data from a stream and maps it to the specified objecttype array.
-        /// </summary>
+        /// <summary>Reads the CSV data from a stream and maps it to the specified objecttype array.</summary>
         /// <typeparam name="TRow">The type to materialize to.</typeparam>
         /// <param name="mapper">The CSV mapper.</param>
         /// <param name="stream">The stream.</param>
         /// <param name="encoding">The encoding.</param>
         /// <param name="detectEncoding">if set to <c>true</c> encoding will be automaticly detected.</param>
-        /// <returns>
-        /// An array of objects.
-        /// </returns>
+        /// <returns>An array of objects.</returns>
         public static TRow[] FromStream<TRow>(this TableDataMapper<TRow> mapper, Stream stream, Encoding encoding, bool detectEncoding) where TRow : new()
         {
             return FromStreamVerbose(mapper, stream, encoding, detectEncoding).Select(e => e.Row).ToArray();
         }
 
+        /// <summary>Reads the CSV data from a stream and maps it to the specified objecttype array.</summary>
+        /// <typeparam name="TRow">The type of the row.</typeparam>
+        /// <param name="mapper">The mapper.</param>
+        /// <param name="stream">The stream.</param>
+        /// <param name="encoding">The encoding.</param>
+        /// <param name="detectEncoding">if set to <c>true</c> [detect encoding].</param>
+        /// <returns>The rows wrapped with the original lines.</returns>
         public static CsvLine<TRow>[] FromStreamVerbose<TRow>(this TableDataMapper<TRow> mapper, Stream stream, Encoding encoding, bool detectEncoding) where TRow : new()
         {
             var reader = new CsvStreamReader(stream, encoding, detectEncoding)

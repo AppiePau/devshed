@@ -4,6 +4,7 @@ namespace Devshed.Csv.Reading
     using System.Linq;
     using System.Text;
 
+    /// <summary>Provides CsvStreamLineReader extension methods.</summary>
     public static class CsvStreamLineReaderExtensions
     {
         /// <summary>

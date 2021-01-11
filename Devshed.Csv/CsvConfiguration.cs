@@ -2,6 +2,7 @@
 {
     using System.Text;
 
+    /// <summary>Default configuration for processing CSV data.</summary>
     public static class CsvConfiguration
     {
         /// <summary>

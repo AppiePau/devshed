@@ -20,10 +20,9 @@
 
         private readonly Func<TValue, IColumDefinition<TValue>> converter;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DynamicCsvColumn{TSource, TValue}"/> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="DynamicCsvColumn{TSource, TValue}" /> class.</summary>
         /// <param name="selector">The selector.</param>
+        /// <param name="converter"> A delegate on how to convert the value into a string. </param>
         /// <param name="headers">The headers.</param>
         public DynamicCsvColumn(
             Expression<Func<TSource, IEnumerable<TValue>>> selector,
@@ -35,6 +34,10 @@
             this.converter = converter;
             this.AllowUndefinedColumnsInCollection = false;
         }
+        /// <summary>Initializes a new instance of the <see cref="DynamicCsvColumn{TSource, TValue}" /> class.</summary>
+        /// <param name="selector">The selector.</param>
+        /// <param name="converter">The converter.</param>
+        /// <param name="headers">The headers.</param>
         public DynamicCsvColumn(
             Expression<Func<TSource, IEnumerable<TValue>>> selector,
            Func<TValue, IColumDefinition<TValue>> converter,
@@ -98,16 +101,16 @@
         }
 
         /// <summary>
-        /// Renders the specified element.
+        /// Executed each time the cell/value is written to a file.
         /// </summary>
-        /// <param name="defintion">The CSV defintion.</param>
-        /// <param name="element">The rendered element.</param>
-        /// <param name="culture">The culture. </param>
-        /// <param name="formatter">The formatter. </param>
-        /// <returns></returns>
-        public override string[] Render(ICsvDefinition defintion, TSource element, CultureInfo culture, IStringFormatter formatter)
+        /// <param name="defintion"> The CSV definition. </param>
+        /// <param name="value"> The value to render. </param>
+        /// <param name="culture"> the culture to render in. </param>
+        /// <param name="formatter"> The formatter to use for rendering the value into the cell. </param>
+        /// <returns>A string that can be directly written into the CSV file. </returns>
+        public override string[] Render(ICsvDefinition defintion, TSource value, CultureInfo culture, IStringFormatter formatter)
         {
-            var collection = this.Selector(element);
+            var collection = this.Selector(value);
 
             return (from item in collection
                     let column = converter(item)

@@ -37,9 +37,17 @@
             this.HasFieldsEnclosedInQuotes = true;
         }
 
+        /// <summary>Gets or sets the element delimiter.</summary>
+        /// <value>The element delimiter.</value>
         public string ElementDelimiter { get; set; }
+        /// <summary>Gets or sets a value indicating whether this instance has fields enclosed in quotes.</summary>
+        /// <value>
+        ///   <c>true</c> if this instance has fields enclosed in quotes; otherwise, <c>false</c>.</value>
         public bool HasFieldsEnclosedInQuotes { get; set; }
 
+        /// <summary>Gets a value indicating whether the stream has ended.</summary>
+        /// <value>
+        ///   <c>true</c> if [end of stream]; otherwise, <c>false</c>.</value>
         public bool EndOfStream
         {
             get
@@ -48,12 +56,17 @@
             }
         }
 
+        /// <summary>Releases unmanaged and - optionally - managed resources.</summary>
         public void Dispose()
         {
             this.parser.Dispose();
         }
 
 
+        /// <summary>Reads the CSV line.</summary>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public CsvSourceLine ReadLine()
         {
             this.parser.SetDelimiters(this.ElementDelimiter);
