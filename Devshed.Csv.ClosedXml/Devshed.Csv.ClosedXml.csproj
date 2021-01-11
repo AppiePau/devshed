@@ -26,6 +26,7 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <NoWarn>NU5128</NoWarn>
     <DocumentationFile>bin\Debug\Devshed.Csv.ClosedXml.xml</DocumentationFile>
+    <NoWarn>NU5128</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
