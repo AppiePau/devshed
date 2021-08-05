@@ -136,7 +136,7 @@
     <value>De datum moet eerder of gelijk zijn aan '{0}'.</value>
   </data>
   <data name="DateMustBeLaterThan" xml:space="preserve">
-    <value>De datum moet latyer zijn dan '{0}'.</value>
+    <value>De datum moet later zijn dan '{0}'.</value>
   </data>
   <data name="DoesNotContainDigit" xml:space="preserve">
     <value>Wachtwoord heeft geen getallen.</value>
