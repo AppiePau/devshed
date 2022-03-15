@@ -24,7 +24,7 @@
         #endregion
 
         [TestMethod]
-        public void Build_OneTestRow_CreatesCsv()
+        public void Build_OneTestRow_CreatesXlsx()
         {
             var result = NameDefinition().WriteAsXlsx(oneRow);
 
@@ -37,7 +37,7 @@
 
 
         [TestMethod]
-        public void Build_TwoTestRowsWithHeader_CreatesCsv()
+        public void Build_TwoTestRowsWithHeader_CreatesXlsx()
         {
             var result = FullDefinitionWithHeaders().WriteAsXlsx(twoRows);
             using (var s = new FileStream(".\\Test_" + DateTime.Now.Ticks + ".xlsx", FileMode.CreateNew))

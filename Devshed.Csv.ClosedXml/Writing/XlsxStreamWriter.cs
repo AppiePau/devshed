@@ -34,6 +34,7 @@ namespace Devshed.Csv.ClosedXml
         public void Write<T>(Stream stream, T[] rows, CsvDefinition<T> definition)
         {
             using (var document = SpreadsheetDocument.Create(stream, SpreadsheetDocumentType.Workbook))
+            //var document = SpreadsheetDocument.Create(stream, SpreadsheetDocumentType.Workbook);
             {
                 WorkbookPart workbookPart = document.AddWorkbookPart();
                 workbookPart.Workbook = new Workbook();
@@ -60,10 +61,10 @@ namespace Devshed.Csv.ClosedXml
                     rowid++;
                 }
 
-                workbookPart.Workbook.Save(stream);
+                workbookPart.Workbook.Save();
             }
 
-            //stream.Flush();
+            stream.Flush();
             stream.Position = 0;
         }
 

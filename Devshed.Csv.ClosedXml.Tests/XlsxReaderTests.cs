@@ -22,19 +22,9 @@
         #endregion
 
         [TestMethod]
-        public void Build_OneTestRow_CreatesCsv()
+        public void Build_OneTestRow_CreatesXlsx()
         {
             var stream = FullDefinition().WriteAsXlsx(twoRows);
-
-            //stream.Flush();
-
-            //stream.Position = 0;
-
-
-            //using (var s = new FileStream("D:\\" + DateTime.Now.Ticks + ".xlsx", FileMode.CreateNew))
-            //{
-            //    s.Write(stream.GetBytes(), 0, (int)stream.Length);
-            //}
 
             stream.Position = 0;
             var result = FullDefinition().ReadXlsx(stream);
