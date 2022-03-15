@@ -41,3 +41,7 @@ No longer supported or maintained.
 *Devshed.Web(Forms)*
 
 No longer supported or maintained.
+
+*Devshed.Imaging*
+
+No longer supported or maintained.
