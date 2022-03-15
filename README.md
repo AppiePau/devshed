@@ -1,5 +1,5 @@
-# devshed-tools
-*Devshed Tooling 2.0 (.NET 6.0 Edition)*
+# devshed-tools 2.0 beta-1
+*Devshed Tooling 2.0 (beta version) (.NET 6.0 Edition)*
 
 Devshed Tooling (currently for web) contains helper classes that simplify common scenarios that I come across during my developing days. Not much is documented at the moment, but will soon commence.
 
@@ -24,10 +24,15 @@ Get users from the database as an array of UserExportModel and render it into a 
 
   return new FileContainer(this.fileTypes.GetMimeType(".CSV"), stream);
 ```
+For more example, [see documentation](Documentation/Documentation.md).
 
 *Devshed.IO*
 
 Stream extensions, a FileContainer and file-type support to pack file downloads from service layers.
+
+*Devshed.Shared*
+
+Shared functionality across the Devshed and useful on its own. Expression name resolver, GetBytes() and GetBytesWithoutBom() bits from a stream. String to byte array extensions with various encodings.
 
 *Devshed.Mvc*
 
@@ -36,8 +41,3 @@ No longer supported or maintained.
 *Devshed.Web(Forms)*
 
 No longer supported or maintained.
-
-*Devshed.Shared*
-
-Shared functionality across the Devshed and useful on its own. Expression name resolver, GetBytes() and GetBytesWithoutBom() bits from a stream. String to byte array extensions with various encodings.
-
