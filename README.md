@@ -5,7 +5,7 @@ Devshed Tooling is my personal pet project to keep some handy tools at my dispos
 
 *Devshed.Csv*
 
-Powerfull and descriptive CSV processing library without any compromise to your code. See the [documentation](Documentation/Documentation.md) for the current 2.0 release!
+Powerfull and descriptive CSV processing library without any compromise to your code. See the [documentation](Documentation/Documentation_2.0.md) for the current 2.0 release!
 
 With the use of ClosedXML it also can generate and read XLSX files!
 
@@ -27,7 +27,7 @@ Get users from the database as an array of UserExportModel and render it into a 
 
   return new FileContainer(this.fileTypes.GetMimeType(".CSV"), stream);
 ```
-For more example, [see documentation](Documentation/Documentation.md).
+For more examples, [see documentation](Documentation/Documentation_2.0.md).
 
 *Devshed.IO*
 
