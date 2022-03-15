@@ -1,7 +1,8 @@
 namespace Devshed.IO
 {
     using Devshed.Shared;
-    using Microsoft.Win32;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.StaticFiles;
 
     /// <summary> Looks up the MIME type from the registry. </summary>
     public sealed class RegistryFileTypeProvider : IFileTypeProvider
@@ -15,19 +16,16 @@ namespace Devshed.IO
         {
             Requires.StartsWith(extension, ".", "extension");
 
-            var registryKey = this.GetExtensionKey(extension);
+            var provider = new FileExtensionContentTypeProvider();
 
-            if (registryKey != null && registryKey.GetValue("Content Type") != null)
+            string contentType;
+            if (!provider.TryGetContentType(extension, out contentType))
             {
-                return new FileType(extension, registryKey.GetValue("Content Type").ToString());
+                contentType = "application/octet-stream";
             }
 
-            return new FileType(extension, "application/octet-stream");
-        }
 
-        private RegistryKey GetExtensionKey(string extension)
-        {
-            return Registry.ClassesRoot.OpenSubKey(extension);
+            return new FileType(extension, contentType);
         }
     }
 }
