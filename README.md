@@ -10,15 +10,18 @@ Powerfull and descriptive CSV processing library without any compromise to your 
 With the use of ClosedXML you can generate or read XLSX files!
 
 Create a definition of the import/export model:
+
 ```cs
 var definition = new CsvDefinition<UserExportModel>(
      new TextCsvColumn<UserExportModel>(user => user.UserId),
      new TextCsvColumn<UserExportModel>(user => user.Email) { HeaderName = Resources.Users.Email },
      new TextCsvColumn<UserExportModel>(user => user.Fullname) { HeaderName = Resources.Users.Fullname });
 ```
+
 Get users from the database as an array of UserExportModel and render it into a stream:
+
 ```cs
-  var users = this.GetUsersFromDatabase();
+  var users = this.GetUsersFromDatabase(); //// Returns an UserExportModel[] array of objects.
 
   var stream = CsvWriter.CreateStream(parameters.Definition, users);
 
