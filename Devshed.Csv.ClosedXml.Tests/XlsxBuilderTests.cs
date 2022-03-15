@@ -1,6 +1,7 @@
 ﻿namespace Devshed.Csv.ClosedXml.Tests
 {
     using Devshed.Shared;
+    using Devshed.Csv;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
     using System.IO;

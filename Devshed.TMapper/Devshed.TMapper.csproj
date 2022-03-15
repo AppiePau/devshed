@@ -1,65 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- <Nullable>enable</Nullable> -->
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="CsvHelper" Version="7.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Columns\ArrayCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Columns\BooleanCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Columns\CsvElement.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Columns\CurrencyCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Columns\DateCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Columns\DecimalCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Columns\NumberCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Columns\ObjectCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Columns\TextCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="CsvDefinition.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Extensions\CsvDefinitionExtensions.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Reading\CsvStreamLineReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Reading\CsvStreamLineReaderExtensions.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Reading\CsvStreamMapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Reading\CsvStreamMapperExtensions.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Reading\CsvStreamReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Reading\CsvTextReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
 </Project>

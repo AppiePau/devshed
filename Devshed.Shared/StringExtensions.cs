@@ -25,14 +25,6 @@
             return Encoding.UTF8.GetBytes(value);
         }
 
-        /// <summary> Returns the string as an UTF7 byte array. </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static byte[] GetUTF7Bytes(this string value)
-        {
-            return Encoding.UTF7.GetBytes(value);
-        }
-
         /// <summary> Returns the string as an ASCII byte array. </summary>
         /// <param name="value"> The string value to convert. </param>
         /// <returns></returns>

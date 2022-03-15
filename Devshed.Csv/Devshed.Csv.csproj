@@ -1,155 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7CC76CCC-FD7F-4671-8461-0D517652D6B7}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Devshed.Csv</RootNamespace>
-    <AssemblyName>Devshed.CSV</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- <Nullable>enable</Nullable> -->
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <NoWarn>NU5128</NoWarn>
-    <DocumentationFile>bin\Debug\Devshed.CSV.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>bin\Release\Devshed.CSV.xml</DocumentationFile>
-    <NoWarn>NU5128</NoWarn>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\Devshed.Shared\Devshed.Shared.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Columns\BooleanCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Columns\ArrayCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Columns\ColumnDataType.cs" />
-    <Compile Include="Columns\DynamicCsvColumn.cs" />
-    <Compile Include="Columns\CompositeCsvColumn.cs" />
-    <Compile Include="Columns\ICsvColumn.cs" />
-    <Compile Include="Columns\TimeCsvColumn.cs" />
-    <Compile Include="Columns\TypedCsvColumn.cs" />
-    <Compile Include="Columns\CsvElement.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Columns\CurrencyCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Columns\DateCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Columns\DecimalCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Columns\NumberCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Columns\ObjectCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Columns\TextCsvColumn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="CsvConfiguration.cs" />
-    <Compile Include="ICsvDefinition.cs" />
-    <Compile Include="Reading\CsvLine.cs" />
-    <Compile Include="Reading\CsvRawLine.cs" />
-    <Compile Include="Reading\CsvSourceLine.cs" />
-    <Compile Include="Reading\CsvStreamMapperException.cs" />
-    <Compile Include="Reading\DuplicateHeaderException.cs" />
-    <Compile Include="Reading\ElementProcessing.cs" />
-    <Compile Include="Reading\HeaderCollection.cs" />
-    <Compile Include="Reading\IStreamLineReader.cs" />
-    <Compile Include="TableDefinition.cs" />
-    <Compile Include="Writing\CsvStreamWriter.cs" />
-    <Compile Include="CsvWriter.cs" />
-    <Compile Include="CsvReader.cs" />
-    <Compile Include="Extensions\CsvDefinitionExtensions.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="CsvDefinition.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Reading\CsvStreamLineReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Reading\CsvStreamLineReaderExtensions.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Reading\CsvStreamMapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Reading\CsvStreamMapperExtensions.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Reading\CsvStreamReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Reading\CsvTextReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Writing\CsvString.cs" />
-    <Compile Include="Writing\ICsvStreamWriter.cs" />
-    <Compile Include="Writing\ICsvString.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Devshed.Shared\Devshed.Shared.csproj">
-      <Project>{00b25a05-00d8-4419-9127-87512805cb3e}</Project>
-      <Name>Devshed.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="package.nuspec">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir).nuget\nuget.exe" pack $(ProjectPath) -Properties Configuration=$(ConfigurationName)
-mkdir $(SolutionDir)dist\$(ConfigurationName)
-copy $(TargetDir)*.nupkg $(SolutionDir)dist\$(ConfigurationName)</PostBuildEvent>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
-  <PropertyGroup>
-    <PreBuildEvent>del $(TargetDir)*.nupkg</PreBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

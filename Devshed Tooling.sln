@@ -3,13 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Web", "Devshed.Web\Devshed.Web.csproj", "{F9430E84-7285-4F78-AD46-EC70C5D62BB1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Web.Tests", "Devshed.Web.Tests\Devshed.Web.Tests.csproj", "{DFE0B205-CFC5-466A-B459-970FBFB00246}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Shared", "Devshed.Shared\Devshed.Shared.csproj", "{00B25A05-00D8-4419-9127-87512805CB3E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Mvc", "Devshed.Mvc\Devshed.Mvc.csproj", "{0D79B312-54B7-45DB-8B4B-77CAA5951F25}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Csv.Tests", "Devshed.CSV.Tests\Devshed.Csv.Tests.csproj", "{EE6CA37D-B61B-40DC-A3DD-802EE108C503}"
 EndProject
@@ -25,17 +19,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\Devshed.Csv 1.2.pdf = Documentation\Devshed.Csv 1.2.pdf
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Imaging", "Devshed.Imaging\Devshed.Imaging.csproj", "{0821CEF1-28E3-4C4F-BAA9-654099CBB278}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assemblies", "Assemblies", "{E8D90D47-01B2-467E-9E14-6FAC9D9B98F6}"
 	ProjectSection(SolutionItems) = preProject
 		Assemblies\EXIFextractor.dll = Assemblies\EXIFextractor.dll
 		Assemblies\EXIFextractor.pdb = Assemblies\EXIFextractor.pdb
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Imaging.Tests", "Devshed.Imaging.Tests\Devshed.Imaging.Tests.csproj", "{E8E7F239-1499-4796-B233-284A61DF8889}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Imaging.TestConsole", "Devshed.Imaging.TestConsole\Devshed.Imaging.TestConsole.csproj", "{3AF66ACE-4438-45A3-BF74-80916763B716}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8D382B3B-1E77-4CEB-B808-8AA3970391AA}"
 EndProject
@@ -61,10 +49,6 @@ Global
 		{F9430E84-7285-4F78-AD46-EC70C5D62BB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9430E84-7285-4F78-AD46-EC70C5D62BB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9430E84-7285-4F78-AD46-EC70C5D62BB1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFE0B205-CFC5-466A-B459-970FBFB00246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFE0B205-CFC5-466A-B459-970FBFB00246}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DFE0B205-CFC5-466A-B459-970FBFB00246}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFE0B205-CFC5-466A-B459-970FBFB00246}.Release|Any CPU.Build.0 = Release|Any CPU
 		{00B25A05-00D8-4419-9127-87512805CB3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00B25A05-00D8-4419-9127-87512805CB3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00B25A05-00D8-4419-9127-87512805CB3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -89,18 +73,6 @@ Global
 		{A12249DB-53E4-4B35-8512-BD79AA7EFE49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A12249DB-53E4-4B35-8512-BD79AA7EFE49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A12249DB-53E4-4B35-8512-BD79AA7EFE49}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0821CEF1-28E3-4C4F-BAA9-654099CBB278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0821CEF1-28E3-4C4F-BAA9-654099CBB278}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0821CEF1-28E3-4C4F-BAA9-654099CBB278}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0821CEF1-28E3-4C4F-BAA9-654099CBB278}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E8E7F239-1499-4796-B233-284A61DF8889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E8E7F239-1499-4796-B233-284A61DF8889}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E8E7F239-1499-4796-B233-284A61DF8889}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E8E7F239-1499-4796-B233-284A61DF8889}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3AF66ACE-4438-45A3-BF74-80916763B716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3AF66ACE-4438-45A3-BF74-80916763B716}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3AF66ACE-4438-45A3-BF74-80916763B716}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3AF66ACE-4438-45A3-BF74-80916763B716}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC15975A-7CF0-4936-91C8-7CFE2A079AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC15975A-7CF0-4936-91C8-7CFE2A079AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC15975A-7CF0-4936-91C8-7CFE2A079AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -114,11 +86,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{DFE0B205-CFC5-466A-B459-970FBFB00246} = {8D382B3B-1E77-4CEB-B808-8AA3970391AA}
 		{EE6CA37D-B61B-40DC-A3DD-802EE108C503} = {8D382B3B-1E77-4CEB-B808-8AA3970391AA}
 		{A12249DB-53E4-4B35-8512-BD79AA7EFE49} = {8D382B3B-1E77-4CEB-B808-8AA3970391AA}
-		{E8E7F239-1499-4796-B233-284A61DF8889} = {8D382B3B-1E77-4CEB-B808-8AA3970391AA}
-		{3AF66ACE-4438-45A3-BF74-80916763B716} = {8D382B3B-1E77-4CEB-B808-8AA3970391AA}
 		{F85C0FAC-F758-47B5-854C-8D3ACFA7C1F2} = {8D382B3B-1E77-4CEB-B808-8AA3970391AA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

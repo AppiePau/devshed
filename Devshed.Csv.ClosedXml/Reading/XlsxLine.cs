@@ -1,7 +1,7 @@
 ﻿namespace Devshed.Csv.ClosedXml.Reading
 {
-    using ClosedXML.Excel;
     using System.Collections.Generic;
+    using DocumentFormat.OpenXml.Spreadsheet;
 
     /// <summary>
     /// Represent a line in the Excel file.
@@ -9,14 +9,14 @@
     /// <typeparam name="TRow"></typeparam>
     public sealed class XlsxLine<TRow>
     {
-        private readonly IXLRow line;
+        private readonly Row line;
 
         /// <summary>
         /// Initialize a line.
         /// </summary>
         /// <param name="line"></param>
         /// <param name="row"></param>
-        public XlsxLine(IXLRow line, TRow row)
+        public XlsxLine(Row line, TRow row)
         {
             this.line = line;
             this.Row = row;
@@ -29,7 +29,7 @@
         {
             get
             {
-                return this.line.RowNumber();
+                return checked((int)this.line.RowIndex.Value);
             }
         }
 

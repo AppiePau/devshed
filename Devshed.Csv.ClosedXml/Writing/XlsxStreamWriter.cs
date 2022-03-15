@@ -1,10 +1,7 @@
-﻿using ClosedXML.Excel;
-using Devshed.Csv.Writing;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using Devshed.Csv.Writing;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace Devshed.Csv.ClosedXml
 {
@@ -15,19 +12,15 @@ namespace Devshed.Csv.ClosedXml
     {
         private readonly string sheetName;
 
-        private readonly SaveOptions options;
-
         private readonly IStringFormatter formatter;
 
         /// <summary>
         /// Inititize the writer.
         /// </summary>
         /// <param name="sheetName"> The sheet name. </param>
-        /// <param name="options"> Saving options. </param>
-        public XlsxStreamWriter(string sheetName = "Document", SaveOptions options = null)
+        public XlsxStreamWriter(string sheetName = "Document")
         {
             this.sheetName = sheetName;
-            this.options = options;
             this.formatter = new XlsxStringFormatter();
         }
 
@@ -40,104 +33,112 @@ namespace Devshed.Csv.ClosedXml
         /// <param name="definition"></param>
         public void Write<T>(Stream stream, T[] rows, CsvDefinition<T> definition)
         {
-            using (var workbook = new XLWorkbook())
+            using (var document = SpreadsheetDocument.Create(stream, SpreadsheetDocumentType.Workbook))
             {
-                var worksheet = workbook.Worksheets.Add(sheetName);
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
+
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                var sheetData = new SheetData();
+                worksheetPart.Worksheet = new Worksheet(sheetData);
+
+                Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
+                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Sheet1" };
+
+                sheets.Append(sheet);
 
                 var rowid = 1;
                 if (definition.FirstRowContainsHeaders)
                 {
-                    this.AddHeader<T>(worksheet, definition, rows, rowid);
+                    this.AddHeader<T>(sheetData, definition, rows, rowid);
                     rowid++;
                 }
 
                 foreach (var row in rows)
                 {
-                    this.AddLine<T>(worksheet, definition, row, rowid);
+                    this.AddLine<T>(sheetData, definition, row, rowid);
                     rowid++;
                 }
 
-                if (options != null)
-                {
-                    workbook.SaveAs(stream, options);
-                }
-                else
-                {
-                    workbook.SaveAs(stream);
-                }
+                workbookPart.Workbook.Save(stream);
             }
+
+            //stream.Flush();
+            stream.Position = 0;
         }
 
-        private void AddLine<T>(IXLWorksheet worksheet, CsvDefinition<T> definition, T item, int rowid)
+        private void AddLine<T>(SheetData worksheet, CsvDefinition<T> definition, T item, int rowid)
         {
-            var colid = 1;
+            //var colid = 1;
+
+            Row headerRow = new Row();
+
             foreach (var column in definition.Columns)
             {
                 foreach (var value in column.Render(definition, item, definition.FormattingCulture, formatter))
                 {
-                    var cell = worksheet.Row(rowid).Cell(colid);
+                    //var cell = worksheet.Row(rowid).Cell(colid);
+                    // cell.DataType = GetDataType(column);
+                    // cell.Value = value;
+                    // cell.Style.Alignment.WrapText = false;
+
+                    Cell cell = new Cell();
                     cell.DataType = GetDataType(column);
-                    cell.Value = value;
-                    cell.Style.Alignment.WrapText = false;
-
-                    //if (cell.DataType == XLDataType.Text && !value.StartsWith("'"))
-                    //{
-                    //    cell.Value = "'" + value;
-                    //}
-                    //else
-                    //{
-                    //    cell.Value = value;
-                    //}
-
-                    colid++;
+                    cell.CellValue = new CellValue(value);
+                    headerRow.AppendChild(cell);
                 }
             }
+
+            worksheet.AppendChild(headerRow);
         }
 
-        private static XLDataType GetDataType<T>(ICsvColumn<T> column)
+        private static CellValues GetDataType<T>(ICsvColumn<T> column)
         {
             switch (column.DataType)
             {
                 case ColumnDataType.Number:
                 case ColumnDataType.Decimal:
-                    return XLDataType.Number;
+                    return CellValues.Number;
 
                 case ColumnDataType.DateTime:
-                    return XLDataType.DateTime;
+                    return CellValues.Date;
 
                 case ColumnDataType.Boolean:
-                    return XLDataType.Boolean;
+                    return CellValues.Boolean;
 
                 case ColumnDataType.Time:
                     //return XLDataType.Text;
-                    return XLDataType.TimeSpan;
+                    return CellValues.Date;
 
                 case ColumnDataType.Currency:
-                    return XLDataType.Number;
+                    return CellValues.Number;
 
                 case ColumnDataType.Text:
                 case ColumnDataType.Composite:
                 case ColumnDataType.StrongTyped:
                 case ColumnDataType.Object:
                 case ColumnDataType.Dynamic:
-                    return XLDataType.Text;
+                    return CellValues.String;
 
                 default:
-                    return XLDataType.Text;
+                    return CellValues.String;
             }
         }
 
-        private void AddHeader<T>(IXLWorksheet worksheet, CsvDefinition<T> definition, T[] rows, int rowid)
+        private void AddHeader<T>(SheetData worksheet, CsvDefinition<T> definition, T[] rows, int rowid)
         {
             var headers = definition.Columns.SelectMany(column => GetHeaderNames<T>(definition, column, rows)).ToArray();
-            var row = worksheet.Row(rowid);
-            var colid = 1;
+            Row headerRow = new Row();
 
             foreach (var header in headers)
             {
-                row.Cell(colid).Value = header;
-                colid++;
+                Cell cell = new Cell();
+                cell.DataType = CellValues.String;
+                cell.CellValue = new CellValue(header.Name);
+                headerRow.AppendChild(cell);
             }
+
+            worksheet.AppendChild(headerRow);
         }
 
         private static HeaderCollection GetHeaderNames<T>(CsvDefinition<T> definition, ICsvColumn<T> column, T[] rows)

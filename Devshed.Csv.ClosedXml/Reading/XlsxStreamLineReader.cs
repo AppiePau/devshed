@@ -1,18 +1,21 @@
 ﻿namespace Devshed.Csv.Reading
 {
-    using ClosedXML.Excel;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text;
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.Spreadsheet;
 
     /// <summary> Reads s stream as CSV content. </summary>
     public sealed class XlsxStreamReader : IStreamReader
     {
-        private readonly IXLWorkbook workbook;
-        private readonly IXLWorksheet sheet;
-        private readonly IEnumerator<IXLRow> rows;
+        //private readonly WorksheetPart workbook;
+        private readonly SpreadsheetDocument document;
+        private readonly WorksheetPart worksheetPart;
+        private readonly SheetData sheetData;
+        private readonly IEnumerator<Row> rows;
       
         /// <summary>
         /// Reads a stream and detects (if specified) the encoding, but falls back to the specified enconding if not detection failed.
@@ -20,9 +23,10 @@
         /// <param name="stream"> The stream to read. </param>
         public XlsxStreamReader(Stream stream)
         {
-            this.workbook = new XLWorkbook(stream);
-            this.sheet = workbook.Worksheet(1);
-            this.rows = sheet.RowsUsed().GetEnumerator();
+            this.document = SpreadsheetDocument.Open(stream, false);
+            this.worksheetPart = document.WorkbookPart.WorksheetParts.First();
+            this.sheetData = worksheetPart.Worksheet.Elements<SheetData>().First();
+            this.rows = sheetData.Elements<Row>().GetEnumerator();
             this.EndOfStream = !this.rows.MoveNext();
         }
 
@@ -39,7 +43,7 @@
         /// </summary>
         public void Dispose()
         {
-            this.workbook.Dispose();
+            this.document.Dispose();
         }
       
         /// <summary>
@@ -48,8 +52,8 @@
         /// <returns></returns>
         public CsvSourceLine ReadLine()
         {
-            var elements = this.rows.Current.Cells().Select(e => e.Value?.ToString() ?? string.Empty).ToArray();
-            var rowNumber = this.rows.Current.RowNumber();
+            var elements = this.rows.Current.Elements<Cell>().Select(e => e.CellValue?.ToString() ?? string.Empty).ToArray();
+            var rowNumber = checked((int)this.rows.Current.RowIndex.Value);
 
             this.EndOfStream = !this.rows.MoveNext();
 

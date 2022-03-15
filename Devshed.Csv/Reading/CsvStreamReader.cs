@@ -59,7 +59,7 @@
         /// <summary>Releases unmanaged and - optionally - managed resources.</summary>
         public void Dispose()
         {
-            this.parser.Dispose();
+            this.parser.Close();
         }
 
 
