@@ -190,7 +190,7 @@ Accepts nullable decimal values and formats them to the current culture currency
 new TimeCsvColumn<TSource>(e => e.TProperty)
 {
     Format = value => string.Format("{0:c4}", value ?? 0), 
-    HeaderName = "Overruled Name" ",
+    HeaderName = "Overruled Name",
     Format = e => e != null
                ? string.Format("{0:00}:{1:00}", e.Value.Hours, e.Value.Minutes)
          : string.Empty
