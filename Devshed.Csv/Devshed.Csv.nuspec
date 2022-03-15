@@ -4,7 +4,7 @@
     <!--*-->
     <id>Devshed.CSV</id>
     <!--*-->
-    <version>1.6.1</version>
+    <version>2.0.0-beta-1</version>
     <title>Devshed CSV</title>
     <!--*-->
     <authors>Paul Appeldoorn</authors>
@@ -21,13 +21,13 @@
     <tags>XLSX ClosedXML CSV Devshed mapper tables</tags>
 
     <dependencies>
-      <group targetFramework=".NETFramework3.5">
-        <dependency id="Devshed.Shared" version="1.6.1" />
+      <group targetFramework="net6.0">
+        <dependency id="Devshed.Shared" version="2.0.0-beta-1" />
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\$configuration$\$id$.pdb" target="lib\net35\" />
+    <file src="bin\$configuration$\net6.0\$id$.pdb" target="lib\net6.0\" />
     <!--<file src="bin\$configuration$\$id$.xml" target="lib\net35\" />-->
   </files>
 </package>

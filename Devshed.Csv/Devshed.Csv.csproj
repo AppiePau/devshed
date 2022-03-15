@@ -4,6 +4,19 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <!-- <Nullable>enable</Nullable> -->
+
+    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionSuffix>beta-1</VersionSuffix>
+    <AssemblyVersion>2.0.0</AssemblyVersion> <!-- Do not change in favor of assembly binding. -->
+    <AssemblyTitle>Devshed CSV Library</AssemblyTitle>
+    <Description>Reads and writes CSV files using definition mappers.</Description>
+    <PackageReleaseNotes>https://github.com/AppiePau/devshed-tools</PackageReleaseNotes>
+    <PackageId>Devshed.Csv</PackageId>
+    <PackageTags>Devshed;tools;csv;Excel</PackageTags>
+    <!-- <PackageIcon>simpleinjector.png</PackageIcon> -->
+    <PackageProjectUrl>https://github.com/AppiePau/devshed-tools</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>Copyright Apula IT by Paul Appeldoorn 2022.</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,4 +26,10 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
+  <!-- <Target Name="CopyPackage" AfterTargets="Pack">
+    <Copy
+      SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg"
+      DestinationFolder="\\myshare\packageshare\"
+      />
+  </Target> -->
 </Project>

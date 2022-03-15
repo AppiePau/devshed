@@ -3,6 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{15F8B3A5-C9FB-46C5-9792-60E884B3AB8E}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Devshed.Csv 1.2.docx = Documentation\Devshed.Csv 1.2.docx
+		Documentation\Devshed.Csv 1.2.pdf = Documentation\Devshed.Csv 1.2.pdf
+		Documentation\Documentation_2.0.md = Documentation\Documentation_2.0.md
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Shared", "Devshed.Shared\Devshed.Shared.csproj", "{00B25A05-00D8-4419-9127-87512805CB3E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Csv.Tests", "Devshed.CSV.Tests\Devshed.Csv.Tests.csproj", "{EE6CA37D-B61B-40DC-A3DD-802EE108C503}"
@@ -12,18 +19,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.IO", "Devshed.IO\Devshed.IO.csproj", "{F61ECC12-EDBA-4456-AF94-AE3864873ABD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Shared.Tests", "Devshed.Shared.Tests\Devshed.Shared.Tests.csproj", "{A12249DB-53E4-4B35-8512-BD79AA7EFE49}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{15F8B3A5-C9FB-46C5-9792-60E884B3AB8E}"
-	ProjectSection(SolutionItems) = preProject
-		Documentation\Devshed.Csv 1.2.docx = Documentation\Devshed.Csv 1.2.docx
-		Documentation\Devshed.Csv 1.2.pdf = Documentation\Devshed.Csv 1.2.pdf
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assemblies", "Assemblies", "{E8D90D47-01B2-467E-9E14-6FAC9D9B98F6}"
-	ProjectSection(SolutionItems) = preProject
-		Assemblies\EXIFextractor.dll = Assemblies\EXIFextractor.dll
-		Assemblies\EXIFextractor.pdb = Assemblies\EXIFextractor.pdb
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8D382B3B-1E77-4CEB-B808-8AA3970391AA}"
 EndProject

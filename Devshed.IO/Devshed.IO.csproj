@@ -3,7 +3,20 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <!-- <Nullable>enable</Nullable> -->
+    <!-- <Nullable>enable</Nullable> -->  
+    
+    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionSuffix>beta-1</VersionSuffix>
+    <AssemblyVersion>2.0.0</AssemblyVersion> <!-- Do not change in favor of assembly binding. -->
+    <AssemblyTitle>Devshed IO Library</AssemblyTitle>
+    <Description>Contains basic IO helpers.</Description>
+    <PackageReleaseNotes>https://github.com/AppiePau/devshed-tools</PackageReleaseNotes>
+    <PackageId>Devshed.IO</PackageId>
+    <PackageTags>Devshed;tools;csv;xlsx;Excel</PackageTags>
+    <!-- <PackageIcon>simpleinjector.png</PackageIcon> -->
+    <PackageProjectUrl>https://github.com/AppiePau/devshed-tools</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>Copyright Apula IT by Paul Appeldoorn 2022.</Copyright>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Devshed.Shared\Devshed.Shared.csproj" />
