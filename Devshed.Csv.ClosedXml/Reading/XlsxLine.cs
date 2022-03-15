@@ -29,7 +29,7 @@
         {
             get
             {
-                return checked((int)this.line.RowIndex.Value);
+                return this.line.RowIndex != null ? checked((int)this.line.RowIndex.Value) : -1;
             }
         }
 

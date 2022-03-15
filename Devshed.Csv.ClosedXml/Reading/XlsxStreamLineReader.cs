@@ -52,8 +52,8 @@
         /// <returns></returns>
         public CsvSourceLine ReadLine()
         {
-            var elements = this.rows.Current.Elements<Cell>().Select(e => e.CellValue?.ToString() ?? string.Empty).ToArray();
-            var rowNumber = checked((int)this.rows.Current.RowIndex.Value);
+            var elements = this.rows.Current.Elements<Cell>().Select(e => e.InnerText?.ToString() ?? string.Empty).ToArray();
+            var rowNumber = this.rows.Current.RowIndex != null ? checked((int)this.rows.Current.RowIndex.Value) : -1;
 
             this.EndOfStream = !this.rows.MoveNext();
 

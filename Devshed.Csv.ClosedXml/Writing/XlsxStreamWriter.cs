@@ -86,6 +86,7 @@ namespace Devshed.Csv.ClosedXml
                     Cell cell = new Cell();
                     cell.DataType = GetDataType(column);
                     cell.CellValue = new CellValue(value);
+                    
                     headerRow.AppendChild(cell);
                 }
             }
