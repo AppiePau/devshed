@@ -45,13 +45,13 @@ var users = new UserView[]
 	new UserView 
             {
                  Id = 1,
-                 Name = “John”,
+                 Name = "John",
                  IsActive = true
             },
 	new UserView 
             {
                  Id = 2,
-                 Name = “Marry”,
+                 Name = "Marry",
                  IsActive = false
             }
 }
@@ -115,7 +115,7 @@ When reading a file with this option on, the reader expects the first line to be
 ### RemoveNewLineCharacters (default false)
 When enabled all written CSV text fields will be stripped of new line characters. For writing CSV only. NOTE; header names will be stripped from newline characters anyway.
 
-### ElementDelimiter (default “;”)
+### ElementDelimiter (default ";")
 The character that separates the CSV elements for reading and writing CSV content.
  
 ## Column definitions
@@ -134,7 +134,7 @@ new TextCsvColumn<TSource>(e => e.TProperty)
 }
 ```
 ### ForceExcelTextCell
-Writes the text value like =”VALUE” instead of “VALUE” to force Excel to parse it as text otherwise textual numbers will still be treated as number.
+Writes the text value like ="VALUE" instead of "VALUE" to force Excel to parse it as text otherwise textual numbers will still be treated as number.
 
 ### CurrencyCsvColumn<TSource>
 Accepts nullable decimal and formats them to the current culture currency of the thread.
@@ -143,7 +143,7 @@ Accepts nullable decimal and formats them to the current culture currency of the
 new CurrencyCsvColumn<TSource>(e => e.TProperty)
 {
     Format = value => string.Format("{0:c2}", value ?? 0), 
-    HeaderName = “Overruled Name”
+    HeaderName = "Overruled Name"
 }
 ```
 
@@ -154,7 +154,7 @@ Accepts nullable int and formats them to the current culture currency of the thr
 new NumberCsvColumn<TSource>(e => e.TProperty)
 {
     Format = value => string.Format("{0:0.00}", value ?? 0), 
-    HeaderName = “Overruled Name”
+    HeaderName = "Overruled Name"
 }
 ```
 ### DecimalCsvColumn<TSource>
@@ -164,7 +164,7 @@ Accepts nullable decimal values and formats them to the current culture currency
 new CurrencyCsvColumn<TSource>(e => e.TProperty)
 {
     Format = value => string.Format("{0:c4}", value ?? 0), 
-    HeaderName = “Overruled Name”,
+    HeaderName = "Overruled Name",
     Format = (number, formatter) => number != null
                       ? number.Value.ToString(formatter)
                 : string.Empty,
@@ -177,7 +177,7 @@ Accepts nullable DateTime values and formats them to a short date format.
 new DateCsvColumn<TSource>(e => e.TProperty)
 {
     Format = value => string.Format("{0:c4}", value ?? 0), 
-    HeaderName = “Overruled Name”,
+    HeaderName = "Overruled Name",
     Format = e => e != null
          ? e.Value.ToShortDateString()
          : string.Empty
@@ -189,8 +189,8 @@ Accepts nullable decimal values and formats them to the current culture currency
 ```cs 
 new TimeCsvColumn<TSource>(e => e.TProperty)
 {
-    Format = value => string.Format(“{0:c4}”, value ?? 0), 
-    HeaderName = “Overruled Name” ”,
+    Format = value => string.Format("{0:c4}", value ?? 0), 
+    HeaderName = "Overruled Name" ",
     Format = e => e != null
                ? string.Format("{0:00}:{1:00}", e.Value.Hours, e.Value.Minutes)
          : string.Empty
@@ -202,8 +202,8 @@ Accepts boolean values and formats them to string.
 ```cs 
 new TimeCsvColumn<TSource>(e => e.TProperty)
 {
-    Format = value => string.Format(“{0:c4}”, value ?? 0), 
-    HeaderName = “Overruled Name”,
+    Format = value => string.Format("{0:c4}", value ?? 0), 
+    HeaderName = "Overruled Name",
     Format = e => e.ToString()
 }
 ```
@@ -215,8 +215,8 @@ Accepts any type of value and formatting can be handled as you please.
 ```cs 
 new ObjectCsvColumn<TSource>(e => e.TProperty)
 {
-    Format = value => string.Format(“{0:c4}”, value ?? 0), 
-    HeaderName = “Overruled Name”,
+    Format = value => string.Format("{0:c4}", value ?? 0), 
+    HeaderName = "Overruled Name",
     Format = e => e.ToString()
 }
 ```
@@ -227,8 +227,8 @@ This column type allows to write the content of an array be written in a single 
 ```cs 
 new ArrayCsvColumn<TSource, int>(e => e.TProperty)
 {
-    Format = value => string.Format(“{0:c4}”, value ?? 0), 
-    HeaderName = “Overruled Name”,
+    Format = value => string.Format("{0:c4}", value ?? 0), 
+    HeaderName = "Overruled Name",
     Format = e => e.ToString()
 }
 ```
@@ -247,20 +247,20 @@ Unavoidably this requires the use of a `CompositeColumnValue<,>` object from the
 
 ```cs 
 new CompositeCsvColumn<TSource, string>(
-    e => e.Collection, “Header1”, “Header2”)
+    e => e.Collection, "Header1", "Header2")
 {
-    Format = value => string.Format(“{0:c4}”, value ?? 0), 
-    HeaderName = “Overruled Name”,
+    Format = value => string.Format("{0:c4}", value ?? 0), 
+    HeaderName = "Overruled Name",
     Format = e => e.ToString()
 }
 
 var rows = new [] {
     new Model {
-        Name = “John”,
+        Name = "John",
         Collection = new [] 
         {
-            new CompositeColumnValue <string>(“Header 1”, “Value 1”), 
-            new CompositeColumnValue <string>(“Header 2”, “Value 2”)  
+            new CompositeColumnValue <string>("Header 1", "Value 1"), 
+            new CompositeColumnValue <string>("Header 2", "Value 2")  
         }
     }  
 }
