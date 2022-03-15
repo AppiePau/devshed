@@ -1,13 +1,13 @@
 # devshed-tools 2.0 beta-1
 *Devshed Tooling 2.0 (beta version) (.NET 6.0 Edition)*
 
-Devshed Tooling (currently for web) contains helper classes that simplify common scenarios that I come across during my developing days. Not much is documented at the moment, but will soon commence.
+Devshed Tooling is my personal pet project to keep some handy tools at my disposal. Especially creating and reading CSV and XLSX files.
 
 *Devshed.Csv*
 
-Powerfull and descriptive CSV processing library without any compromise to your code. See the draft documentation for the current 1.2 release!
+Powerfull and descriptive CSV processing library without any compromise to your code. See the [documentation](Documentation/Documentation.md) for the current 2.0 release!
 
-With the use of ClosedXML you can generate or read XLSX files!
+With the use of ClosedXML it also can generate and read XLSX files!
 
 Create a definition of the import/export model:
 

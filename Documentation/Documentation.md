@@ -1,22 +1,41 @@
 # devshed-tools 2.0 beta-1
 *Devshed Tooling 2.0 (beta version) (.NET 6.0 Edition)*
 
-## Breaking changes since 1.2
- - Devshed.Imaging has been discontinued
- - Devshed.MVC has been discontinued 
- - Devshed.Webforms has been discontinued
+## Breaking changes since 1.2 (to 2.0)
+ - Devshed.Imaging has been discontinued;
+ - Devshed.MVC has been discontinued;
+ - Devshed.Webforms has been discontinued;
+
+## Major changes since 1.2 (to 2.0)
+ - Conversion to .NET 6.0 for more interoperability;
+ - Replaced ClosedXML (0.95) and DocumentFormat.ClosedXML (2.12.0) with DocumentFormat.OpenXml (2.19) only
+
 
 # Writing with the CsvWriter
-CsvWriter is a static class that does all the object wiring for you. It has two static methods for writing an existing stream and creating a new one. A `CsvDefintion<T>` and a collection are needed to write the CSV content.
+
+CsvWriter is a static class that does all the wiring for you. It requires an object of the `CsvDefintion<T>` type. Where T is the type map to. Creating a `CsvDefintion<UserView>` for example, will allow to pass an array of UserView objects to be written as CSV.
+
+CsvWriter definition:
+```cs
+public static class CsvWriter
+{
+    public static MemoryStream WriteAsCsv<T>(this CsvDefinition<T> definition, T[] rows) {} // Extensions method
+    public static void WriteAsCsv<T>(this CsvDefinition<T> definition, T[] rows, Stream stream) {} // Extensions method
+
+    public static MemoryStream CreateStream<T>(CsvDefinition<T> definition, T[] rows) {} // Creates a stream and writes into it.
+    public static void Write<T>(Stream stream, CsvDefinition<T> definition, T[] rows) {} // Writes into the given stream
+}
+```
+
 
 ## Defining the type mapping
-The following example demonstrates definition of the property mappings to the UserView object. Nothing else is needed.
+The following example demonstrates the definition of  property mappings to the UserView object. The CsvDefinition constructor accepts an endless amount of columns definitions.
 
-```cs 
+```cs
 var definition = new CsvDefinition<UserView>(
-    new NumberCsvColumn<UserView >(e => e.Id),
-    new TextCsvColumn<UserView >(e => e.Name),
-    new BooleanCsvColumn<UserView >(e => e.IsActive));
+    new NumberCsvColumn<UserView>(e => e.Id),
+    new TextCsvColumn<UserView>(e => e.Name),
+    new BooleanCsvColumn<UserView>(e => e.IsActive));
 ```
 
 After that, create an array of the UserView type, which could be database records as well:
@@ -62,9 +81,9 @@ Like the CsvWriter, the CsvReader follows the same principle by using a definiti
 
 ```cs 
 var definition = new CsvDefinition<UserView>(
-    new NumberCsvColumn<UserView >(e => e.Id),
-    new TextCsvColumn<UserView >(e => e.Name),
-    new BooleanCsvColumn<UserView >(e => e.IsActive));
+    new NumberCsvColumn<UserView>(e => e.Id),
+    new TextCsvColumn<UserView>(e => e.Name),
+    new BooleanCsvColumn<UserView>(e => e.IsActive));
 ```
 Use as stream for content and present both to the reader:
 
