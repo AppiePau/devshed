@@ -18,7 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Devshed.Shared\Devshed.Shared.csproj" />
     <ProjectReference Include="..\Devshed.Csv\Devshed.Csv.csproj" />
-    <ProjectReference Include="..\Devshed.Csv.ClosedXml\Devshed.Csv.ClosedXml.csproj" />
+    <ProjectReference Include="..\Devshed.Csv.OpenXml\Devshed.Csv.OpenXml.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

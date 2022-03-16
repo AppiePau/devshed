@@ -16,7 +16,7 @@ namespace Devshed.Csv.Tests
 
             var definition = this.GetDefinition();
 
-            var result = CsvWriter.CreateStream(definition, rows).GetString();
+            var result = CsvWriter.WriteAsCsv(definition, rows).GetString();
 
             Assert.AreEqual($"\"Name\";\"TestColors\"{Environment.NewLine}"
                 + $"\"OK_NAME\";\"Red,Green,Blue\"{Environment.NewLine}", result);
@@ -36,7 +36,7 @@ namespace Devshed.Csv.Tests
 
             var definition = this.GetDefinition();
 
-            var result = CsvWriter.CreateStream(definition, rows).GetString();
+            var result = CsvWriter.WriteAsCsv(definition, rows).GetString();
 
             Assert.AreEqual($"\"Name\";\"TestColors\"{Environment.NewLine}"
                 + $"\"OK_NAME\";\"Red;Test,Green_Test,Blue\"{Environment.NewLine}", result);
@@ -49,7 +49,7 @@ namespace Devshed.Csv.Tests
             var stream = new MemoryStream(Encoding.UTF8.GetBytes($"\"Name\";\"TestColors\"{Environment.NewLine}"
                 + $"\"OK_NAME\";\"Red;Test,Green_Test,Blue\"{Environment.NewLine}"));
 
-            var rows = CsvReader.Read<ColorArrayModel>(stream, definition);
+            var rows = CsvReader.ReadAsCsv<ColorArrayModel>(definition, stream);
             var row = rows.Single();
             var testColors = row.TestColors.ToArray();
 
@@ -73,7 +73,7 @@ namespace Devshed.Csv.Tests
                 WriteBitOrderMarker = false
             };
 
-            var result = CsvWriter.CreateStream(definition, rows).GetString();
+            var result = CsvWriter.WriteAsCsv(definition, rows).GetString();
 
             Assert.AreEqual($"\"Name\"{Environment.NewLine}"
                 + $"=\"OK_NAME\"{Environment.NewLine}", result);

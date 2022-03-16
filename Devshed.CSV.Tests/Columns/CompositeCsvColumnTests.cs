@@ -28,7 +28,7 @@
                         WriteBitOrderMarker = false
                     };
 
-            var result = CsvWriter.CreateStream(definition, rows).GetString();
+            var result = CsvWriter.WriteAsCsv(definition, rows).GetString();
 
             Assert.AreEqual($"\"Name\";\"TestColor\";\"Header1\";\"Header2\";\"Header3\"{Environment.NewLine}"
                             + $"\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\";\"ValueThree\"{Environment.NewLine}", result);
@@ -49,7 +49,7 @@
                     WriteBitOrderMarker = false
                 };
 
-            var result = CsvWriter.CreateStream(definition, rows).GetString();
+            var result = CsvWriter.WriteAsCsv(definition, rows).GetString();
 
             Assert.AreEqual($"\"Name\";\"TestColor\";\"Header1\";\"Header2\"{Environment.NewLine}"
                             + $"\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\"{Environment.NewLine}", result);
@@ -71,7 +71,7 @@
                     WriteBitOrderMarker = false
                 };
 
-            var result = CsvWriter.CreateStream(definition, rows).GetString();
+            var result = CsvWriter.WriteAsCsv(definition, rows).GetString();
 
             Assert.AreEqual($"\"Name\";\"TestColor\";\"Header1\";\"Header2\";\"Header3\"{Environment.NewLine}"
                             + $"\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\";\"ValueThree\"{Environment.NewLine}", result);
@@ -92,7 +92,7 @@
                     FirstRowContainsHeaders = true
                 };
 
-            var result = CsvWriter.CreateStream(definition, rows).GetString();
+            var result = CsvWriter.WriteAsCsv(definition, rows).GetString();
         }
 
         private CompositeTestModel[] GetCompositeRows()

@@ -16,9 +16,9 @@ namespace Devshed.Csv
         /// <param name="stream">The stream.</param>
         /// <param name="definition">The definition.</param>
         /// <returns></returns>
-        public static TRow[] Read<TRow>(Stream stream, CsvDefinition<TRow> definition) where TRow : new()
+        public static TRow[] ReadAsCsv<TRow>(this CsvDefinition<TRow> definition, Stream stream) where TRow : new()
         {
-            return Read(stream, definition, false);
+            return definition.ReadAsCsv(stream, false);
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Devshed.Csv
         /// <param name="definition">The definition.</param>
         /// <param name="detectEncodig">if set to <c>true</c> detects the byte encodig.</param>
         /// <returns></returns>
-        public static TRow[] Read<TRow>(Stream stream, CsvDefinition<TRow> definition, bool detectEncodig) where TRow : new()
+        public static TRow[] ReadAsCsv<TRow>(this CsvDefinition<TRow> definition, Stream stream, bool detectEncodig) where TRow : new()
         {
             var mapper = new TableDataMapper<TRow>(definition);
             return mapper.FromStream(stream, definition.Encoding, detectEncodig);

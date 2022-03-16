@@ -17,7 +17,7 @@
             var stream = new MemoryStream(Encoding.UTF8.GetBytes($"\"Name\";\"Numbers\"{Environment.NewLine}"
                             + $"\"OK_NAME\";\"1,2,3\"{Environment.NewLine}"));
 
-            var rows = CsvReader.Read<NumberArrayModel>(stream, definition);
+            var rows = CsvReader.ReadAsCsv<NumberArrayModel>(definition, stream);
             var row = rows.Single();
             var testColors = row.Numbers.ToArray();
 

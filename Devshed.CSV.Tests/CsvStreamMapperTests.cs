@@ -80,17 +80,17 @@
                 new NumberCsvColumn<UserView>(e => e.Id),
                 new TextCsvColumn<UserView>(e => e.Name),
                 new BooleanCsvColumn<UserView>(e => e.IsActive))
-                {
-                    WriteBitOrderMarker = false,
-                    Encoding = Encoding.Unicode
-                };
+            {
+                WriteBitOrderMarker = false,
+                Encoding = Encoding.Unicode
+            };
         }
 
         private static UserView[] Read(CsvDefinition<UserView> definition, string data)
         {
             using (var stream = new MemoryStream(data.GetUnicodeBytes()))
             {
-                return CsvReader.Read(stream, definition);
+                return CsvReader.ReadAsCsv(definition, stream);
             }
         }
 

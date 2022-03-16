@@ -20,16 +20,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Shared.Tests", "Dev
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8D382B3B-1E77-4CEB-B808-8AA3970391AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Csv.ClosedXml", "Devshed.Csv.ClosedXml\Devshed.Csv.ClosedXml.csproj", "{BC15975A-7CF0-4936-91C8-7CFE2A079AFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Csv.OpenXml", "Devshed.Csv.OpenXml\Devshed.Csv.OpenXml.csproj", "{BC15975A-7CF0-4936-91C8-7CFE2A079AFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Csv.ClosedXml.Tests", "Devshed.Csv.ClosedXml.Tests\Devshed.Csv.ClosedXml.Tests.csproj", "{F85C0FAC-F758-47B5-854C-8D3ACFA7C1F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devshed.Csv.OpenXml.Tests", "Devshed.Csv.OpenXml.Tests\Devshed.Csv.OpenXml.Tests.csproj", "{F85C0FAC-F758-47B5-854C-8D3ACFA7C1F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{64878CDB-161B-433D-A8D5-32031B904DE6}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
-		Devshed.Csv.ClosedXml\package.nuspec = Devshed.Csv.ClosedXml\package.nuspec
 	EndProjectSection
 EndProject
 Global

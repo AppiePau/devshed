@@ -23,7 +23,7 @@
         [TestMethod]
         public void Build_OneTestRow_CreatesCsv()
         {
-            var result = CsvWriter.CreateStream<TestRow>(NameDefinition(), oneRow).GetString();
+            var result = CsvWriter.WriteAsCsv<TestRow>(NameDefinition(), oneRow).GetString();
             Assert.AreEqual($"\"OK_NAME_HEADER\"{Environment.NewLine}\"OK_NAME\"{Environment.NewLine}", result);
         }
 
@@ -33,7 +33,7 @@
             var definition = NameDefinition();
             definition.WriteBitOrderMarker = true;
      
-            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow).GetString();
+            var result = CsvWriter.WriteAsCsv<TestRow>(definition, oneRow).GetString();
             Assert.AreEqual(UTF8Bom + $"\"OK_NAME_HEADER\"{Environment.NewLine}\"OK_NAME\"{Environment.NewLine}", result);
         }
 
@@ -43,7 +43,7 @@
             var definition = NameDefinition();
             definition.WriteBitOrderMarker = true;
             definition.Encoding = Encoding.BigEndianUnicode;
-            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow).GetString();
+            var result = CsvWriter.WriteAsCsv<TestRow>(definition, oneRow).GetString();
             Assert.AreEqual(Encoding.BigEndianUnicode.GetString(Encoding.BigEndianUnicode.GetPreamble()) + $"\"OK_NAME_HEADER\"{Environment.NewLine}\"OK_NAME\"{Environment.NewLine}", result);
         }
 
@@ -53,7 +53,7 @@
             var definition = NameDefinition();
             definition.WriteBitOrderMarker = true;
             definition.Encoding = Encoding.UTF32;
-            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow).GetString();
+            var result = CsvWriter.WriteAsCsv<TestRow>(definition, oneRow).GetString();
             Assert.AreEqual(Encoding.UTF32.GetString(Encoding.UTF32.GetPreamble()) + $"\"OK_NAME_HEADER\"{Environment.NewLine}\"OK_NAME\"{Environment.NewLine}", result);
         }
 
@@ -63,7 +63,7 @@
             var definition = NameDefinition();
             definition.WriteBitOrderMarker = true;
             definition.Encoding = Encoding.UTF8;
-            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow).GetString();
+            var result = CsvWriter.WriteAsCsv<TestRow>(definition, oneRow).GetString();
             Assert.AreEqual(Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble()) + $"\"OK_NAME_HEADER\"{Environment.NewLine}\"OK_NAME\"{Environment.NewLine}", result);
         }
 
@@ -76,21 +76,21 @@
 
             var newlines = new[] { new TestRow { Id = 1, Name = $"OK_NAME{Environment.NewLine}ENTER", IsActive = true } };
 
-            var result = CsvWriter.CreateStream<TestRow>(def, newlines).GetString();
+            var result = CsvWriter.WriteAsCsv<TestRow>(def, newlines).GetString();
             Assert.AreEqual($"\"OK_NAME_HEADER\"{Environment.NewLine}\"OK_NAMEENTER\"{Environment.NewLine}", result);
         }
 
         [TestMethod]
         public void Build_OneTestRowWithHeader_CreatesCsv()
         {
-            var result = CsvWriter.CreateStream<TestRow>(NameDefinition(), oneRow).GetString();
+            var result = CsvWriter.WriteAsCsv<TestRow>(NameDefinition(), oneRow).GetString();
             Assert.AreEqual($"\"OK_NAME_HEADER\"{Environment.NewLine}\"OK_NAME\"{Environment.NewLine}", result);
         }
 
         [TestMethod]
         public void Build_TwoTestRowsWithHeader_CreatesCsv()
         {
-            var result = CsvWriter.CreateStream<TestRow>(FullDefinitionWithHeaders(), twoRows).GetString();
+            var result = CsvWriter.WriteAsCsv<TestRow>(FullDefinitionWithHeaders(), twoRows).GetString();
             var expected = $"\"OK_ID_HEADER\";\"OK_NAME_HEADER\";\"OK_ISACTIVE_HEADER\"{Environment.NewLine}"
                 + $"1;\"OK_NAME1\";True{Environment.NewLine}"
                 + $"2;\"OK_NAME2\";False{Environment.NewLine}";
@@ -101,7 +101,7 @@
         [TestMethod]
         public void Build_NoSpecifiedHeaders_InfersMemberNames()
         {
-            var result = CsvWriter.CreateStream<TestRow>(FullDefinition(), twoRows).GetString();
+            var result = CsvWriter.WriteAsCsv<TestRow>(FullDefinition(), twoRows).GetString();
             var expected = $"\"Id\";\"Name\";\"IsActive\"{Environment.NewLine}"
                 + $"1;\"OK_NAME1\";True{Environment.NewLine}"
                 + $"2;\"OK_NAME2\";False{Environment.NewLine}";
@@ -119,7 +119,7 @@
                     WriteBitOrderMarker = false
                 };
 
-            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow).GetString();
+            var result = CsvWriter.WriteAsCsv<TestRow>(definition, oneRow).GetString();
             Assert.AreEqual($"\"Name\"{Environment.NewLine}\"OK_NAME\"{Environment.NewLine}", result);
         }
 
@@ -133,7 +133,7 @@
                 WriteBitOrderMarker = false
             };
 
-            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow).GetString();
+            var result = CsvWriter.WriteAsCsv<TestRow>(definition, oneRow).GetString();
             Assert.AreEqual($"\"OK_NAME\"{Environment.NewLine}", result);
         }
 
@@ -147,7 +147,7 @@
                 WriteBitOrderMarker = false
             };
 
-            var result = CsvWriter.CreateStream<TestRow>(definition, oneRow).GetString();
+            var result = CsvWriter.WriteAsCsv<TestRow>(definition, oneRow).GetString();
             Assert.AreEqual($"\"OK_NAME\"{Environment.NewLine}", result);
         }
 

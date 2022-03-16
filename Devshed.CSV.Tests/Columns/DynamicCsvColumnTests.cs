@@ -46,7 +46,7 @@
                     WriteBitOrderMarker = false
                 };
 
-            var result = CsvWriter.CreateStream(definition, rows).GetString();
+            var result = CsvWriter.WriteAsCsv(definition, rows).GetString();
 
             Assert.AreEqual($"\"Name\";\"Test One\";\"Test Two\"{Environment.NewLine}\"Main name\";\"One\";\"Two\"{Environment.NewLine}", result);
         }

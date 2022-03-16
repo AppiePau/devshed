@@ -39,7 +39,7 @@
                     FirstRowContainsHeaders = true
                 };
 
-            var result = CsvWriter.CreateStream(definition, models).GetString();
+            var result = CsvWriter.WriteAsCsv(definition, models).GetString();
 
             Assert.AreEqual($"\"Name\";\"TestColor\";\"Kleur1\";\"Kleur2\"{Environment.NewLine}"
                             + $"\"OK_NAME\";0;\"Blue\";\"Green\"{Environment.NewLine}", result);
@@ -68,7 +68,7 @@
                     FirstRowContainsHeaders = true
                 };
 
-            var result = CsvWriter.CreateStream(definition, models).GetString();
+            var result = CsvWriter.WriteAsCsv(definition, models).GetString();
 
             Assert.AreEqual($"\"Name\";\"TestColor\";\"Kleur1\";\"Kleur2\"{Environment.NewLine}"
                             + $"\"OK_NAME\";0;\"Blue\";\"Green\"{Environment.NewLine}", result);
@@ -97,7 +97,7 @@
                     FirstRowContainsHeaders = true
                 };
 
-            var result = CsvWriter.CreateStream(definition, models).GetString();
+            var result = CsvWriter.WriteAsCsv(definition, models).GetString();
 
             Assert.AreEqual($"\"Name\";\"TestColor\";\"Kleur1\";\"Kleur2\"{Environment.NewLine}"
                             + $"\"OK_NAME\";0;\"Blue\";\"Green\"{Environment.NewLine}", result);
