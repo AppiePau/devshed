@@ -12,11 +12,20 @@
     <Description>Reads and writes CSV files using definition mappers.</Description>
     <PackageReleaseNotes>https://github.com/AppiePau/devshed-tools</PackageReleaseNotes>
     <PackageId>Devshed.Csv</PackageId>
-    <PackageTags>Devshed;tools;csv;Excel</PackageTags>
-    <!-- <PackageIcon>simpleinjector.png</PackageIcon> -->
+    <PackageTags>Devshed;tools;csv;Excel;tools</PackageTags>
     <PackageProjectUrl>https://github.com/AppiePau/devshed-tools</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Copyright Apula IT by Paul Appeldoorn 2022.</Copyright>
+
+    <!-- Recommended: Embed symbols containing Source Link in the main file (exe/dll) -->
+    <DebugType>embedded</DebugType>
+    <!-- <IncludeSymbols>true</IncludeSymbols> -->
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>

@@ -12,11 +12,21 @@
     <Description>Contains shared functionality.</Description>
     <PackageReleaseNotes>https://github.com/AppiePau/devshed-tools</PackageReleaseNotes>
     <PackageId>Devshed.Shared</PackageId>
-    <PackageTags>Devshed;shared</PackageTags>
+    <PackageTags>Devshed;shared;IO;tools</PackageTags>
     <!-- <PackageIcon>simpleinjector.png</PackageIcon> -->
     <PackageProjectUrl>https://github.com/AppiePau/devshed-tools</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Copyright Apula IT by Paul Appeldoorn 2022.</Copyright>
+
+    <!-- Recommended: Embed symbols containing Source Link in the main file (exe/dll) -->
+    <DebugType>embedded</DebugType>
+    <!-- <IncludeSymbols>true</IncludeSymbols> -->
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>
