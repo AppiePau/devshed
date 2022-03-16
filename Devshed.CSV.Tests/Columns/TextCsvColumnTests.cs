@@ -21,7 +21,7 @@ namespace Devshed.Csv.Tests
                 Encoding = Encoding.UTF8
             };
 
-            var data = "\"Name\";\"TestColors\"\r\n\"OK_NAME\";\"Red\"";
+            var data = $"\"Name\";\"TestColors\"{Environment.NewLine}\"OK_NAME\";\"Red\"";
 
             var mapper = new TableDataMapper<TestModel>(def);
             var result = mapper.FromStream(new MemoryStream(Encoding.UTF8.GetBytes(data)));

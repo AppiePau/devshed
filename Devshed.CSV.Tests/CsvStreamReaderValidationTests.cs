@@ -47,7 +47,7 @@
         [TestMethod]
         public void GetRows_StrictElementProcessingNormalData_ReturnsElements()
         {
-            var data = "HEADER1;HEADER2\r\nCELL1;CELL2";
+            var data = $"HEADER1;HEADER2{Environment.NewLine}CELL1;CELL2";
 
             using (var reader = GetReader(data))
             {
@@ -64,7 +64,7 @@
         [TestMethod]
         public void GetRows_StrictElementProcessingTooManyColumns_ThrowsException()
         {
-            var data = "HEADER1;HEADER2\r\nCELL1;CELL2;CELL3";
+            var data = $"HEADER1;HEADER2{Environment.NewLine}CELL1;CELL2;CELL3";
 
             using (var reader = GetReader(data))
             {
@@ -77,7 +77,7 @@
         [TestMethod]
         public void GetRows_StrictElementProcessingTooFewColumns_ThrowsException()
         {
-            var data = "HEADER1;HEADER2\r\nCELL1";
+            var data = $"HEADER1;HEADER2{Environment.NewLine}CELL1";
 
             using (var reader = GetReader(data))
             {
@@ -92,7 +92,7 @@
         [TestMethod]
         public void GetRows_TooFewValidationElementProcessingTooFewColumns_ThrowsException()
         {
-            var data = "HEADER1;HEADER2\r\nCELL1";
+            var data = $"HEADER1;HEADER2{Environment.NewLine}CELL1";
 
             using (var reader = GetReader(data))
             {
@@ -106,7 +106,7 @@
         [TestMethod]
         public void GetRows_TooFewValidationElementProcessingTooManyColumns_Succeeds()
         {
-            var data = "HEADER1;HEADER2\r\nCELL1;nCELL2;nCELL3";
+            var data = $"HEADER1;HEADER2{Environment.NewLine}CELL1;nCELL2;nCELL3";
 
             using (var reader = GetReader(data))
             {
@@ -120,7 +120,7 @@
         [TestMethod]
         public void GetRows_TooManyValidationElementProcessingTooFewColumns_Succeeds()
         {
-            var data = "HEADER1;HEADER2\r\nCELL1";
+            var data = $"HEADER1;HEADER2{Environment.NewLine}CELL1";
 
             using (var reader = GetReader(data))
             {
@@ -134,7 +134,7 @@
         [TestMethod]
         public void GetRows_TooManyValidationElementProcessingTooManyColumns_ThrowsException()
         {
-            var data = "HEADER1;HEADER2\r\nCELL1;nCELL2;nCELL3";
+            var data = $"HEADER1;HEADER2{Environment.NewLine}CELL1;nCELL2;nCELL3";
 
             using (var reader = GetReader(data))
             {
@@ -148,7 +148,7 @@
         [TestMethod]
         public void GetRows_LooseElementProcessingTooFewColumns_ReturnsStringEmpty()
         {
-            var data = "HEADER1;HEADER2\r\nCELL1";
+            var data = $"HEADER1;HEADER2{Environment.NewLine}CELL1";
 
             using (var reader = GetReader(data))
             {
@@ -162,7 +162,7 @@
         [TestMethod]
         public void GetRows_LooseElementProcessingTooManyColumns_IgnoresExcess()
         {
-            var data = "HEADER1;HEADER2\r\nCELL1;CELL2;CELL3";
+            var data = $"HEADER1;HEADER2{Environment.NewLine}CELL1;CELL2;CELL3";
 
             using (var reader = GetReader(data))
             {
@@ -181,7 +181,7 @@
         [ExpectedException(typeof(DuplicateHeaderException))]
         public void GetRows_WithDuplicateHeaderNames_ThrowsException()
         {
-            var data = "HEADER1;HEADER1\r\nCELL1;CELL2";
+            var data = $"HEADER1;HEADER1{Environment.NewLine}CELL1;CELL2";
 
             using (var reader = GetReader(data))
             {

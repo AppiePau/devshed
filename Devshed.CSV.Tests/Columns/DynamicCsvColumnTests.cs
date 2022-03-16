@@ -48,7 +48,7 @@
 
             var result = CsvWriter.CreateStream(definition, rows).GetString();
 
-            Assert.AreEqual("\"Name\";\"Test One\";\"Test Two\"\r\n\"Main name\";\"One\";\"Two\"\r\n", result);
+            Assert.AreEqual($"\"Name\";\"Test One\";\"Test Two\"{Environment.NewLine}\"Main name\";\"One\";\"Two\"{Environment.NewLine}", result);
         }
 
         private sealed class DynamicTestModel

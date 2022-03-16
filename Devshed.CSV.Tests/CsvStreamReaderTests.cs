@@ -25,7 +25,7 @@
         [TestMethod]
         public void Build_TwoTestRows_CreatesCsv()
         {
-            var data = "CELL1;CELL2\r\nCELL3;CELL4";
+            var data = $"CELL1;CELL2{Environment.NewLine}CELL3;CELL4";
 
             using (var reader = GetReader(data))
             {
@@ -43,14 +43,14 @@
         [TestMethod]
         public void Build_OneCellWithLineFeed_KeepsEnterInCell()
         {
-            var data = "CELL1;\"CELL2\nDATA\"";
+            var data = $"CELL1;\"CELL2{Environment.NewLine}DATA\"";
 
             using (var reader = GetReader(data))
             {
                 var line = reader.ReadLine();
 
                 Assert.AreEqual("CELL1", line.Elements[0]);
-                Assert.AreEqual("CELL2\nDATA", line.Elements[1]);
+                Assert.AreEqual($"CELL2{Environment.NewLine}DATA", line.Elements[1]);
             }
         }
 
@@ -58,14 +58,14 @@
         [TestMethod]
         public void Build_OneCellWithEnter_KeepsEnterInCell()
         {
-            var data = "CELL1;\"CELL2\r\nDATA\"";
+            var data = $"CELL1;\"CELL2{Environment.NewLine}DATA\"";
 
             using (var reader = GetReader(data))
             {
                 var line = reader.ReadLine();
 
                 Assert.AreEqual("CELL1", line.Elements[0]);
-                Assert.AreEqual("CELL2\r\nDATA", line.Elements[1]);
+                Assert.AreEqual($"CELL2{Environment.NewLine}DATA", line.Elements[1]);
             }
         }
 
@@ -73,14 +73,14 @@
         [TestMethod]
         public void Build_OneCellWithEnterAndQuotes_KeepsEnterAndQuoteInCell()
         {
-            var data = "CELL1;\"CELL2\"\"\r\nDATA\"";
+            var data = $"CELL1;\"CELL2\"\"{Environment.NewLine}DATA\"";
 
             using (var reader = GetReader(data))
             {
                 var line = reader.ReadLine();
 
                 Assert.AreEqual("CELL1", line.Elements[0]);
-                Assert.AreEqual("CELL2\"\r\nDATA", line.Elements[1]);
+                Assert.AreEqual($"CELL2\"{Environment.NewLine}DATA", line.Elements[1]);
             }
         }
 

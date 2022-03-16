@@ -12,9 +12,9 @@
     {
         private static readonly string Bom = Encoding.Unicode.GetString(Encoding.Unicode.GetPreamble());
 
-        private const string CsvHeader = "\"Id\";\"Name\";\"IsActive\"\r\n";
+        private readonly string CsvHeader = "\"Id\";\"Name\";\"IsActive\"" + Environment.NewLine;
 
-        private const string CsvHeaderDuplicates = "\"Id\";\"Name\";\"Name\"\r\n";
+        private readonly string CsvHeaderDuplicates = "\"Id\";\"Name\";\"Name\"" + Environment.NewLine;
 
 
         private const string CsvData = "1;\"John Doe\";TRUE";
@@ -53,7 +53,7 @@
             var definition = this.GetUnicodeDefinition();
             definition.FirstRowContainsHeaders = true;
 
-            var users = Read(definition, Bom + "\"id\";\"name\";\"isactive\"\r\n" + CsvData);
+            var users = Read(definition, Bom + $"\"id\";\"name\";\"isactive\"{Environment.NewLine}" + CsvData);
 
             var user = users.Single();
             Assert.AreEqual(1, user.Id, "User Id has been read.");

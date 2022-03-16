@@ -30,8 +30,8 @@
 
             var result = CsvWriter.CreateStream(definition, rows).GetString();
 
-            Assert.AreEqual("\"Name\";\"TestColor\";\"Header1\";\"Header2\";\"Header3\"\r\n"
-                            + "\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\";\"ValueThree\"\r\n", result);
+            Assert.AreEqual($"\"Name\";\"TestColor\";\"Header1\";\"Header2\";\"Header3\"{Environment.NewLine}"
+                            + $"\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\";\"ValueThree\"{Environment.NewLine}", result);
         }
 
         [TestMethod]
@@ -51,8 +51,8 @@
 
             var result = CsvWriter.CreateStream(definition, rows).GetString();
 
-            Assert.AreEqual("\"Name\";\"TestColor\";\"Header1\";\"Header2\"\r\n"
-                            + "\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\"\r\n", result);
+            Assert.AreEqual($"\"Name\";\"TestColor\";\"Header1\";\"Header2\"{Environment.NewLine}"
+                            + $"\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\"{Environment.NewLine}", result);
         }
 
 
@@ -73,8 +73,8 @@
 
             var result = CsvWriter.CreateStream(definition, rows).GetString();
 
-            Assert.AreEqual("\"Name\";\"TestColor\";\"Header1\";\"Header2\";\"Header3\"\r\n"
-                            + "\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\";\"ValueThree\"\r\n", result);
+            Assert.AreEqual($"\"Name\";\"TestColor\";\"Header1\";\"Header2\";\"Header3\"{Environment.NewLine}"
+                            + $"\"OK_NAME\";0;\"ValueOne\";\"ValueTwo\";\"ValueThree\"{Environment.NewLine}", result);
         }
 
         [TestMethod]

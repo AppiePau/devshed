@@ -18,8 +18,8 @@ namespace Devshed.Csv.Tests
 
             var result = CsvWriter.CreateStream(definition, rows).GetString();
 
-            Assert.AreEqual("\"Name\";\"TestColors\"\r\n"
-            + "\"OK_NAME\";\"Red,Green,Blue\"\r\n", result);
+            Assert.AreEqual($"\"Name\";\"TestColors\"{Environment.NewLine}"
+                + $"\"OK_NAME\";\"Red,Green,Blue\"{Environment.NewLine}", result);
         }
 
         [TestMethod]
@@ -38,16 +38,16 @@ namespace Devshed.Csv.Tests
 
             var result = CsvWriter.CreateStream(definition, rows).GetString();
 
-            Assert.AreEqual("\"Name\";\"TestColors\"\r\n"
-            + "\"OK_NAME\";\"Red;Test,Green_Test,Blue\"\r\n", result);
+            Assert.AreEqual($"\"Name\";\"TestColors\"{Environment.NewLine}"
+                + $"\"OK_NAME\";\"Red;Test,Green_Test,Blue\"{Environment.NewLine}", result);
         }
 
         [TestMethod]
         public void Read_ColorNamesArrayWithSeparator_ReadsColorsFromQuotedString()
         {
             var definition = this.GetDefinition();
-            var stream = new MemoryStream(Encoding.UTF8.GetBytes("\"Name\";\"TestColors\"\r\n"
-                + "\"OK_NAME\";\"Red;Test,Green_Test,Blue\"\r\n"));
+            var stream = new MemoryStream(Encoding.UTF8.GetBytes($"\"Name\";\"TestColors\"{Environment.NewLine}"
+                + $"\"OK_NAME\";\"Red;Test,Green_Test,Blue\"{Environment.NewLine}"));
 
             var rows = CsvReader.Read<ColorArrayModel>(stream, definition);
             var row = rows.Single();
@@ -75,19 +75,19 @@ namespace Devshed.Csv.Tests
 
             var result = CsvWriter.CreateStream(definition, rows).GetString();
 
-            Assert.AreEqual("\"Name\"\r\n"
-            + "=\"OK_NAME\"\r\n", result);
+            Assert.AreEqual($"\"Name\"{Environment.NewLine}"
+                + $"=\"OK_NAME\"{Environment.NewLine}", result);
         }
 
         private ColorArrayModel[] GetModelRows()
         {
             return new[]
                 {
-                new ColorArrayModel
-                {
-                Name = "OK_NAME",
-                TestColors = new[] { "Red", "Green", "Blue" }
-                }
+                    new ColorArrayModel
+                    {
+                        Name = "OK_NAME",
+                        TestColors = new[] { "Red", "Green", "Blue" }
+                    }
                 };
         }
 

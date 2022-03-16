@@ -41,8 +41,8 @@
 
             var result = CsvWriter.CreateStream(definition, models).GetString();
 
-            Assert.AreEqual("\"Name\";\"TestColor\";\"Kleur1\";\"Kleur2\"\r\n"
-                            + "\"OK_NAME\";0;\"Blue\";\"Green\"\r\n", result);
+            Assert.AreEqual($"\"Name\";\"TestColor\";\"Kleur1\";\"Kleur2\"{Environment.NewLine}"
+                            + $"\"OK_NAME\";0;\"Blue\";\"Green\"{Environment.NewLine}", result);
         }
 
         [TestMethod]
@@ -70,8 +70,8 @@
 
             var result = CsvWriter.CreateStream(definition, models).GetString();
 
-            Assert.AreEqual("\"Name\";\"TestColor\";\"Kleur1\";\"Kleur2\"\r\n"
-                            + "\"OK_NAME\";0;\"Blue\";\"Green\"\r\n", result);
+            Assert.AreEqual($"\"Name\";\"TestColor\";\"Kleur1\";\"Kleur2\"{Environment.NewLine}"
+                            + $"\"OK_NAME\";0;\"Blue\";\"Green\"{Environment.NewLine}", result);
         }
 
         [TestMethod]
@@ -99,8 +99,8 @@
 
             var result = CsvWriter.CreateStream(definition, models).GetString();
 
-            Assert.AreEqual("\"Name\";\"TestColor\";\"Kleur1\";\"Kleur2\"\r\n"
-                            + "\"OK_NAME\";0;\"Blue\";\"Green\"\r\n", result);
+            Assert.AreEqual($"\"Name\";\"TestColor\";\"Kleur1\";\"Kleur2\"{Environment.NewLine}"
+                            + $"\"OK_NAME\";0;\"Blue\";\"Green\"{Environment.NewLine}", result);
         }
 
 

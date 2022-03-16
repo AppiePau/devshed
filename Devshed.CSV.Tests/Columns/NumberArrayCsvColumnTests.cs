@@ -14,8 +14,8 @@
         public void Read_NumberArray_ReadsNumbersFromQuotedString()
         {
             var definition = this.GetNumberDefinition();
-            var stream = new MemoryStream(Encoding.UTF8.GetBytes("\"Name\";\"Numbers\"\r\n"
-                            + "\"OK_NAME\";\"1,2,3\"\r\n"));
+            var stream = new MemoryStream(Encoding.UTF8.GetBytes($"\"Name\";\"Numbers\"{Environment.NewLine}"
+                            + $"\"OK_NAME\";\"1,2,3\"{Environment.NewLine}"));
 
             var rows = CsvReader.Read<NumberArrayModel>(stream, definition);
             var row = rows.Single();

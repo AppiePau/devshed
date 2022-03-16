@@ -5,11 +5,11 @@
  - Devshed.Imaging has been discontinued;
  - Devshed.MVC has been discontinued;
  - Devshed.Webforms has been discontinued;
+ - Devshed.IO has been integrated (consolidated) into Devshed.Shared (while preserving the Devshed.IO namespace);
 
 ## Major changes since 1.2 (to 2.0)
  - Conversion to .NET 6.0 for more interoperability;
  - Replaced ClosedXML (0.95) and DocumentFormat.ClosedXML (2.12.0) with DocumentFormat.OpenXml (2.19) only
-
 
 # Writing with the CsvWriter
 
