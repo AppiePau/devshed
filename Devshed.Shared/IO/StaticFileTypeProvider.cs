@@ -5,7 +5,7 @@ namespace Devshed.IO
     using Microsoft.AspNetCore.StaticFiles;
 
     /// <summary> Looks up the MIME type from the registry. </summary>
-    public sealed class RegistryFileTypeProvider : IFileTypeProvider
+    public sealed class StaticFileTypeProvider : IFileTypeProvider
     {
         /// <summary>
         /// Gets the file type of file by extension from the Windows registry.
