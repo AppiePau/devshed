@@ -29,15 +29,17 @@ Get users from the database as an array of UserExportModel and render it into a 
 ```
 For more examples, [see documentation](Documentation/Documentation_2.0.md).
 
-*Devshed.IO*
-
-Consolidated into Devshed.Shared.
-
 *Devshed.Shared*
 
 Shared functionality across the Devshed and useful on its own. Expression name resolver, GetBytes() and GetBytesWithoutBom() bits from a stream. String to byte array extensions with various encodings.
 
 Also contains IO tools, Stream extensions, a FileContainer and file-type support to pack file downloads from service layers.
+
+# Breaking changes since 1.2 to 2.0
+
+*Devshed.IO*
+
+Consolidated into Devshed.Shared.
 
 *Devshed.Mvc*
 
