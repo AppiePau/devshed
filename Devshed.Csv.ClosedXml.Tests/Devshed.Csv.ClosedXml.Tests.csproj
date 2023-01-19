@@ -55,8 +55,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="XlsxReaderTests.cs" />
     <Compile Include="XlsxBuilderTests.cs" />
+    <Compile Include="XlsxReaderTests.cs" />
+    <Compile Include="XlsxWriterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,23 +11,20 @@ namespace Devshed.Csv.ClosedXml
     /// <summary>
     /// Writes an object model to a XLSX file.
     /// </summary>
-    public class XlsxStreamWriter : ICsvStreamWriter
+    public class XlsxStreamWriter //: ICsvStreamWriter
     {
-        private readonly string sheetName;
-
-        private readonly SaveOptions options;
+        private readonly IXLWorksheet worksheet;
 
         private readonly IStringFormatter formatter;
 
         /// <summary>
         /// Inititize the writer.
         /// </summary>
-        /// <param name="sheetName"> The sheet name. </param>
+        /// <param name="sheet"> The sheet. </param>
         /// <param name="options"> Saving options. </param>
-        public XlsxStreamWriter(string sheetName = "Document", SaveOptions options = null)
+        public XlsxStreamWriter(IXLWorksheet sheet, SaveOptions options = null)
         {
-            this.sheetName = sheetName;
-            this.options = options;
+            this.worksheet = sheet;
             this.formatter = new XlsxStringFormatter();
         }
 
@@ -35,38 +32,24 @@ namespace Devshed.Csv.ClosedXml
         /// Write the object model / collection.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="stream"></param>
         /// <param name="rows"></param>
         /// <param name="definition"></param>
-        public void Write<T>(Stream stream, T[] rows, CsvDefinition<T> definition)
+        public void Write<T>(T[] rows, CsvDefinition<T> definition)
         {
-            using (var workbook = new XLWorkbook())
+            var rowid = 1;
+            if (definition.FirstRowContainsHeaders)
             {
-                var worksheet = workbook.Worksheets.Add(sheetName);
+                this.AddHeader<T>(worksheet, definition, rows, rowid);
+                rowid++;
+            }
 
-                var rowid = 1;
-                if (definition.FirstRowContainsHeaders)
-                {
-                    this.AddHeader<T>(worksheet, definition, rows, rowid);
-                    rowid++;
-                }
-
-                foreach (var row in rows)
-                {
-                    this.AddLine<T>(worksheet, definition, row, rowid);
-                    rowid++;
-                }
-
-                if (options != null)
-                {
-                    workbook.SaveAs(stream, options);
-                }
-                else
-                {
-                    workbook.SaveAs(stream);
-                }
+            foreach (var row in rows)
+            {
+                this.AddLine<T>(worksheet, definition, row, rowid);
+                rowid++;
             }
         }
+
 
         private void AddLine<T>(IXLWorksheet worksheet, CsvDefinition<T> definition, T item, int rowid)
         {

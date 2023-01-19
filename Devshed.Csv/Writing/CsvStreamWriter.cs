@@ -8,7 +8,7 @@ namespace Devshed.Csv.Writing
     /// <summary>
     /// Writes the CSV data through a stream.
     /// </summary>
-    public sealed class CsvStreamWriter : ICsvStreamWriter
+    public sealed class CsvStreamWriter //: ICsvStreamWriter
     {
         private IStringFormatter formatter;
 

@@ -7,7 +7,7 @@
     using System.Text;
 
     [TestClass]
-    public class XlsxBuilderTests
+    public class XlsxWriterTests
     {
         #region Constants
 
@@ -25,11 +25,7 @@
         [TestMethod]
         public void Build_OneTestRow_CreatesCsv()
         {
-           var b = XlsXBuilder.Create();
-
-            b.AddSheet(NameDefinition(), oneRow, "Sheet1");
-
-            var result = b.CreateStream();
+            var result = NameDefinition().WriteAsXlsx(oneRow);
 
             using (var s = new FileStream(".\\Test_" + DateTime.Now.Ticks + ".xlsx", FileMode.CreateNew))
             {
@@ -42,29 +38,7 @@
         [TestMethod]
         public void Build_TwoTestRowsWithHeader_CreatesCsv()
         {
-            var b = XlsXBuilder.Create();
-
-            b.AddSheet(NameDefinition(), twoRows, "Sheet1");
-
-            var result = b.CreateStream();
-
-            using (var s = new FileStream(".\\Test_" + DateTime.Now.Ticks + ".xlsx", FileMode.CreateNew))
-            {
-                s.Write(result.GetBytes(), 0, (int)result.Length);
-            }
-        }
-
-
-        [TestMethod]
-        public void Build_TwoSheets_CreatesXslx()
-        {
-            var b = XlsXBuilder.Create();
-
-            b.AddSheet(NameDefinition(), twoRows, "Sheet1");
-            b.AddSheet(NameDefinition(), twoRows, "Sheet2");
-
-            var result = b.CreateStream();
-
+            var result = FullDefinitionWithHeaders().WriteAsXlsx(twoRows);
             using (var s = new FileStream(".\\Test_" + DateTime.Now.Ticks + ".xlsx", FileMode.CreateNew))
             {
                 s.Write(result.GetBytes(), 0, (int)result.Length);
