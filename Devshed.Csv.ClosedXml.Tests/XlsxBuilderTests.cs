@@ -25,7 +25,7 @@
         [TestMethod]
         public void Build_OneTestRow_CreatesCsv()
         {
-           var b = XlsXBuilder.Create();
+           var b = XlsxDocumentBuilder.Create();
 
             b.AddSheet(NameDefinition(), oneRow, "Sheet1");
 
@@ -42,7 +42,7 @@
         [TestMethod]
         public void Build_TwoTestRowsWithHeader_CreatesCsv()
         {
-            var b = XlsXBuilder.Create();
+            var b = XlsxDocumentBuilder.Create();
 
             b.AddSheet(NameDefinition(), twoRows, "Sheet1");
 
@@ -58,7 +58,7 @@
         [TestMethod]
         public void Build_TwoSheets_CreatesXslx()
         {
-            var b = XlsXBuilder.Create();
+            var b = XlsxDocumentBuilder.Create();
 
             b.AddSheet(NameDefinition(), twoRows, "Sheet1");
             b.AddSheet(NameDefinition(), twoRows, "Sheet2");

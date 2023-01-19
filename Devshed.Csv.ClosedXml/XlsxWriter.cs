@@ -54,29 +54,42 @@ namespace Devshed.Csv
     /// <summary>
     /// Creates a workbook with multiple sheets.
     /// </summary>
-    public class XlsXBuilder : IDisposable
+    public class XlsxDocumentBuilder : IDisposable
     {
         private readonly XLWorkbook workbook;
 
-        private XlsXBuilder(XLWorkbook workbook)
+        private XlsxDocumentBuilder(XLWorkbook workbook)
         {
             this.workbook = workbook;
         }
 
-        private XlsXBuilder(XlsXBuilder builder)
+        private XlsxDocumentBuilder(XlsxDocumentBuilder builder)
         {
             this.workbook = builder.workbook;
         }
 
-        public XlsXBuilder AddSheet<T>(CsvDefinition<T> definition, T[] rows, string name)
+        /// <summary>
+        /// Add a sheet to the document builder.
+        /// </summary>
+        /// <typeparam name="T">The model type of the definition.</typeparam>
+        /// <param name="definition">The XlsxDefinition. </param>
+        /// <param name="rows">The array of model entities.</param>
+        /// <param name="name">The name of the sheet.</param>
+        /// <returns></returns>
+        public XlsxDocumentBuilder AddSheet<T>(CsvDefinition<T> definition, T[] rows, string name)
         {
             var worksheet = this.workbook.AddWorksheet(name);
             var builder = new XlsxStreamWriter(worksheet);
             builder.Write<T>(rows, definition);
 
-            return new XlsXBuilder(this);
+            return new XlsxDocumentBuilder(this);
         }
 
+        /// <summary>
+        /// Save the XLSX file to a stream.
+        /// </summary>
+        /// <param name="stream">the stream to write to.</param>
+        /// <param name="options">Saving options.</param>
         public void SaveAs(Stream stream, SaveOptions options = null)
         {
             if (!this.workbook.Worksheets.Any())
@@ -92,6 +105,10 @@ namespace Devshed.Csv
             this.Dispose();
         }
 
+        /// <summary>
+        /// Creates and returns a stream with the XLSX. This closes (disposes) the document.
+        /// </summary>
+        /// <returns>A stream.</returns>
         public Stream CreateStream()
         {
             var stream = new MemoryStream();
@@ -101,78 +118,15 @@ namespace Devshed.Csv
             return stream;
         }
 
+
         public void Dispose()
         {
             this.workbook.Dispose();
         }
 
-        public static XlsXBuilder Create()
+        public static XlsxDocumentBuilder Create()
         {
-            return new XlsXBuilder(new XLWorkbook());
+            return new XlsxDocumentBuilder(new XLWorkbook());
         }
-
     }
-
-    //public class XlsXBuilder : IDisposable
-    //{
-    //    private readonly XLWorkbook workbook;
-
-    //    public XlsXBuilder(XLWorkbook workbook)
-    //    {
-    //        this.workbook = workbook;
-    //    }
-
-    //    public XlsXBuilder(XlsXBuilder builder, IXLWorksheet sheet)
-    //    {
-    //        this.workbook = builder.workbook;
-    //        this.workbook.AddWorksheet(sheet);
-    //    }
-
-    //    public XlsXBuilder AddSheet(IXLWorksheet sheet)
-    //    {
-    //        return new XlsXBuilder(this, sheet);
-    //    }
-
-    //    public void SaveAs(Stream stream, SaveOptions options = null)
-    //    {
-    //        if (options != null)
-    //        {
-    //            workbook.SaveAs(stream, options);
-    //        }
-
-    //        workbook.SaveAs(stream);
-
-    //        this.Dispose();
-    //    }
-
-    //    public void Dispose()
-    //    {
-    //        this.workbook.Dispose();
-    //    }
-
-    //    //public static IDisposable Create()
-    //    //{
-    //    //    var workbook = new XLWorkbook();
-
-    //    //    var x = new XlsXBuilder(workbook);
-
-    //    //    return new XlsXBuilderx(x);
-
-    //    //}
-
-    //    //private class XlsXBuilderx : IDisposable
-    //    //{
-    //    //    private XlsXBuilder x;
-
-    //    //    public XlsXBuilderx(XlsXBuilder x)
-    //    //    {
-    //    //        this.x = x;
-    //    //    }
-
-    //    //    public void Dispose()
-    //    //    {
-    //    //        x.
-    //    //    }
-    //    //}
-    //}
 }
