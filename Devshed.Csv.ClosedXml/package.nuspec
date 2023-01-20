@@ -4,7 +4,7 @@
     <!--*-->
     <id>Devshed.CSV.ClosedXML</id>
     <!--*-->
-    <version>1.6.1</version>
+    <version>1.7.0</version>
     <title>Devshed CSV ClosedXML</title>
     <!--*-->
     <authors>Paul Appeldoorn</authors>
@@ -22,7 +22,7 @@
     <dependencies>
       <group targetFramework=".NETFramework3.5">
         <dependency id="Devshed.Shared" version="1.6.1" />
-        <dependency id="Devshed.Csv" version="1.6.1" />
+        <dependency id="Devshed.Csv" version="1.7.0" />
       </group>
     </dependencies>
   </metadata>
