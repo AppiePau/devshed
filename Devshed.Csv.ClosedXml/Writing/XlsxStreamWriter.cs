@@ -50,7 +50,6 @@ namespace Devshed.Csv.ClosedXml
             }
         }
 
-
         private void AddLine<T>(IXLWorksheet worksheet, CsvDefinition<T> definition, T item, int rowid)
         {
             var colid = 1;
@@ -62,15 +61,6 @@ namespace Devshed.Csv.ClosedXml
                     cell.DataType = GetDataType(column);
                     cell.Value = value;
                     cell.Style.Alignment.WrapText = false;
-
-                    //if (cell.DataType == XLDataType.Text && !value.StartsWith("'"))
-                    //{
-                    //    cell.Value = "'" + value;
-                    //}
-                    //else
-                    //{
-                    //    cell.Value = value;
-                    //}
 
                     colid++;
                 }
