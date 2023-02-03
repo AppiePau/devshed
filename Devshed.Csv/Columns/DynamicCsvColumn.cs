@@ -108,7 +108,7 @@
         /// <param name="culture"> the culture to render in. </param>
         /// <param name="formatter"> The formatter to use for rendering the value into the cell. </param>
         /// <returns>A string that can be directly written into the CSV file. </returns>
-        public override string[] Render(ICsvDefinition defintion, TSource value, CultureInfo culture, IStringFormatter formatter)
+        public override object[] Render(ICsvDefinition defintion, TSource value, CultureInfo culture, IStringFormatter formatter)
         {
             var collection = this.Selector(value);
 

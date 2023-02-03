@@ -50,7 +50,8 @@ namespace Devshed.Csv.Writing
         private void AddLine<T>(StreamWriter writer, CsvDefinition<T> definition, T item)
         {
             var values = definition.Columns.SelectMany(e => e.Render(definition, item, definition.FormattingCulture, formatter)).ToArray();
-            writer.WriteLine(string.Join(definition.ElementDelimiter, values));
+            var valuesString = values.Select(e => e.ToString()).ToArray();
+            writer.WriteLine(string.Join(definition.ElementDelimiter, valuesString));
         }
 
         private void AddHeader<T>(StreamWriter writer, CsvDefinition<T> definition, T[] rows)

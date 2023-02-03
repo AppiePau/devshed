@@ -173,7 +173,7 @@
         /// <param name="formattingCulture"></param>
         /// <param name="formatter"></param>
         /// <returns></returns>
-        public virtual string[] Render(ICsvDefinition definition, TSource element, CultureInfo formattingCulture, IStringFormatter formatter)
+        public virtual object[] Render(ICsvDefinition definition, TSource element, CultureInfo formattingCulture, IStringFormatter formatter)
         {
             var value = this.Selector(element);
 

@@ -34,7 +34,7 @@ namespace Devshed.Csv
         /// <param name="culture"> the culture to render in. </param>
         /// <param name="formatter"> The formatter to use for rendering the value into the cell. </param>
         /// <returns>A string that can be directly written into the CSV file. </returns>
-        string[] Render(ICsvDefinition defintion, TSource value, CultureInfo culture, IStringFormatter formatter);
+        object[] Render(ICsvDefinition defintion, TSource value, CultureInfo culture, IStringFormatter formatter);
 
         /// <summary>
         /// Gets the header names (multiple in the case of a composite column).

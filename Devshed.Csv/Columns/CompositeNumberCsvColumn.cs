@@ -12,34 +12,33 @@
     /// Represents a composite based CSV column. Having multiple columns.
     /// </summary>
     /// <typeparam name="TSource">The type of the source.</typeparam>
-    /// <typeparam name="TValue">The type of the value.</typeparam>
-    public class CompositeCsvColumn<TSource, TValue> : CsvColumn<TSource, IEnumerable<CompositeColumnValue<TValue>>>
+    /// <typeparam name="decimal">The type of the value.</typeparam>
+    public class CompositeNumberCsvColumn<TSource> : CsvColumn<TSource, IEnumerable<CompositeColumnValue<decimal>>>
     {
         private HeaderCollection headers;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompositeCsvColumn{TSource, TValue}"/> class.
+        /// Initializes a new instance of the <see cref="CompositeNumberCsvColumn{TSource, decimal}"/> class.
         /// </summary>
         /// <param name="selector">The selector.</param>
         /// <param name="headers">The headers.</param>
-        public CompositeCsvColumn(
-            Expression<Func<TSource, IEnumerable<CompositeColumnValue<TValue>>>> selector,
+        public CompositeNumberCsvColumn(
+            Expression<Func<TSource, IEnumerable<CompositeColumnValue<decimal>>>> selector,
             HeaderCollection headers)
             : base(selector, new HeaderCollection(headers))
         {
             this.headers = new HeaderCollection(headers);
-            this.Format = (value, culture) => value?.ToString() ?? string.Empty;
             this.AllowUndefinedColumnsInCollection = false;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompositeCsvColumn{TSource, TValue}"/> class.
+        /// Initializes a new instance of the <see cref="CompositeNumberCsvColumn{TSource, decimal}"/> class.
         /// </summary>
         /// <param name="selector">The selector.</param>
         /// <param name="rows">The rows.</param>
-        public CompositeCsvColumn(
-            Expression<Func<TSource, IEnumerable<CompositeColumnValue<TValue>>>> selector,
-            IEnumerable<CompositeColumnValue<TValue>> rows)
+        public CompositeNumberCsvColumn(
+            Expression<Func<TSource, IEnumerable<CompositeColumnValue<decimal>>>> selector,
+            IEnumerable<CompositeColumnValue<decimal>> rows)
             : this(selector, GetHeaderNames(rows))
         {
         }
@@ -49,7 +48,7 @@
         /// </summary>
         /// <param name="selector">The selector for values. </param>
         /// <param name="headers"> The headers corresponing to the value within the column. </param>
-        public CompositeCsvColumn(Expression<Func<TSource, IEnumerable<CompositeColumnValue<TValue>>>> selector, params string[] headers)
+        public CompositeNumberCsvColumn(Expression<Func<TSource, IEnumerable<CompositeColumnValue<decimal>>>> selector, params string[] headers)
         : this(selector, new HeaderCollection(headers))
         {
         }
@@ -69,12 +68,6 @@
                 return ColumnDataType.Composite;
             }
         }
-
-
-        /// <summary>
-        /// The formatting function for rendering the value.
-        /// </summary>
-        public Func<TValue, CultureInfo, string> Format { get; set; }
 
         /// <summary>
         /// Gets the header names.
@@ -112,7 +105,7 @@
             return this.ProcessElementsByHeaderNames(collection, culture, formatter).ToArray();
         }
 
-        private static HeaderCollection GetHeaderNames(IEnumerable<CompositeColumnValue<TValue>> rows)
+        private static HeaderCollection GetHeaderNames(IEnumerable<CompositeColumnValue<decimal>> rows)
         {
             return new HeaderCollection(
                 (from row in rows
@@ -120,7 +113,7 @@
                  select headers.Key).ToArray());
         }
 
-        private IEnumerable<string> ProcessElementsByHeaderNames(IEnumerable<CompositeColumnValue<TValue>> collection, CultureInfo culture, IStringFormatter formatter)
+        private IEnumerable<object> ProcessElementsByHeaderNames(IEnumerable<CompositeColumnValue<decimal>> collection, CultureInfo culture, IStringFormatter formatter)
         {
             if (this.headers.Length == 0)
             {
@@ -136,41 +129,14 @@
                 }
                 else if (column == null && this.AllowUndefinedColumnsInCollection)
                 {
-                    yield return formatter.FormatStringCell(this.Format(default(TValue), culture));
+                    yield return (decimal?)null;
                 }
                 else
                 {
-                    yield return formatter.FormatStringCell(this.Format(column.Value, culture));
+                    yield return column.Value;
                 }
             }
         }
     }
 
-    /// <summary> Holds the values for the composite columns. </summary>
-    /// <typeparam name="TValue">The type of the value.</typeparam>
-    [DebuggerDisplay("{HeaderName}: {Value}")]
-    public sealed class CompositeColumnValue<TValue>
-    {
-        /// <summary>
-        /// A value of the CompositeCsvColumn object.
-        /// </summary>
-        /// <param name="header"></param>
-        /// <param name="value"></param>
-        public CompositeColumnValue(string header, TValue value)
-        {
-            // TODO: Complete member initialization
-            this.HeaderName = header;
-            this.Value = value;
-        }
-
-        /// <summary>
-        /// The header name of the value within the CompositeCsvColumn.
-        /// </summary>
-        public string HeaderName { get; private set; }
-
-        /// <summary>
-        /// The value of the subcolumn (header) within the CompositeCsvColumn.
-        /// </summary>
-        public TValue Value { get; private set; }
-    }
 }

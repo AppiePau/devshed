@@ -58,16 +58,17 @@ namespace Devshed.Csv.ClosedXml
                 foreach (var value in column.Render(definition, item, definition.FormattingCulture, formatter))
                 {
                     var cell = worksheet.Row(rowid).Cell(colid);
-                    cell.DataType = GetDataType(column);
+                    cell.DataType = GetDataType(column, value.GetType());
                     cell.Value = value;
                     cell.Style.Alignment.WrapText = false;
+
 
                     colid++;
                 }
             }
         }
 
-        private static XLDataType GetDataType<T>(ICsvColumn<T> column)
+        private static XLDataType GetDataType<T>(ICsvColumn<T> column, Type valueType)
         {
             switch (column.DataType)
             {
@@ -88,8 +89,19 @@ namespace Devshed.Csv.ClosedXml
                 case ColumnDataType.Currency:
                     return XLDataType.Number;
 
-                case ColumnDataType.Text:
                 case ColumnDataType.Composite:
+                    if (valueType == typeof(decimal)
+                        || valueType == typeof(double)
+                        || valueType == typeof(float)
+                        || valueType == typeof(short)
+                        || valueType == typeof(int)
+                        || valueType == typeof(long))
+
+                    {
+                        return XLDataType.Number;
+                    }
+                    break;
+                case ColumnDataType.Text:
                 case ColumnDataType.StrongTyped:
                 case ColumnDataType.Object:
                 case ColumnDataType.Dynamic:
@@ -98,6 +110,8 @@ namespace Devshed.Csv.ClosedXml
                 default:
                     return XLDataType.Text;
             }
+
+            return XLDataType.Text;
         }
 
         private void AddHeader<T>(IXLWorksheet worksheet, CsvDefinition<T> definition, T[] rows, int rowid)

@@ -56,6 +56,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Columns\ColumnDataType.cs" />
+    <Compile Include="Columns\CompositeNumberCsvColumn.cs" />
     <Compile Include="Columns\DynamicCsvColumn.cs" />
     <Compile Include="Columns\CompositeCsvColumn.cs" />
     <Compile Include="Columns\ICsvColumn.cs" />
