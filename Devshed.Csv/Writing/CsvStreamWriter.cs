@@ -49,7 +49,10 @@ namespace Devshed.Csv.Writing
 
         private void AddLine<T>(StreamWriter writer, CsvDefinition<T> definition, T item)
         {
-            var values = definition.Columns.SelectMany(e => e.Render(definition, item, definition.FormattingCulture, formatter)).ToArray();
+            //var values = definition.Columns.SelectMany(e => e.Render(definition, item, definition.FormattingCulture, formatter)).ToArray();
+            
+            var values = definition.Columns.SelectMany(e => e.Format(e.Render(definition, item), definition.FormattingCulture)).ToArray();
+            
             var valuesString = values.Select(e => e.ToString()).ToArray();
             writer.WriteLine(string.Join(definition.ElementDelimiter, valuesString));
         }

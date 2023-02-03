@@ -43,7 +43,7 @@
         /// <summary>
         /// The formatting function for rendering the value.
         /// </summary>
-        public Func<decimal?, CultureInfo, string> Format { get; set; }
+        public override Func<decimal?, CultureInfo, string> Format { get; set; }
 
 
         /// <summary>
@@ -51,12 +51,10 @@
         /// </summary>
         /// <param name="defintion"> The CSV definition. </param>
         /// <param name="value"> The value to render. </param>
-        /// <param name="culture"> the culture to render in. </param>
-        /// <param name="formatter"> The formatter to use for rendering the value into the cell. </param>
         /// <returns>A string that can be directly written into the CSV file. </returns>
-        protected override object OnRender(ICsvDefinition defintion, decimal? value, CultureInfo culture, IStringFormatter formatter)
+        protected override object OnRender(ICsvDefinition defintion, decimal? value)
         {
-            return this.Format(value, culture);
+            return value;
         }
     }
 }

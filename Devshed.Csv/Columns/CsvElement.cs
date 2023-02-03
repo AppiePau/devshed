@@ -12,7 +12,7 @@
     /// <typeparam name="TSource">The selected source row type.</typeparam>
     /// <typeparam name="TResult">The selected result proprty type to be rendered.</typeparam>
     [DebuggerDisplay("{HeaderName}")]
-    public abstract class CsvColumn<TSource, TResult> : ICsvColumn<TSource>
+    public abstract class CsvColumn<TSource, TResult> : ICsvColumn<TSource, TResult>
     {
         /// <summary>
         /// The property selector for columns.
@@ -128,6 +128,11 @@
         public abstract ColumnDataType DataType { get; }
 
         /// <summary>
+        /// Formats the value for string (plain) text files.
+        /// </summary>
+        public abstract Func<TResult, CultureInfo, string> Format { get; set; }
+
+        /// <summary>
         /// The column value selector.
         /// </summary>
         public Func<TSource, TResult> Selector
@@ -170,14 +175,12 @@
         /// </summary>
         /// <param name="definition"></param>
         /// <param name="element">The element.</param>
-        /// <param name="formattingCulture"></param>
-        /// <param name="formatter"></param>
         /// <returns></returns>
-        public virtual object[] Render(ICsvDefinition definition, TSource element, CultureInfo formattingCulture, IStringFormatter formatter)
+        public virtual object[] Render(ICsvDefinition definition, TSource element)
         {
             var value = this.Selector(element);
 
-            return new[] { this.OnRender(definition, value, formattingCulture.Parent, formatter) };
+            return new[] { this.OnRender(definition, value) };
         }
 
         /// <summary>
@@ -185,10 +188,8 @@
         /// </summary>
         /// <param name="defintion"> The CSV definition. </param>
         /// <param name="value"> The value to render. </param>
-        /// <param name="culture"> the culture to render in. </param>
-        /// <param name="formatter"> The formatter to use for rendering the value into the cell. </param>
         /// <returns>A string that can be directly written into the CSV file. </returns>
-        protected virtual object OnRender(ICsvDefinition defintion, TResult value, CultureInfo culture, IStringFormatter formatter)
+        protected virtual object OnRender(ICsvDefinition defintion, TResult value)
         {
             if (value == null)
             {

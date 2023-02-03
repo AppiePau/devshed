@@ -9,7 +9,8 @@ namespace Devshed.Csv
     /// Defines an abstract representation of a CSV column.
     /// </summary>
     /// <typeparam name="TSource"></typeparam>
-    public interface ICsvColumn<TSource>
+    /// <typeparam name="TResult"></typeparam>
+    public interface ICsvColumn<TSource, TResult>
     {
         /// <summary>
         /// The property name that the column is bound to on the model.
@@ -25,16 +26,19 @@ namespace Devshed.Csv
         /// The CSV data type converted from and to.
         /// </summary>
         ColumnDataType DataType { get; }
+        /// <summary>
+        /// Formats the value for string (plain) text files.
+        /// </summary>
+        Func<TResult, CultureInfo, string> Format { get; }
+
 
         /// <summary>
         /// Executed each time the cell/value is written to a file.
         /// </summary>
         /// <param name="defintion"> The CSV definition. </param>
         /// <param name="value"> The value to render. </param>
-        /// <param name="culture"> the culture to render in. </param>
-        /// <param name="formatter"> The formatter to use for rendering the value into the cell. </param>
         /// <returns>A string that can be directly written into the CSV file. </returns>
-        object[] Render(ICsvDefinition defintion, TSource value, CultureInfo culture, IStringFormatter formatter);
+        object[] Render(ICsvDefinition defintion, TSource value);
 
         /// <summary>
         /// Gets the header names (multiple in the case of a composite column).

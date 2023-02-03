@@ -18,7 +18,7 @@
     {
         private HeaderCollection headers;
 
-        private readonly Func<TValue, ICsvColumn<TValue>> converter;
+        private readonly Func<TValue, ICsvColumn<TValue, IEnumerable<TValue>>> converter;
 
         /// <summary>Initializes a new instance of the <see cref="DynamicCsvColumn{TSource, TValue}" /> class.</summary>
         /// <param name="selector">The selector.</param>
@@ -26,7 +26,7 @@
         /// <param name="headers">The headers.</param>
         public DynamicCsvColumn(
             Expression<Func<TSource, IEnumerable<TValue>>> selector,
-            Func<TValue, ICsvColumn<TValue>> converter,
+            Func<TValue, ICsvColumn<TValue, IEnumerable<TValue>>> converter,
             HeaderCollection headers)
             : base(selector, headers)
         {
@@ -40,7 +40,7 @@
         /// <param name="headers">The headers.</param>
         public DynamicCsvColumn(
             Expression<Func<TSource, IEnumerable<TValue>>> selector,
-           Func<TValue, ICsvColumn<TValue>> converter,
+           Func<TValue, ICsvColumn<TValue, IEnumerable<TValue>>> converter,
            params string[] headers)
            : this(selector, converter, new HeaderCollection(headers))
         {
@@ -58,7 +58,7 @@
         /// <param name="converter">The value converter.</param>
         public DynamicCsvColumn(Expression<Func<TSource, IEnumerable<TValue>>> selector,
             IEnumerable<TValue> rows,
-            Func<TValue, ICsvColumn<TValue>> converter)
+            Func<TValue, ICsvColumn<TValue, IEnumerable<TValue>>> converter)
             : this(selector, converter, GetHeaderNames(rows, converter))
         {
             //selector = selector;
@@ -74,6 +74,11 @@
                 return ColumnDataType.Dynamic;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public override Func<IEnumerable<TValue>, CultureInfo, string> Format { get; set; } = (a, b) => a;
 
         /// <summary>
         /// Gets the header names.
@@ -105,21 +110,19 @@
         /// </summary>
         /// <param name="defintion"> The CSV definition. </param>
         /// <param name="value"> The value to render. </param>
-        /// <param name="culture"> the culture to render in. </param>
-        /// <param name="formatter"> The formatter to use for rendering the value into the cell. </param>
         /// <returns>A string that can be directly written into the CSV file. </returns>
-        public override object[] Render(ICsvDefinition defintion, TSource value, CultureInfo culture, IStringFormatter formatter)
+        public override object[] Render(ICsvDefinition defintion, TSource value)
         {
             var collection = this.Selector(value);
 
             return (from item in collection
                     let column = converter(item)
-                    select column.Render(defintion, item, culture, formatter))
+                    select column.Render(defintion, item))
                     .SelectMany(elements => elements)
                     .ToArray();
         }
 
-        private static HeaderCollection GetHeaderNames(IEnumerable<TValue> rows, Func<TValue, ICsvColumn<TValue>> converter)
+        private static HeaderCollection GetHeaderNames(IEnumerable<TValue> rows, Func<TValue, ICsvColumn<TValue, IEnumerable<TValue>>> converter)
         {
             return new HeaderCollection(
                 (from row in rows

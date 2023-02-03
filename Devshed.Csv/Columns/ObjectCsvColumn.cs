@@ -38,17 +38,15 @@
         /// <summary>
         /// The formatting function for rendering the value.
         /// </summary>
-        public Func<object, CultureInfo, string> Format { get; set; }
+        public override Func<object, CultureInfo, string> Format { get; set; }
 
         /// <summary>Executed each time the cell/value is written to a file.</summary>
         /// <param name="defintion">The CSV definition.</param>
         /// <param name="value">The value to render.</param>
-        /// <param name="culture">the culture to render in.</param>
-        /// <param name="formatter">The formatter to use for rendering the value into the cell.</param>
         /// <returns>A string that can be directly written into the CSV file.</returns>
-        protected override object OnRender(ICsvDefinition defintion, object value, CultureInfo culture, IStringFormatter formatter)
+        protected override object OnRender(ICsvDefinition defintion, object value)
         {
-            return this.Format(value, culture);
+            return value;
         }
     }
 }

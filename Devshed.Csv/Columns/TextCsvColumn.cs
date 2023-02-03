@@ -42,7 +42,7 @@
 
         /// <summary>Gets or sets the formatting method.</summary>
         /// <value>The format.</value>
-        public Func<string, CultureInfo, string> Format { get; set; }
+        public override  Func<string, CultureInfo, string> Format { get; set; }
 
         /// <summary>Executed each time the cell/value is written to a file.</summary>
         /// <param name="defintion">The CSV definition.</param>
