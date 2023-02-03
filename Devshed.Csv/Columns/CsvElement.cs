@@ -188,14 +188,14 @@
         /// <param name="culture"> the culture to render in. </param>
         /// <param name="formatter"> The formatter to use for rendering the value into the cell. </param>
         /// <returns>A string that can be directly written into the CSV file. </returns>
-        protected virtual string OnRender(ICsvDefinition defintion, TResult value, CultureInfo culture, IStringFormatter formatter)
+        protected virtual object OnRender(ICsvDefinition defintion, TResult value, CultureInfo culture, IStringFormatter formatter)
         {
             if (value == null)
             {
                 return string.Empty;
             }
 
-            return value.ToString();
+            return value;
         }
     }
 }

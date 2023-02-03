@@ -12,13 +12,12 @@
     /// Represents a composite based CSV column. Having multiple columns.
     /// </summary>
     /// <typeparam name="TSource">The type of the source.</typeparam>
-    /// <typeparam name="decimal">The type of the value.</typeparam>
     public class CompositeNumberCsvColumn<TSource> : CsvColumn<TSource, IEnumerable<CompositeColumnValue<decimal>>>
     {
         private HeaderCollection headers;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompositeNumberCsvColumn{TSource, decimal}"/> class.
+        /// Initializes a new instance of the <see cref="CompositeNumberCsvColumn{TSource}"/> class.
         /// </summary>
         /// <param name="selector">The selector.</param>
         /// <param name="headers">The headers.</param>
@@ -32,7 +31,7 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompositeNumberCsvColumn{TSource, decimal}"/> class.
+        /// Initializes a new instance of the <see cref="CompositeNumberCsvColumn{TSource}"/> class.
         /// </summary>
         /// <param name="selector">The selector.</param>
         /// <param name="rows">The rows.</param>

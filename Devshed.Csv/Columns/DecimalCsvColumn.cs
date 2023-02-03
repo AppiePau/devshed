@@ -54,7 +54,7 @@
         /// <param name="culture"> the culture to render in. </param>
         /// <param name="formatter"> The formatter to use for rendering the value into the cell. </param>
         /// <returns>A string that can be directly written into the CSV file. </returns>
-        protected override string OnRender(ICsvDefinition defintion, decimal? value, CultureInfo culture, IStringFormatter formatter)
+        protected override object OnRender(ICsvDefinition defintion, decimal? value, CultureInfo culture, IStringFormatter formatter)
         {
             return this.Format(value, culture);
         }
