@@ -63,9 +63,8 @@ namespace Devshed.Csv.ClosedXml
                     cell.DataType = GetDataType(column, valueType);
                     cell.Value = value;
                     cell.Style.Alignment.WrapText = false;
-
+                    
                     SetNumberValueFormatting(cell, valueType);
-
 
                     colid++;
                 }
@@ -86,6 +85,8 @@ namespace Devshed.Csv.ClosedXml
             {
                 cell.Style.NumberFormat.Format = "#,##0";
             }
+
+            //// Default is no formatting
         }
 
         private static XLDataType GetDataType<T>(ICsvColumn<T> column, Type valueType)
