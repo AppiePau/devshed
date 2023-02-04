@@ -18,21 +18,27 @@
              new CompositeColumnValue<decimal>("COL1", 1M) }, IsActive = true } };
 
         private static TestRow[] twoRows = new[] {
-                new TestRow { Id = 1, Name = "OK_NAME1", Getallen = new [] {
+                new TestRow { Id = 1, Name = "OK_NAME1",
+                    GetalDecimal = 1234M,
+                    Getallen = new [] {
                         new CompositeColumnValue<decimal>("COL1", 1.23M),
                         new CompositeColumnValue<decimal>("COL2", 2.345M) }, IsActive = true },
-                new TestRow { Id = 2, Name = "OK_NAME2", Getallen = new [] {
+                new TestRow { Id = 2, Name = "OK_NAME2",
+                    GetalDecimal = 1234M,Getallen = new [] {
                         new CompositeColumnValue<decimal>("COL1",  3.45M),
                         new CompositeColumnValue<decimal>("COL2", 5.567M) }, IsActive = false } };
-       
+
         private static TestRow[] incompleteRows = new[] {
-                new TestRow { Id = 1, Name = "OK_NAME1", Getallen = new [] {
+                new TestRow { Id = 1, Name = "OK_NAME1",
+                    GetalDecimal = 1234M, Getallen = new [] {
                         new CompositeColumnValue<decimal>("COL1", 1.23M),
                         new CompositeColumnValue<decimal>("COL2", 2.345M) }, IsActive = true },
-                new TestRow { Id = 2, Name = "OK_NAME2", Getallen = new [] {
+                new TestRow { Id = 2, Name = "OK_NAME2",
+                    GetalDecimal = 1234M, Getallen = new [] {
                         new CompositeColumnValue<decimal>("COL1",  3.45M),
                         new CompositeColumnValue<decimal>("COL2", 5.567M) }, IsActive = false },
-                new TestRow { Id = 2, Name = "OK_NAME2", Getallen = new [] {
+                new TestRow { Id = 2, Name = "OK_NAME2",
+                    GetalDecimal = 1234M, Getallen = new [] {
                         new CompositeColumnValue<decimal>("COL2", 5.567M) }, IsActive = false } };
 
 
@@ -108,7 +114,8 @@
                  {
                      HeaderName = "OK_NAME_HEADER"
                  },
-                 new CompositeCsvColumn<TestRow, decimal>(e => e.Getallen,
+                 new DecimalXlsColumn<TestRow>(e => e.GetalDecimal),
+                 new CompositeNumberCsvColumn<TestRow>(e => e.Getallen,
                     rows.SelectMany(e => e.Getallen))
                  {
                      HeaderName = "OK_GETALLEN_HEADER"
@@ -134,11 +141,12 @@
                  {
                      HeaderName = "OK_NAME_HEADER"
                  },
-                 new CompositeCsvColumn<TestRow, decimal>(e => e.Getallen,
+                 new DecimalXlsColumn<TestRow>(e => e.GetalDecimal),
+                 new CompositeNumberCsvColumn<TestRow>(e => e.Getallen,
                     rows.SelectMany(e => e.Getallen))
                  {
                      HeaderName = "OK_GETALLEN_HEADER",
-                     AllowUndefinedColumnsInCollection =true
+                     AllowUndefinedColumnsInCollection = true
                  },
                  new BooleanCsvColumn<TestRow>(e => e.IsActive)
                  {
@@ -159,6 +167,7 @@
             public CompositeColumnValue<decimal>[] Getallen { get; set; }
 
             public bool IsActive { get; set; }
+            public decimal GetalDecimal { get; internal set; }
         }
     }
 }

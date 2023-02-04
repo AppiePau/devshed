@@ -57,14 +57,34 @@ namespace Devshed.Csv.ClosedXml
             {
                 foreach (var value in column.Render(definition, item, definition.FormattingCulture, formatter))
                 {
+                    var valueType = value?.GetType() ?? typeof(string);
                     var cell = worksheet.Row(rowid).Cell(colid);
-                    cell.DataType = GetDataType(column, value.GetType());
+                    
+                    cell.DataType = GetDataType(column, valueType);
                     cell.Value = value;
                     cell.Style.Alignment.WrapText = false;
+
+                    SetNumberValueFormatting(cell, valueType);
 
 
                     colid++;
                 }
+            }
+        }
+
+        private static void SetNumberValueFormatting(IXLCell cell, Type valueType)
+        {
+            if (valueType == typeof(decimal)
+               || valueType == typeof(double)
+               || valueType == typeof(float))
+            {
+                cell.Style.NumberFormat.Format = "#,##0.0";
+            }
+            else if (valueType == typeof(short)
+               || valueType == typeof(int)
+               || valueType == typeof(long))
+            {
+                cell.Style.NumberFormat.Format = "#,##0";
             }
         }
 
