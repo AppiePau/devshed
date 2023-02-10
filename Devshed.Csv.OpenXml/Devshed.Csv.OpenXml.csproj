@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <!-- <Nullable>enable</Nullable> -->
 
     <VersionPrefix>2.0.0</VersionPrefix>
-    <VersionSuffix>beta-1.2</VersionSuffix>
+    <VersionSuffix>beta-1.3</VersionSuffix>
     <AssemblyVersion>2.0.0</AssemblyVersion> <!-- Do not change in favor of assembly binding. -->
     <AssemblyTitle>Devshed CSV/OpenXml Library</AssemblyTitle>
     <Description>Reads and writes XLSX files using definition mappers.</Description>

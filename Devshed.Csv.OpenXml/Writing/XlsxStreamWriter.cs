@@ -43,7 +43,7 @@ namespace Devshed.Csv.ClosedXml
                 worksheetPart.Worksheet = new Worksheet(sheetData);
 
                 Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
-                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Sheet1" };
+                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = this.sheetName};
 
                 sheets.Append(sheet);
 
@@ -83,8 +83,8 @@ namespace Devshed.Csv.ClosedXml
                     // cell.Style.Alignment.WrapText = false;
 
                     Cell cell = new Cell();
-                    //cell.DataType = GetDataType(column);
-                    cell.DataType = CellValues.String;
+                    cell.DataType = GetDataType(column);
+                    //cell.DataType = CellValues.String;
                     cell.CellValue = new CellValue(value);
                     
                     headerRow.AppendChild(cell);
@@ -94,38 +94,29 @@ namespace Devshed.Csv.ClosedXml
             worksheet.AppendChild(headerRow);
         }
 
-        // private static CellValues GetDataType<T>(ICsvColumn<T> column)
-        // {
-        //     switch (column.DataType)
-        //     {
-        //         case ColumnDataType.Number:
-        //         case ColumnDataType.Decimal:
-        //             return CellValues.Number;
+        private static CellValues GetDataType<T>(ICsvColumn<T> column)
+        {
+            switch (column.DataType)
+            {
+                case ColumnDataType.Number:
+                case ColumnDataType.Decimal:
+                    return CellValues.Number;
 
-        //         case ColumnDataType.DateTime:
-        //             return CellValues.Date;
+                case ColumnDataType.Boolean:
+                case ColumnDataType.DateTime:
+                case ColumnDataType.Time:
+                case ColumnDataType.Currency:
+                case ColumnDataType.Text:
+                case ColumnDataType.Composite:
+                case ColumnDataType.StrongTyped:
+                case ColumnDataType.Object:
+                case ColumnDataType.Dynamic:
+                    return CellValues.String;
 
-        //         case ColumnDataType.Boolean:
-        //             return CellValues.Boolean;
-
-        //         case ColumnDataType.Time:
-        //             //return XLDataType.Text;
-        //             return CellValues.Date;
-
-        //         case ColumnDataType.Currency:
-        //             return CellValues.Number;
-
-        //         case ColumnDataType.Text:
-        //         case ColumnDataType.Composite:
-        //         case ColumnDataType.StrongTyped:
-        //         case ColumnDataType.Object:
-        //         case ColumnDataType.Dynamic:
-        //             return CellValues.String;
-
-        //         default:
-        //             return CellValues.String;
-        //     }
-        // }
+                default:
+                    return CellValues.String;
+            }
+        }
 
         private void AddHeader<T>(SheetData worksheet, CsvDefinition<T> definition, T[] rows, int rowid)
         {
@@ -135,7 +126,7 @@ namespace Devshed.Csv.ClosedXml
             foreach (var header in headers)
             {
                 Cell cell = new Cell();
-                //cell.DataType = CellValues.String;
+                cell.DataType = CellValues.String;
                 cell.CellValue = new CellValue(header.Name);
                 headerRow.AppendChild(cell);
             }
