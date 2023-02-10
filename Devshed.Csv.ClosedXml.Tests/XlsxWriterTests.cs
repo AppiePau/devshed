@@ -20,6 +20,7 @@
         private static TestRow[] twoRows = new[] {
                 new TestRow { Id = 1, Name = "OK_NAME1",
                     GetalDecimal = 1234.56790M,
+                    GetalDecimalNullable = 2341.56790M,
                     Getallen = new [] {
                         new CompositeColumnValue<decimal>("COL1", 123.23467M),
                         new CompositeColumnValue<decimal>("COL2", 234.34645M) }, IsActive = true },
@@ -32,6 +33,7 @@
         private static TestRow[] incompleteRows = new[] {
                 new TestRow { Id = 1, Name = "OK_NAME1",
                     GetalDecimal = 1234.56790M,
+                    GetalDecimalNullable = 2341.56790M,
                     Getallen = new [] {
                         new CompositeColumnValue<decimal>("COL1", 123.243323M),
                         new CompositeColumnValue<decimal>("COL2", 234.345445M) }, IsActive = true },
@@ -39,7 +41,8 @@
                     GetalDecimal = 1234.56790M,
                     Getallen = new [] {
                         new CompositeColumnValue<decimal>("COL1", 345.454543M),
-                        new CompositeColumnValue<decimal>("COL2", 567.563457M) }, IsActive = false },
+                        new CompositeColumnValue<decimal>("COL2", 567.563457M),
+                        new CompositeColumnValue<decimal>("COL3", 678.563457M) }, IsActive = false },
                 new TestRow { Id = 2, Name = "OK_NAME2",
                     GetalDecimal = 1234.56790M,
                     Getallen = new [] {
@@ -119,6 +122,7 @@
                      HeaderName = "OK_NAME_HEADER"
                  },
                  new DecimalXlsColumn<TestRow>(e => e.GetalDecimal),
+                 new DecimalXlsColumn<TestRow>(e => e.GetalDecimalNullable),
                  new CompositeNumberCsvColumn<TestRow>(e => e.Getallen,
                     rows.SelectMany(e => e.Getallen))
                  {
@@ -146,6 +150,7 @@
                      HeaderName = "OK_NAME_HEADER"
                  },
                  new DecimalXlsColumn<TestRow>(e => e.GetalDecimal),
+                 new DecimalXlsColumn<TestRow>(e => e.GetalDecimalNullable),
                  new CompositeNumberCsvColumn<TestRow>(e => e.Getallen,
                     rows.SelectMany(e => e.Getallen))
                  {
@@ -168,6 +173,7 @@
             public string Name { get; set; }
             public bool IsActive { get; set; }
             public decimal GetalDecimal { get; set; }
+            public decimal? GetalDecimalNullable { get; set; }
             public CompositeColumnValue<decimal>[] Getallen { get; set; }
         }
     }

@@ -118,12 +118,18 @@ namespace Devshed.Csv
             return stream;
         }
 
-
+        /// <summary>
+        /// Dispose the XlsxWriter resources.
+        /// </summary>
         public void Dispose()
         {
             this.workbook.Dispose();
         }
 
+        /// <summary>
+        /// Create a builder.
+        /// </summary>
+        /// <returns></returns>
         public static XlsxDocumentBuilder Create()
         {
             return new XlsxDocumentBuilder(new XLWorkbook());

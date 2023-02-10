@@ -4,30 +4,30 @@
     <!--*-->
     <id>Devshed.CSV.ClosedXML</id>
     <!--*-->
-    <version>1.8.2.1</version>
+    <version>1.9.0</version>
     <title>Devshed CSV ClosedXML</title>
     <!--*-->
     <authors>Paul Appeldoorn</authors>
     <owners>Paul Appeldoorn</owners>
     <repository type="git" url="https://github.com/AppiePau/devshed-tools/" />
     <projectUrl>https://github.com/AppiePau/devshed-tools/</projectUrl>
-    <copyright>Copyright 2021 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>
+    <copyright>Copyright 2023 © Paul Appeldoorn (http://blog.devshed.nl/)</copyright>
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <!--*-->
     <description>Devshed CSV Library</description>
     <!--*-->
-    <releaseNotes> Consolidation release to update all packages to version 1.6.1; while adding XML documentation; Adding PDB files; Removed FastMember dependency. </releaseNotes>
+    <releaseNotes> Consolidation release to update all packages to version 1.6.1; while adding XML documentation; Adding PDB files; Removed FastMember dependency; Upgrade to NET 4.8.1. </releaseNotes>
     <tags>XLSX ClosedXML CSV Devshed mapper tables</tags>
     <dependencies>
-      <group targetFramework=".NETFramework3.5">
+      <group targetFramework=".NETFramework4.8.1">
         <dependency id="Devshed.Shared" version="1.6.1" />
-        <dependency id="Devshed.Csv" version="1.8.0" />
+        <dependency id="Devshed.Csv" version="1.9.0" />
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\$configuration$\$id$.pdb" target="lib\net35\" />
+	  <file src="bin\$configuration$\$id$.pdb" target="lib\net40\" />
     <!--<file src="bin\$configuration$\$id$.xml" target="lib\net35\" />-->
   </files>
 </package>

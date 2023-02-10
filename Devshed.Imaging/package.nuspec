@@ -4,7 +4,7 @@
     <!--*-->
     <id>Devshed.Imaging</id>
     <!--*-->
-    <version>1.6.1</version>
+    <version>1.9.0</version>
     <title>Devshed Imaging</title>
     <!--*-->
     <authors>Paul Appeldoorn</authors>
@@ -17,7 +17,7 @@
     <!--*-->
     <description>Devshed Imaging Library</description>
     <!--*-->
-    <releaseNotes> Consolidation release to update all packages to version 1.6.1. </releaseNotes>
+    <releaseNotes> Consolidation release to update all packages to version 1.6.1; Upgrade to NET 4.8.1. </releaseNotes>
     <tags>Devshed Imaging images</tags>
     <dependencies>
       <dependency id="Devshed.Shared" version="1.6.1" />
